@@ -1,0 +1,332 @@
+/* -*- mode:css ; coding: cp932 -*- */
+
+/* ============================================== */
+/* A Tag                                          */
+a {
+    word-wrap  : break-word;
+    word-break : break-all;
+}
+a:hover {
+    color      : #ff0000;
+}
+
+
+/* ============================================== */
+/* Paragraph Tag                                  */
+p.sentence {
+    text-indent     : 1em;    
+    line-height     : 150%;
+    padding         : 0.1em 0px 0.5em 0px;
+}
+p.totop {
+    margin          : 0.5em 0px 1em 0px;
+    text-align      : right;
+    list-style-type : none;
+}
+
+
+/* ============================================== */
+/* Table Tag                                      */
+table {
+    padding          : 0.5em 0px 0.5em 1em;
+    border           : 0.01em none #ffffff;
+    table-layout     : fixed;
+    line-height      : 120%;
+    margin           : 1em 1em 1em 1em;
+}
+th {
+    border           : 0.01em solid #999999;
+    padding          : 0.2em 0.2em;
+    background-color : #ffcc99;
+    font-weight      : normal;
+}
+td {
+    border           : 0.01em solid #999999;
+    padding          : 0.2em 0.5em;
+    background-color : #ffffff;
+    text-align       : center;
+}
+td.text {
+    padding          : 0.5em 0.5em 0.5em 1em;
+    background-color : #ffffff;
+    text-align       : left;
+    vertical-align   : top;
+}
+
+
+/* ============================================== */
+/* List Tag                                       */
+dl {
+    margin       : 0px 0px 1em 0px;
+    text-align   : left;
+}
+dt, dd {
+    margin       : 0px 0px 0.2em 0px;
+    text-indent  : -1.3em;
+    padding-left : 1.3em;
+}
+dl.list {
+    margin       : 0.2em 0px 1.2em 1em;
+}
+
+dl.list dt {
+    font-weight  : bold
+}
+dl.list dd {
+    margin       : 0px 0px 0px 3em;
+}
+dl.list dd.name {
+    margin       : 0px 0px 0px 2em;
+}
+dl.list dd.desc {
+    margin       : 0px 0px 0px 5em;
+}
+dl.list dd.list {
+    margin       : 0px 0px 0px 5em;
+    text-indent  : 0px;
+    padding-left : 0px;
+}
+
+dl.table {
+    padding      : 0.5em 0px 0px 0px;
+}
+dl.table dt, dl.table dd {
+    padding      : 0.0px 0.0px 0.0px 0.3em;
+}
+dl.table dt {
+    margin       : 0 0 0 3em;
+    clear        : left;
+    float        : left;
+    padding-left : 5px;
+}
+dl.table dd {
+    margin-left  : 80px;
+}
+
+
+/* ============================================== */
+/* Decoration Tag                                 */
+strong {
+    color       : #cc3333;
+}
+em {
+    color       : #cc3333;
+}
+code {
+    font-weight : bold;
+    word-wrap   : break-word;
+    word-break  : break-all;
+    quotes      : "「" "」" "『" "』";
+}
+code:before {
+    content     : open-quote;
+}
+code:after {
+    content     : close-quote;
+}
+
+
+/* ============================================== */
+/* Span Tag (Font Color/Style)                    */
+span.s_dirs     { color           : #ff00ff; }
+span.s_exec     { color           : #00ff00; }
+span.s_file     { color           : #ffffff; }
+span.s_hidden   { font-style      : italic;  }
+
+span.s_comment  { color           : #ffff00; }
+span.s_keyword  { color           : #00ffff; }
+span.s_constant { color           : #87ceff; }
+span.s_builtin  { color           : #b0c4de; }
+span.s_function { color           : #4876ff; }
+span.s_string   { color           : #99ff99; }
+span.s_type     { color           : #ff6347; }
+span.s_variable { color           : #ffa500; }
+
+span.s_prompt   { color           : #ff0000; }
+span.s_stdout   { color           : #999999; }
+span.s_sec      { color           : #ff6633; }
+span.s_param    { color           : #ff9900; }
+
+span.s_red      { color           : #ff0000; }
+span.s_italic   { font-style      : italic;  }
+span.s_under    { font-weight     : bold;
+                  text-decoration : ;        }
+
+/* ============================================== */
+/* Pre Tag                                        */
+pre {
+    font-family      : monospace;
+}
+pre.message {
+    margin           : 0.5em;
+    padding          : 1em;
+    margin-bottom    : 1em;
+    border           : 1px double #999999;
+    background-color : #ffffff;
+    line-height      : 120%;
+}
+pre.scroll {
+    margin           : 0.5em;
+    padding          : 1em;
+    margin-bottom    : 1em;
+    border           : 1px double #999999;
+    background-color : #ffffff;
+    line-height      : 120%;
+}
+pre.cmd {
+    margin           : 0px;
+    padding          : 0.5em 20px 1em 0.5em;
+    color            : #ffffff;
+    overflow         : auto;
+    white-space      : pre;
+    word-wrap        : break-word;
+    word-break       : break-all;
+    line-height      : 120%;
+    font-weight      : normal;
+}
+pre.emacs {
+    margin           : 0px;
+    padding          : 0.5em 5px 1em 0.5em;
+    color            : #ffffff;
+    overflow         : auto;
+    white-space      : pre;
+    word-wrap        : break-word;
+    word-break       : break-all;
+    line-height      : 140%;
+    font-weight      : normal;
+}
+.frame0 { margin: 10px; }
+.frame1 { border: solid 1px; border-color: #f1efe2 #716f64 #716f64 #f1efe2; }
+.frame2 { border: solid 1px; border-color: #ffffff #aca899 #aca899 #ffffff; }
+.frame3 { border: solid 1px; border-color: #d4d0c8 #d4d0c8 #d4d0c8 #d4d0c8; }
+.frame4 { border: solid 1px; border-color: #ece9d8 #ece9d8 #ece9d8 #ece9d8; background-color: #333333; }
+.frame0 .f_title {
+    background-color : #0054e3;
+    height           : 26px;
+    border-style     : solid;
+    border-width     : 0px 0px 1px 0px;
+    border-color     : #000000 #000000 #ece9d8 #000000;
+    position         : relative;
+}
+.frame0 .f_title_buttom {
+    background       : url(./frame/title_buttom.png) no-repeat center right;
+    width            : 63px;
+    height           : 25px;
+    float            : right;
+    clear            : both;
+}
+.frame0 .f_title_bash {
+    background       : url(./frame/title_bash.png) no-repeat center left;
+    width            : 70px;
+    height           : 25px;
+    float            : left;
+}
+.frame0 .f_title_emacs {
+    background       : url(./frame/title_emacs.png) no-repeat center left;
+    width            : 70px;
+    height           : 25px;
+    float            : left;
+}
+.frame0 .f_menu {
+    background-color : #ece9d8;
+    height           : 21px;
+}
+.frame0 .f_menu_emacs {
+    background       : url(./frame/menu_emacs.png) no-repeat center left;
+    padding          : 0px;
+    width            : 349px;
+    height           : 21px;
+    float            : left;
+}
+.frame0 .f_title_scroll {
+    background       : url(./frame/title_scroll.png) no-repeat center right;
+    width            : 17px;
+    height           : 17px;
+    float            : right;
+    position         : relative;
+    top              : 26px;
+    left             : 63px;
+}
+.frame0 .f_body_bar {
+    background       : url(./frame/body_bar.png) repeat-y top right;
+    width            : auto;
+    height           : auto;
+}
+.frame0 .f_body_scroll {
+    background       : url(./frame/body_scroll.png) no-repeat bottom right;
+    width            : 17px;
+    height           : 26px;
+    position         : relative;
+    bottom           : 26px;
+    float            : right;
+}
+.frame0 .f_body {
+    width            : auto;
+    height           : auto;
+}
+.frame0 .f_modeline {
+    height           : 13px;
+    padding          : 0px;
+    margin           : 0px;
+    border           : 0px;
+    width            : auto;
+    background-color : #bfbfbf;
+    border-style     : solid;
+    border-width     : 1px;
+    border-color     : #e5e5e5 #727272 #727272 #e5e5e5;
+}
+.frame0 .f_modeline1 {
+    background       : url(./frame/modeline1.png) no-repeat center left;
+    width            : 294px;
+    height           : 13px;
+    float            : left;
+}
+.frame0 .f_modeline2 {
+    background       : url(./frame/modeline2.png) repeat-x center right;
+    width            : auto;
+    height           : 13px;
+}
+.frame0 .f_minibuf {
+    background-color : #333333;
+    height           : 15px;
+}
+
+
+/* ============================================== */
+/* Class Tag for UsersGuide                       */
+.imgbox  {
+    margin           : 1em;
+}
+.notice {
+    margin           : 0px;
+    padding          : 0px;
+    text-indent      : -1.3em;
+    padding-left     : 1.3em;
+}
+.noticebox {
+    margin           : 1em;
+    padding          : 5px;
+    background-color : #ffffff;
+    border           : 2px dashed #aaaaaa;
+}
+
+
+/* ============================================== */
+/* Class Tag for Thumbnail                        */
+
+.thumbnail {
+    float       : left;
+    padding     : 0px 0.5em 0px 0px;
+}
+
+dl.thumbnail {
+    float       : left;
+    padding     : 0px 0.5em 0px 0px;
+}
+dl.thumbnail dd {
+    text-align  : center;
+    font-weight : bold;
+}
+dl.thumbnail img {
+    border      : 1px;
+}

@@ -1,0 +1,343 @@
+ncurses
+========================================================================
+Ncurses provides libraries and utilities for manipulating terminal
+display.  This package contains the utility programs and documentation
+for ncurses.  It is compiled to support "narrow" characters (that is,
+char, not wchar_t).
+
+NOTE: cygwin-1.7 now supports UTF-8 encoding by default. It is expected
+that the "wide char" version of ncurses, ncursesw, will be of increasing
+utility for clients as time goes on. Maintainers, I recommend that you
+first attempt to rebuild your applications against libncursesw, and only
+use libncurses if it doesn't work, and you can't figure out how to fix
+it right away.  See ncursesw.README for more information.
+
+Runtime requirements (these or newer):
+  cygwin-1.7.1-1
+  libncurses10-5.7-18
+  libgcc1-4.3.4-1
+  libstdc++6-4.3.4-1
+  terminfo
+
+Build requirements (these or newer):
+  cygwin-1.7.1-1
+  gcc4-core-4.3.4-1
+  gcc4-g++-4.3.4-1
+  libgcc1-4.3.4-1
+  libstdc++6-4.3.4-1
+  binutils-2.19.51-1
+  sed-4.1.5-2
+  gawk-3.1.7-1
+  bash-3.2.49-23
+  libtool-2.2.7a-15
+  perl-5.10.1-2
+  coreutils-7.0-2
+  cygport-0.9.9
+
+Canonical homepage:
+  http://www.gnu.org/software/ncurses/ncurses.html
+
+Canonical download:
+  ftp://ftp.gnu.org/pub/gnu/ncurses/
+
+License:
+  MIT/X11
+
+Language:
+  C, C++
+ 
+========================================================================
+
+Build instructions:
+  unpack ncurses-5.7-X-src.tar.bz2
+    if you use setup to install this src package, it will be
+    unpacked under /usr/src automatically
+  cd /usr/src
+  cygport ./ncurses-5.7-X.cygport all
+
+This will create:
+  /usr/src/ncurses-5.7-X-src.tar.bz2
+  /usr/src/ncurses-5.7-X.tar.bz2
+  /usr/src/libncurses10-5.7-X.tar.bz2
+  /usr/src/libncurses-devel-5.7-X.tar.bz2
+  /usr/src/ncurses-demo-5.7-X.tar.bz2
+  /usr/src/terminfo-temp.tar.bz2 (see note, below)
+
+Or use 'cygport ./ncurses-5.7-X.cygport prep' to get a patched source
+directory.
+
+To find out the files included in the binary distribution, you can
+use "cygcheck -l ncurses", or browse the listing for the appropriate
+version at <http://cygwin.com/packages/>.
+
+Note: the terminfo package as distributed by the cygwin mirrors is NOT
+the same as this one.  For one thing the "real" terminfo package has
+been split into two parts, terminfo and terminfo-extra. In any case,
+the other terminfo packages are almost certainly more up-to-date than
+the one built as a side effect of this package. They will never be
+older.
+
+========================================================================
+All libraries (libncurses, libpanel, libmenu, libform, libncurses++)
+come in both static (.a) and dynamic (.dll) forms.  To link your project
+with the C libraries:
+  #0) Use -I /usr/include/ncurses when compiling
+  #1) include curses.h
+  #2) to link with the static library, use '-static' on the link line 
+  #3) to link with the dll, no unusual link-time flags are needed
+      (You can use -L/usr/lib/ncurses, but it isn't necessary)
+
+To link your project with the C++ library:
+  #0) Use -I /usr/include/ncurses when compiling
+  #1) include cursesapp.h
+  #2) add -lncurses++ -lpanel -lmenu -lpanel -lncurses to your link
+      command
+
+========================================================================
+
+Port Notes:
+----------  ncurses-5.7-18 -- 20090102 -----------
+* Remove symlinks in /usr/include/ to /usr/include/ncurses/*
+* Because the API changes (upstream "ABI 5" vs "ABI 6" are handled
+  transparently by macros, we assist clients that explicitly search
+  for ncurses5-config by providing it as a symlink to ncurses6-config.
+  (Suggestion by Yaakov Selkowitz)
+* Add symlinks in /usr/lib/ncurses/ to the import, static, and
+  libtool libs in /usr/lib/.  Also symlink pkgconfig.
+
+----------  ncurses-5.7-17 -- 20091231 -----------
+* Update to 20091227 patchset
+* compile with reentrancy and various other ABI-breaking changes (also
+  don't use broken-linker). Now at ncurses API #6 (that is, cygwin
+  ncurses ABI #10).
+* Fix hint files
+
+----------  ncurses-5.7-16 -- 20091120 -----------
+* Update to 20091114 patchset
+* Fix coredump in tput.exe
+
+----------  ncurses-5.7-15 -- 20091026 -----------
+* Update to 20091024 patchset
+* Rename ncurses9-config file to ncurses5-config
+* Moved ncurses*-config file to -devel package
+* Compiled using gcc-4.3.4-1
+
+----------  ncurses-5.7-14 -- 20090326 -----------
+* Rebuild to fix installation error related to man pages
+* Update to 20090321 patchset, which includes many of
+  our pre-existing cygwin fixes.
+
+----------  ncurses-5.7-13 -- 20090305 -----------
+* Recompile to fix linker error in libtic DLL.
+
+----------  ncurses-5.7-12 -- 200900303 -----------
+* Fork for cygwin-1.7 development
+* Build with cygport-0.9.4.
+
+----------  ncurses-5.7-3 -- 200900303 -----------
+* Bump to latest release (5.7) and most recent patchset (20090228)
+* Build using stock cygport 0.4.3
+* Fix bug with pkg-config files and ncurses9-config script
+* Turned on 5-button mouse support, sp-funcs,
+  and separate ticlib lib. termlib (libtinfo) is NOT separate, 
+  but is part of libncurses, as is the normal practice.
+  - these changes together constitute a new ABI,
+    which is why the DLL version number was
+    bumped to 9.
+* Did not enable reentrancy, threading support,
+  or wide character support. For the first two,
+  see the document ThreadingSupport. The last
+  item may be added later, but only for cygwin-1.7.
+* Modified spelling of public, but wrapped 
+  symbols to avoid "private" _nc_* namespace
+* Added preremove script, in preparation for
+  deprecating the back-compatibility symlinks.
+* Upstream changes:
+  - tack program now distributed separately
+  - pkg-config .pc files now provided
+  - ncurses9-config script now provided
+  - many more demo programs in ncurses-demo
+
+----------  ncurses-5.7-11 -- 20090228 -----------
+* Recycled brown paper bag (cygwin-1.7)
+
+----------  ncurses-5.7-10 -- 20090222 -----------
+* Brown paper bag (cygwin-1.7)
+
+----------  ncurses-5.7-2 -- 20090228 -----------
+* Recycled brown paper bag (cygwin-1.5)
+
+----------  ncurses-5.7-1 -- 20090222 -----------
+* Brown paper bag (cygwin-1.5)
+
+----------  ncurses-5.5-3 -- 20061114 -----------
+* Bump to latest patchset (20061104)
+* switch to cygport build framework
+
+----------  ncurses-5.5-2 -- 20060323 -----------
+- Forgot to include fix for error reported here:
+   http://cygwin.com/ml/cygwin/2006-03/msg00184.html
+
+----------  ncurses-5.5-1 -- 20060323 -----------
+- Update to latest release with current patchset
+- Compiled using settings to ensure ABI compatibility with cygncurses-8.dll
+
+
+5.4-4
+-------------------------------------
+- Fix brown-paper-bag error in previous release: 
+  header files installed in incorrect directory
+
+5.4-3
+-------------------------------------
+- Update to latest patchlevel from official repository 
+  (http://dickey.his.com/)
+- clear.exe no longer renamed to clearn.exe; pre-existing conflict
+  from cygwin 'clear' package has been removed from the cygwin 
+  distribution.
+
+5.4-2
+-------------------------------------
+- Update to latest patchlevel from official repository 
+  (http://dickey.his.com/)
+- fix bug in .la files
+- termcap compatibility header no longer renamed to termcapn.h.
+  It is now installed as /usr/include/ncurses/termcap.h.
+
+5.4-1
+-------------------------------------
+- Update to latest patchlevel from official repository 
+  (http://dickey.his.com/)
+- build using libtool (adds .la files, C++ shared lib)
+- bump ABI number from '7' to '8':
+  ABI hasn't actually changed, but the naming scheme we were
+  using is different from the libtool one.  So we need to
+  keep cygncurses7.dll & friends in libncurses7 package.
+  New libs cygncurses-8.dll & friends will go in libncurses8 package.
+
+5.3-4
+-------------------------------------
+- Oops.  cygwin-1.5.2 FLAG DAY release.
+- Update to latest patchlevel from official repository 
+  (http://dickey.his.com/)
+
+5.3-3
+-------------------------------------
+- Oops.  cygwin-1.5.1 FLAG DAY release.
+- Update to latest patchlevel from official repository 
+  (http://dickey.his.com/)
+- Added partial libtool support.  Still needs work, and the 
+  DLL numbers change when you do that, so I'm holding off for now.
+
+5.3-2
+-------------------------------------
+- cygwin-1.5.0 FLAG DAY release.
+- Fix ordering bug in the postinstall script.
+
+5.3-1
+-------------------------------------
+Update to latest source.  Dropped support for C++ shared lib.
+Bumped API version.
+
+
+5.2-8:
+-------------------------------------
+Migrate to a better build script procedure.  Fix BROKEN_LINKER
+omission from public headers.  README was *way* out of date.
+
+5.2-7: (be SURE to read the 5.2-6 notes, below)
+-------------------------------------
+Since latest binutils use --enable-auto-import by default,
+  no longer explicitly specify that switch in the -dll patch.
+Also, no longer use the --enable-auto-image-base switch; the
+  DLLs generate WITH that switch sometimes conflict with 
+  cygwin1.dll.
+
+5.2-6 (unreleased):
+-------------------------------------
+Removed all the NCURSES_EXPORT() stuff.  No more need for 
+  -DNCURSES_STATIC or whatnot -- now just use --enable-auto-import.
+When building the DLL, I had to configure with --enable-broken-linker 
+  -- because the ncurses DLL exports an *array* of *structs*, that is
+  directly accessed by tic.c. That is: 
+    for (j=0; _nc_foo[j].code ; j++) {
+  The compiler optimizes this into _nc_foo[j] + direct addend (Illegal
+  in windows DLL's). Since BROKEN_LINKER #defines this variable as a 
+  function, the result works okay -- but constitutes an interface 
+  change.  Ditto for acs_map[].
+  My decision: getting rid of -DNCURSES_STATIC is worth bumping the
+  DLL number.
+For backwards compatibility, you should probably also install the 
+  "libncurses5" package, which contains ONLY the version 5 DLL's.
+
+5.2-5:
+-------------------------------------
+
+Removed the statically linked test and utility programs
+  from the binary distribution.
+Added 'smcup' and 'rmcup' entries for term=cygwin
+
+5.2-4:
+-------------------------------------
+
+Added the 'ALL_STATIC' alias for NCURSES_STATIC.
+Changed the include install directory to /usr/include/ncurses
+Add symlinks for *some* header files in /usr/include
+
+5.2-3:
+-------------------------------------
+
+The dll's are named according to this pattern: "cygncurses5.dll"
+  NOT "libncurses.dll".  This helps to avoid dll naming conflicts 
+  between cygwin dll's and dll's from other platforms (native, pw,
+  etc).  
+
+The dll's are VERSIONED. (i.e. "cygncurses5.dll" NOT "cygncurses.dll")
+  Again, this helps distinguish the dll's from later, possibly
+  incompatible releases.  As long as newer releases are still
+  API/ABI compatible, they will retain the same version number
+  shown here (5). 
+
+This package contains both statically and dynamically linked 
+versions of the utility programs (tic, infotocmp, etc).  The
+dynamically linked ones are in /usr/bin, while the static versions
+are in /usr/bin/ncurses-stat/.  Also, the various test programs have 
+been installed in /usr/bin/ncurses-test-stat (statically linked) and
+/usr/bin/ncurses-test-dll (yep, dynamically linked).
+
+I've done some rudimentary testing.  The test programs built with
+the static libs (/usr/bin/ncurses-test-stat) seem to work mostly
+okay.  Also, the test programs built using the dynamic libs
+(/usr/bin/ncurses-test-dll) seem to work just as well.
+
+PROBLEMS:
+
+File name conflicts:
+
+  termcap package (/usr/include/termcap.h)
+     resolution: ncurses' version of termcap.h is installed
+     into /usr/include/ncurses/termcapn.h.  This file is 
+     ONLY used when you have a package that uses termcap, 
+     but you want to link to ncurses instead and use the 
+     termcap emulation it provides.  The 'regular' ncurses 
+     headers do NOT reference termcap.h.
+     
+     If you WANT to use the termcap emulation in ncurses, then 
+     specify -I/usr/include/ncurses when building your project,
+     and (of course) use -lncurses instead of -ltermcap when
+     linking
+
+  clear pacakge   (/usr/bin/clear.exe)
+    resolution: ncurses' version of clear.exe is installed as
+    clearn.exe.
+
+  cygwin-1.1.x package (/usr/include/unctrl.h)
+    for 1.1.x where x < 7, the cygwin package contains a 
+    non-functional version of unctrl.h.  Ncurses overwrites
+    this non-functional file with the working version from
+    ncurses.  However, if you reinstall cygwin *after*
+    ncurses, then cygwin will clobber the good version.
+    This will be fixed in cygwin-1.1.8 and later, which 
+    will not contain unctrl.h.
+
+Cygwin port maintained by: Charles Wilson  <cygwin@cygwin.com>

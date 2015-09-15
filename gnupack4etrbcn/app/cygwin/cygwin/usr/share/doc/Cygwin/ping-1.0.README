@@ -1,0 +1,58 @@
+ping
+-------------------------------------------------------------------------------
+A basic network tool to test IP network conectivity.
+
+Runtime requirements:
+  cygwin-1.5.12             or newer
+  
+Build requirements:
+  cygwin-1.5.12             or newer
+  gcc-3.3.1                 or newer
+  binutils-20040312         or newer
+  make-3.80                 or newer
+  ash-20040127              or newer
+  fileutils-4.1             or newer
+  ed-0.2                    or newer
+  gawk-3.1.4                or newer
+
+Canonical homepage:
+  http://ftp.arl.mil/~mike/ping.html
+
+Canonical download:
+  http://ftp.arl.army.mil/pub/ping.shar
+  
+-------------------------------------------------------------------------------
+
+Build instructions:
+  unpack ping-1.0-1-src.tar.bz2
+    if you use setup to install this src package, it will be
+	 unpacked under /usr/src automatically
+  cd /usr/src
+  ./ping-1.0-1.sh all
+
+This will create:
+  /usr/src/ping-1.0-1.tar.bz2
+  /usr/src/ping-1.0-1-src.tar.bz2
+
+-------------------------------------------------------------------------------
+
+Files included in the binary distro:
+
+  /usr/bin/ping.exe
+  /usr/share/man/man1/ping.1.gz
+
+-------------------------------------------------------------------------------
+
+Port Notes:
+
+Made some tweaks to make it compile under cygwin (changed inet_ntoa,
+ntohl and header files). Also added calculation of median and ttl
+field print out to the ported code.
+
+----- version ping-1.0-1 -----
+
+ o Initial release
+
+
+Cygwin port maintained by: Lino Tinoco <lino.m.tinoco@telecom.pt>
+Please address all questions to the Cygwin mailing list at <cygwin@cygwin.com>

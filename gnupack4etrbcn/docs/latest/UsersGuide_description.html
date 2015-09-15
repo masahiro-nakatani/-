@@ -1,0 +1,388 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=Shift_JIS" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="description" content="gnupackはアーカイブ展開のみで即座に cygwinと emacsが使える環境を提供します．">
+    <meta name="keyword" content="gnupack,emacs,gvim,cygwin,windows">
+    <title>gnupack Users Guide - パッケージ詳細</title>
+    <link href="./css/guide.css"  rel="stylesheet" type="text/css" />
+    <link href="./css/common.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div id="top">
+        <div id="header">
+            <div id="header_left"><p>gnupack is package that quickly start cygwin and emacs.</p></div>
+            <div id="header_right"><a href="http://sourceforge.jp/projects/gnupack/"><div class="sfjp"></div></a></div>
+            <div id="header_bottom"><h1>gnupack Users Guide (2012-07-15)</h1></div>
+        </div><!-- / #header -->
+        <div id="content">
+            <div id="menu">
+                <div class="section">
+                    <h2>目次</h2>
+                    <div class="body">
+                        <dl>
+                            <dd> <span class="item">■</span> <a href="UsersGuide.html">トップページ</a></dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_introduction.html">はじめに</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_download.html">ダウンロード</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_description.html">パッケージ詳細</a></dd>
+                            <dd>
+                                <dl>
+                                    <dd> <span class="item">▼</span> <a href="#_gnupack_startup">gnupack startup</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_distribute_software">再配布ソフトウェア</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_package_version">配布パッケージのバージョン</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_cygwin_package">cygwinパッケージ</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_directory_list">ディレクトリ構成</a></dd>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_customize.html">カスタマイズ</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_tips.html">便利な使い方</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_technical_info.html">技術情報</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_build_procedure.html">ビルド記録</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_release_note.html">リリースノート</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_ntemacs_build_history.html">NTEmacs Build History</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                        </dl>
+                    </div><!-- / #body -->
+                </div><!-- / #section -->
+            </div><!-- / #menu -->
+            <div id="main">
+                <div class="section">
+                    <h2><a name="_description" id="_description">パッケージ詳細</a></h2>
+                    <div class="body">
+                        <h3><a name="_gnupack_startup" id="_gnupack_startup">gnupack startup</a></h3>
+                        <p class="sentence">gnupack startupは以下のファイルから構成されます．</p>
+                        <ul>
+                            <li>mintty起動プログラム <code>mintty.exe</code><br />
+                                cygwinのシェルを mintty上に起動するプログラムです．</li>
+                            <li>emas起動プログラム <code>emacs.exe</code><br />
+                                emacsを起動するプログラムです．</li>
+                            <li>gvim起動プログラム <code>gvim.exe</code><br />
+                                gvimを起動するプログラムです．</li>
+                            <li>設定ファイル <code>config.ini</code><br />
+                                <code>mintty.exe</code>および <code>emacs.exe</code>，<code>gvim.exe</code>の設定ファイルです．</li>
+                            <li>デバッグログ <code>debug_msg.log</code><br />
+                                <code>mintty.exe</code>および <code>emacs.exe</code>，<code>gvim.exe</code>の起動メッセージが出力されるファイルです．本ファイルは初期状態では存在せず，設定ファイルでデバッグモードを有効化することで出力，生成されます．</li>
+                        </ul>
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_distribute_software" id="_distribute_software">再配布ソフトウェア</a></h3>
+                        <p class="sentence">gnupackで再配布しているソフトウェアは以下のとおりです．</p>
+                        <ul>
+                            <li> cygwin<br />
+                                <a href="http://sourceware.org/cygwin/">http://sourceware.org/cygwin/</a></li>
+                            <li> mingw (TDM's GCC/mingw32 Builds)<br />
+                                <a href="http://www.tdragon.net/recentgcc/">http://www.tdragon.net/recentgcc/</a></li>
+                            <li> nkf Network Kanji Filter<br />
+                                <a href="http://sourceforge.jp/projects/nkf/">http://sourceforge.jp/projects/nkf/</a><br />
+                                <a href="http://nkf.sourceforge.jp/">http://nkf.sourceforge.jp/</a></li>
+                            <li> tree<br />
+                                <a href="http://mama.indstate.edu/users/ice/tree/">http://mama.indstate.edu/users/ice/tree/</a><br />
+                                <a href="ftp://mama.indstate.edu/linux/tree/">ftp://mama.indstate.edu/linux/tree/</a></li>
+                            <li> GNU GLOBAL<br />
+                                <a href="http://www.gnu.org/software/global/">http://www.gnu.org/software/global/</a></li>
+                            <li> GNU Emacs<br />
+                                <a href="http://www.gnu.org/software/emacs/">http://www.gnu.org/software/emacs/</a><br />
+                                <a href="ftp://alpha.gnu.org/gnu/emacs/pretest/">ftp://alpha.gnu.org/gnu/emacs/pretest/</a></li>
+                            <li> emacs patch
+                                <ul>
+                                    <li> emacs 23.1用 IMEパッチ（NTEmacs JP Project）<br />
+                                        <a href="http://sourceforge.jp/projects/ntemacsjp/">http://sourceforge.jp/projects/ntemacsjp/</a><br />
+                                        <a href="http://ntemacsjp.sourceforge.jp/">http://ntemacsjp.sourceforge.jp/</a></li>
+                                    <li> emacs 23.1用 IME追加パッチ（470氏 @ NTEmacs スレッド 2）<br />
+                                        <a href="http://hibari.2ch.net/test/read.cgi/software/1221125611/470">http://hibari.2ch.net/test/read.cgi/software/1221125611/470</a><br />
+                                        <a href="http://www1.axfc.net/uploader/Sc/so/88618">http://www1.axfc.net/uploader/Sc/so/88618</a></li>
+                                    <li>isearchで日本語入力をやりやすくするパッチ（highmt氏）<br />
+                                        <a href="http://highmt.wordpress.com/2010/10/25/isearch%e3%81%a7%e6%97%a5%e6%9c%ac%e8%aa%9e%e5%85%a5%e5%8a%9b%e3%82%92%e3%82%84%e3%82%8a%e3%82%84%e3%81%99%e3%81%8f%e3%81%99%e3%82%8b%e3%83%91%e3%83%83%e3%83%81/">http://highmt.wordpress.com/2010/10/25/isearchで日本語入力をやりやすくするパッチ/</a></li>
+                                    <li>複数フレームでのIME変換中フォントの不具合改修パッチ（919氏 @ NTEmacs スレッド 2）<br />
+                                        <a href="http://hibari.2ch.net/test/read.cgi/software/1221125611/919">http://hibari.2ch.net/test/read.cgi/software/1221125611/919</a><br />
+                                        <a href="http://www1.axfc.net/uploader/File/so/71554">http://www1.axfc.net/uploader/File/so/71554</a></li>
+                                    <li>menu-treeによる日本語メニューの文字化け改修パッチ（Daregada氏）<br />
+                                        <a href="http://daregada.sakuraweb.com/emacs-23.3-fix-unicode-menu-greeking.patch.tar.gz">http://daregada.sakuraweb.com/emacs-23.3-fix-unicode-menu-greeking.patch.tar.gz</a></li>
+                                </ul></li>
+                            <li> elisp package
+                                <ul>
+                                    <li> color-theme<br />
+                                        <a href="http://www.nongnu.org/color-theme/">http://www.nongnu.org/color-theme/</a></li>
+                                    <li> cp5022x<br />
+                                        <a href="http://nijino.homelinux.net/emacs/cp5022x.el">http://nijino.homelinux.net/emacs/cp5022x.el</a></li>
+                                    <li> cygwin-mount<br />
+                                        <a href="http://home.avvanta.com/~offby1/cygwin-mount/cygwin-mount.el">http://home.avvanta.com/~offby1/cygwin-mount/cygwin-mount.el</a></li>
+                                    <li> hiwin-mode<br />
+                                        <a href="http://github.com/tomoya/hiwin-mode">http://github.com/tomoya/hiwin-mode</a></li>
+                                    <li> menu-tree<br />
+                                        <a href="http://www11.atwiki.jp/s-irie/pages/13.html">http://www11.atwiki.jp/s-irie/pages/13.html</a></li>
+                                    <li> migemo<br />
+                                        <a href="http://0xcc.net/migemo/">http://0xcc.net/migemo/</a></li>
+                                    <li> setup-cygwin<br />
+                                        <a href="http://www.emacswiki.org/cgi-bin/wiki/setup-cygwin.el">http://www.emacswiki.org/cgi-bin/wiki/setup-cygwin.el</a></li>
+                                    <li> tabbar<br />
+                                        <a href="http://sourceforge.net/projects/emhacks/files/tabbar/">http://sourceforge.net/projects/emhacks/files/tabbar/</a></li>
+                                </ul></li>
+                            <li> Library for emacs
+                                <ul>
+                                    <li> libXpm<br />
+                                        <a href="http://alpha.gnu.org/gnu/emacs/pretest/windows/">http://alpha.gnu.org/gnu/emacs/pretest/windows/</a></li>
+                                    <li> giflib<br />
+                                        <a href="http://sourceforge.net/projects/giflib/">http://sourceforge.net/projects/giflib/</a></li>
+                                    <li> gnutls<br />
+                                        <a href="http://josefsson.org/gnutls4win/">http://josefsson.org/gnutls4win/</a></li>
+                                    <li> gnome-binaries-win32<br />
+                                        <a href="http://ftp.gnome.org/pub/gnome/binaries/win32/">http://ftp.gnome.org/pub/gnome/binaries/win32/</a></li>
+                                </ul></li>
+                            <li> GnuWin32<br />
+                                <a href="http://gnuwin32.sourceforge.net/">http://gnuwin32.sourceforge.net/</a></li>
+                            <li> Ghostscript<br />
+                                <a href="http://auemath.aichi-edu.ac.jp/~khotta/ghost/index.html">http://auemath.aichi-edu.ac.jp/~khotta/ghost/index.html</a><br />
+                                <a href="http://w32tex.org/index-ja.html">http://w32tex.org/index-ja.html</a></li>
+                            <li> cmigemo<br />
+                                <a href="http://www.kaoriya.net/software/cmigemo">http://www.kaoriya.net/software/cmigemo</a><br />
+                                <a href="http://code.google.com/p/cmigemo/">http://code.google.com/p/cmigemo/</a></li>
+                            <li> gvim<br />
+                                <a href="http://www.vim.org/">http://www.vim.org/</a><br />
+                                <a href="ftp://ftp.vim.org/pub/vim/patches/7.3/">ftp://ftp.vim.org/pub/vim/patches/7.3/</a></li>
+                            <li> gettext for Win32<br />
+                                <a href="http://sourceforge.net/projects/gettext/">http://sourceforge.net/projects/gettext/</a></li>
+                            <li> Migu<br />
+                                <a href="http://sourceforge.jp/projects/mix-mplus-ipa/">http://sourceforge.jp/projects/mix-mplus-ipa/</a><br />
+                                <a href="http://mix-mplus-ipa.sourceforge.jp/">http://mix-mplus-ipa.sourceforge.jp/</a></li>
+                            <li> apt-cyg<br />
+                                <a href="http://code.google.com/p/apt-cyg/">http://code.google.com/p/apt-cyg/</a></li>
+                        </ul>
+                        <br />
+                        <p class="sentence">以下のソフトウェアは，過去バージョンあるいは gnupack pretestでのみ再配布しています．</p>
+                        <ul>
+                            <li> make (version 3.80)<br />
+                                <a href="http://core.ring.gr.jp/pub/GNU/make/">http://core.ring.gr.jp/pub/GNU/make/</a></li>
+                            <li> VL ゴシックフォントファミリー<br />
+                                <a href="http://sourceforge.jp/projects/vlgothic/">http://sourceforge.jp/projects/vlgothic/</a><br />
+                                <a href="http://dicey.org/vlgothic/">http://dicey.org/vlgothic/</a></li>
+                            <li> MigMix<br />
+                                <a href="http://sourceforge.jp/projects/mix-mplus-ipa/">http://sourceforge.jp/projects/mix-mplus-ipa/</a><br />
+                                <a href="http://mix-mplus-ipa.sourceforge.jp/">http://mix-mplus-ipa.sourceforge.jp/</a></li>
+                            <li> M+ と IPAフォントの合成フォント<br />
+                                <a href="http://sourceforge.jp/projects/mix-mplus-ipa/">http://sourceforge.jp/projects/mix-mplus-ipa/</a><br />
+                                <a href="http://mix-mplus-ipa.sourceforge.jp/">http://mix-mplus-ipa.sourceforge.jp/</a></li>
+                            <li> ckw<br />
+                                <a href="http://d.hatena.ne.jp/bleis-tift/20091117/1258448920">http://d.hatena.ne.jp/bleis-tift/20091117/1258448920</a><br />
+                                <a href="http://sites.google.com/site/craftware/ckw">http://sites.google.com/site/craftware/ckw</a><br />
+                                <a href="http://github.com/deflis/ckw-mod">http://github.com/deflis/ckw-mod</a></li>
+                            <li> CPAN WWW::Mechanize<br />
+                                <a href="http://search.cpan.org/~petdance/WWW-Mechanize-1.64/">http://search.cpan.org/~petdance/WWW-Mechanize-1.64/</a></li>
+                            <li> cyg-apt<br />
+                                <a href="http://code.google.com/p/maphew/wiki/CygApt">http://code.google.com/p/maphew/wiki/CygApt</a></li>
+                            <li> yamy (Yet Another Mado tsukai no Yuutsu)<br />
+                                <a href="http://sourceforge.jp/projects/yamy/">http://sourceforge.jp/projects/yamy/</a></li>
+                            <li> intlfonts<br />
+                                <a href="http://ftp.gnu.org/gnu/intlfonts">http://ftp.gnu.org/gnu/intlfonts</a></li>
+                        </ul>
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_package_version" id="_package_version">配布パッケージのバージョン</a></h3>
+                        <p class="sentence">gnupackはユーザ向けの正式版と開発版（gnupack pretest）の2種類のバージョンを提供します．バージョン番号は以下の規約に従います．</p>
+                        <pre class="message">
+正式版 gnupack_basic-<em>A</em>.<em>BB</em>
+       gnupack_devel-<em>A</em>.<em>BB</em>
+
+       <em>A</em>    : メジャー番号（数字 0 - 99）
+       <em>BB</em>   : マイナー番号（数字 00 - 99）
+
+
+開発版 gnupack_pretest-<em>yyyy</em>-<em>mm</em>-<em>dd</em>
+
+       <em>yyyy</em> : リリース番号（年度 4桁）
+       <em>mm</em>   : リリース番号（月 2桁）
+       <em>dd</em>   : リリース番号（日 4桁）
+                        </pre>
+                        <p class="sentence">各バージョン番号のバージョンアップのポリシーは以下のとおりです．</p>
+                        <ul>
+                            <li> メジャー番号
+                                <ul>
+                                    <li>起動プログラム（<code>mintty.exe</code>，<code>emacs.exe</code>，<code>gvim.exe</code>）に大幅な変更があった場合</li>
+                                    <li>設定ファイル（<code>config.ini</code>）の互換性がなくなった場合</li>
+                                    <li>cygwinあるいは emacsのメジャーバージョンアップがあった場合</li>
+                                </ul>
+                            </li>
+                            <li> マイナー番号
+                                <ul>
+                                    <li>メジャー番号に記載した以外の変更があった場合</li>
+                                </ul>
+                            </li>
+                            <li> リリース番号（開発版のみ）
+                                <ul>
+                                    <li> 必要に応じて任意のタイミング</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_cygwin_package" id="_cygwin_package">cygwinパッケージ</a></h3>
+                        <p class="sentence">gnupackの cygwinに含まれる主なパッケージは以下のとおりです．</p>
+                        <pre class="message">
+base-files      findutils       mintty          ping            vim
+bash            gawk            ncurses         procps          wget
+bc              grep            openssh         sed             which
+bzip2           gzip            patch           tar             zip
+coreutils       inetutils       perl            termcap
+cygutils        less            perl-libwin32   time
+diffutils       lv              perl-Win32-GUI  unzip
+expect          make            perl-XML-Simple util-linux
+                        </pre>
+                        <p class="sentence">cygwinが提供するパッケージの詳細は <a href="http://cygwin.com/packages/">http://cygwin.com/packages/</a>を参照ください．</p>
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_directory_list" id="_directory_list">ディレクトリ構成</a></h3>
+                        <p class="sentence">gnupackのディレクトリ構成は以下のとおりです．</p>
+                        <p class="sentence">（凡例 <span class="s_dirs">紫</span>：ディレクトリ　<span class="s_exec">緑</span>：実行ファイル　白：通常ファイル　<span class="s_hidden">斜体</span>：隠しファイル　<span class="s_comment">黄色</span>：コメント）</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+  <span class="s_dirs">gnupack_&lt;type&gt;-&lt;version&gt;/</span> *1
+  |
+  |-- <span class="s_file">UsersGuide.html</span>            <span class="s_comment">← gnupack Users Guide（本ドキュメント）</span>
+  |   
+  |-- <span class="s_exec">mintty.exe*</span>                <span class="s_comment">← mintty起動プログラム</span>
+  |-- <span class="s_exec">emacs.exe*</span>                 <span class="s_comment">← emacs起動プログラム</span>
+  |-- <span class="s_exec">gvim.exe*</span>                  <span class="s_comment">← gvim起動プログラム</span>
+  |-- <span class="s_file">config.ini</span>                 <span class="s_comment">← 設定ファイル</span>
+  |-- <span class="s_file">debug_msg.log</span>              <span class="s_comment">← デバッグログ</span>
+  |
+  |-- <span class="s_file">License.txt</span>                <span class="s_comment">← ライセンス</span>
+  |
+  |-- <span class="s_file">最初にお読みください.txt</span>   <span class="s_comment">← 注意書き</span>
+  |
+  |-- <span class="s_hidden">Desktop.ini</span>                <span class="s_comment">← アイコン設定ファイル</span>
+  |
+  |-- <span class="s_dirs">app/</span>                       <span class="s_comment">← 再配布ソフトウェア</span>
+  |   |
+  |   |-- <span class="s_dirs">cmigemo/</span>               <span class="s_comment">← cmigemo</span>
+  |   |
+  |   |-- <span class="s_dirs">cygwin/</span>
+  |   |   |-- <span class="s_dirs">cygwin/</span>            <span class="s_comment">← cygwin本体</span>
+  |   |   `-- <span class="s_dirs">local</span>              <span class="s_comment">← /usr/localのマウントポイント</span> *2
+  |   |
+  |   |-- <span class="s_dirs">emacs/</span>
+  |   |   |-- <span class="s_dirs">emacs/</span>             <span class="s_comment">← emacs本体</span>
+  |   |   `-- <span class="s_dirs">site-lisp/</span>         <span class="s_comment">← elisp package</span>
+  |   |       |-- <span class="s_dirs">cp5022x/</span>
+  |   |       |-- <span class="s_dirs">cygwin-mount/</span>
+  |   |       |-- <span class="s_dirs">hiwin-mode/</span>
+  |   |       |-- <span class="s_dirs">menu-tree/</span>
+  |   |       |-- <span class="s_dirs">migemo/</span>
+  |   |       |-- <span class="s_dirs">setup-cygwin/</span>
+  |   |       `-- <span class="s_dirs">tabbar/</span>
+  |   |
+  |   |-- <span class="s_dirs">font/</span>
+  |   |   `-- <span class="s_dirs">Migu/</span>              <span class="s_comment">← Migu</span> *3
+  |   |
+  |   |-- <span class="s_dirs">gs/</span>                    <span class="s_comment">← Ghostscript</span> *4
+  |   |
+  |   |-- <span class="s_dirs">icon/</span>                  <span class="s_comment">← フォルダアイコン他</span>
+  |   |
+  |   |-- <span class="s_dirs">libs/</span>                  <span class="s_comment">← emacsビルド用ライブラリ</span>
+  |   |   |-- <span class="s_dirs">gnome-binaries-win32/</span>
+  |   |   |-- <span class="s_dirs">gnutls4win</span>
+  |   |   |-- <span class="s_dirs">gnuwin32</span>
+  |   |   `-- <span class="s_dirs">libxpm</span>
+  |   |
+  |   |-- <span class="s_dirs">mingw/</span>
+  |   |   `-- <span class="s_dirs">tdm/</span>               <span class="s_comment">← mingw (TDM's GCC/mingw32 Builds)</span>
+  |   |
+  |   |-- <span class="s_dirs">script/</span>                <span class="s_comment">← ユーティリティ スクリプト</span>
+  |   |   |-- <span class="s_file">cyg-pm</span>             <span class="s_comment">← cygwinパッケージマネージャ</span>
+  |   |   `-- <span class="s_file">apt-cyg</span>
+  |   |
+  |   `-- <span class="s_dirs">vim/</span>                   <span class="s_comment">← gvim</span>
+  |
+  |-- <span class="s_dirs">docs/</span>                      <span class="s_comment">← gnupack Users Guide（本体）</span>
+  |
+  `-- <span class="s_dirs">home/</span>                      <span class="s_comment">← ホームディレクトリ</span>
+      |-- <span class="s_dir">.emacs.d</span>
+      |  `-- <span class="s_file">init.el</span>             <span class="s_comment">← emacs設定ファイル</span>
+      |
+      |-- <span class="s_file">.bashrc</span>                <span class="s_comment">← bash設定ファイル</span>
+      |-- <span class="s_file">.bash_history</span>          <span class="s_comment">← bash履歴ファイル</span>
+      |-- <span class="s_file">.dir_colors</span>            <span class="s_comment">← dircolors設定ファイル</span>
+      |-- <span class="s_file">.inputrc</span>               <span class="s_comment">← readline設定ファイル</span>
+      |-- <span class="s_file">.minttyrc</span>              <span class="s_comment">← mintty設定ファイル</span>
+      |-- <span class="s_file">.vimrc</span>                 <span class="s_comment">← vim設定ファイル</span>
+      `-- <span class="s_file">_gvimrc</span>                <span class="s_comment">← gvim設定ファイル</span>
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <div class="noticebox">
+                            <div class="notice">*1 <code>&lt;type&gt;</code>と <code>&lt;version&gt;</code>は配布パッケージの種類（basic，devel）とバージョンに対応します．</div>
+                            <div class="notice">*2 <code>/usr/local</code>のマウントポイントであり，nkf，tree，globalの格納ディレクトリになります．</div>
+                            <div class="notice">*3 ファイルサイズ削減のため，<code>Migu-1M-regular.ttf</code>のみ格納しています．</div>
+                            <div class="notice">*4 ファイルサイズ削減のため，ディレクトリ <code>doc</code>は削除しています．</div>
+                            <div class="notice">*5 ファイルサイズ削減のため，emacsのコンパイルに必要なファイルのみ格納しています．</div>
+                        </div>
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                    </div><!-- / #body -->
+               </div><!-- / #section -->
+            </div><!-- / #main -->
+        </div><!-- / #content -->
+        <div id="footer">
+            <p>Copyright (C) 2009-2013 k.sugita, Inc. All rights reserved.</p>
+        </div><!-- / #footer -->
+    </div><!-- / #top -->
+</body>
+</html>

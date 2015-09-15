@@ -1,0 +1,830 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=Shift_JIS" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="description" content="gnupackはアーカイブ展開のみで即座に cygwinと emacsが使える環境を提供します．">
+    <meta name="keyword" content="gnupack,emacs,gvim,cygwin,windows">
+    <title>gnupack Users Guide - カスタマイズ</title>
+    <link href="./css/guide.css"  rel="stylesheet" type="text/css" />
+    <link href="./css/common.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div id="top">
+        <div id="header">
+            <div id="header_left"><p>gnupack is package that quickly start cygwin and emacs.</p></div>
+            <div id="header_right"><a href="http://sourceforge.jp/projects/gnupack/"><div class="sfjp"></div></a></div>
+            <div id="header_bottom"><h1>gnupack Users Guide (2012-07-15)</h1></div>
+        </div><!-- / #header -->
+        <div id="content">
+            <div id="menu">
+                <div class="section">
+                    <h2>目次</h2>
+                    <div class="body">
+                        <dl>
+                            <dd> <span class="item">■</span> <a href="UsersGuide.html">トップページ</a></dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_introduction.html">はじめに</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_download.html">ダウンロード</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_description.html">パッケージ詳細</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_customize.html">カスタマイズ</a></dd>
+                            <dd>
+                                <dl>
+                                    <dd> <span class="item">▼</span> <a href="#_desc_config">設定ファイルの概要</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_customize_env">環境変数の設定</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_customize_mnt">マウントポイントの設定</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_customize_font">プライベートフォントの設定</a></dd>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_tips.html">便利な使い方</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_technical_info.html">技術情報</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_build_procedure.html">ビルド記録</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_release_note.html">リリースノート</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_ntemacs_build_history.html">NTEmacs Build History</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                        </dl>
+                    </div><!-- / #body -->
+                </div><!-- / #section -->
+            </div><!-- / #menu -->
+            <div id="main">
+                <div class="section">
+                    <h2><a name="_customize" id="_customize">カスタマイズ</a></h2>
+                    <div class="body">
+                        <h3><a name="_desc_config" id="_desc_config">設定ファイルの概要</a></h3>
+                        <p class="sentence">設定ファイルは以下の書式に従い記述します．パラメータ値には文字列と環境変数を任意の組み合わせでが指定できます．パラメータ値に指定した環境変数は自動的に展開されます．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">セクション名</span>]
+    <span class="s_comment">; コメント</span>
+    <span class="s_param">パラメータ名</span>    = パラメータ値
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <br /><h4>セクション SetEnv</h4>
+                        <p class="sentence">セクション <code>SetEnv</code>では，本パッケージ内のローカルな環境変数を設定します．設定方法については後述の「<a target="_self" href="#_customize_env">環境変数の設定</a>」を参照ください．なお，<code>config.ini</code>で定義されていない環境変数以外にも以下が利用できます．</p>
+                        <ul>
+                            <li>システムで定義している環境変数</li>
+                            <li><code>INST_DIR</code>（gnupackの展開したディレクトリを表す環境変数）</li>
+                            <li><code>DESK</code>（Windowsログオンユーザのデスクトップディレクトリを表す環境変数）</li>
+                        </ul>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">SetEnv</span>]
+   <span class="s_comment">;_font_         = ＭＳ ゴシック</span>
+    <span class="s_param">_font_</span>         = Migu 1M
+    <span class="s_param">_local_</span>        = %INST_DIR%\app\cygwin\local
+
+    <span class="s_param">CYGWIN_DIR</span>     = %INST_DIR%\app\cygwin\cygwin
+    <span class="s_param">EMACS_DIR</span>      = %INST_DIR%\app\emacs\emacs
+
+    <span class="s_param">HOME</span>           = %INST_DIR%\home
+    <span class="s_param">TEMP</span>           = %TEMP%\gnupack
+    <span class="s_param">TMP</span>            = %TMP%\gnupack
+    <span class="s_param">SHELL</span>          = /bin/bash
+    <span class="s_param">CYGWIN</span>         = nodosfilewarning noenvcache strip_title title notty
+    <span class="s_param">MAKE_MODE</span>      = unix
+    <span class="s_param">TZ</span>             = JST-9
+    <span class="s_param">LANG</span>           = ja_JP.cp932
+
+    <span class="s_param">PATH</span>           = %EMACS_DIR%\bin;%INST_DIR%\app\vim;%INST_DIR%\app\script
+    <span class="s_param">PATH</span>           = %PATH%;%INST_DIR%\app\mingw\tdm\bin;%_local_%\bin;%CYGWIN_DIR%\bin
+    <span class="s_param">PATH</span>           = %PATH%;%windir%\system32;%windir%;%windir%\system32\Wbem
+
+    <span class="s_param">GS_LIB</span>         = %INST_DIR%\app\gs\lib;%INST_DIR%\app\gs\kanji;%INST_DIR%\app\gs\Resource\Init
+    <span class="s_param">GS_DLL</span>         = %INST_DIR%\app\gs\bin\gsdll32.dll
+    <span class="s_param">PATH</span>           = %PATH%;%INST_DIR%\app\gs\bin;%INST_DIR%\app\gs\lib
+
+    <span class="s_param">BASH_PROMPT_OK</span> = \e[1m\e[38;5;160m
+    <span class="s_param">BASH_PROMPT_NG</span> = \e[1m\e[38;5;129m
+
+   <span class="s_comment">;http_proxy     = http://proxy.example.com:8080</span>
+   <span class="s_comment">;ftp_proxy      = ftp://proxy.example.com:8080</span>
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <br /><h4>セクション UnSetEnv</h4>
+                        <p class="sentence">セクション <code>UnSetEnv</code>では，<code>SetEnv</code>で設定した環境変数を bash，emacs，gvimの起動直前に削除します．本セクションを利用することで，起動処理のときにだけ有効な環境変数を作成することができます．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">UnSetEnv</span>]
+    <span class="s_param">_local_</span>     =
+    <span class="s_param">_font_</span>      =
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <br /><h4>セクション App</h4>
+                        <p class="sentence">セクション <code>App</code>では，bash，cygwinで使用するシェル，mintty，emacs，gvim，gdi++のバイナリパスをフルパスで設定します．本セクションの設定には <code>SetEnv</code>で設定した環境変数を利用することができます．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">App</span>]
+   <span class="s_comment">;Gdi    = %INST_DIR%\app\gdi++\gdi++.exe</span>
+    <span class="s_param">Bash</span>   = %CYGWIN_DIR%\bin\bash.exe
+    <span class="s_param">Shell</span>  = %CYGWIN_DIR%\bin\bash.exe
+    <span class="s_param">Mintty</span> = %CYGWIN_DIR%\bin\mintty.exe
+    <span class="s_param">Emacs</span>  = %EMACS_DIR%\bin\runemacs.exe
+    <span class="s_param">Gvim</span>   = %INST_DIR%\app\vim\gvim.exe
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <br /><h4>セクション Common</h4>
+                        <p class="sentence">セクション <code>Common</code>では，全起動プログラムに共通したパラメータを設定します．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">Common</span>]
+    <span class="s_comment">; 起動時ディレクトリ</span>
+    <span class="s_param">initial_dir</span>    = %HOME%                           <span class="s_comment">; ホームディレクトリの場合</span>
+   <span class="s_comment">;initial_dir    = %DESK%</span>                           <span class="s_comment">; デスクトップの場合</span>
+   <span class="s_comment">;initial_dir    = %CYGWIN_DIR%</span>                     <span class="s_comment">; cygwinのルートディレクトリの場合</span>
+   <span class="s_comment">;initial_dir    = C:/Program Files</span>                 <span class="s_comment">; C:\Program Filesの場合</span>
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <br /><h4>セクション Mintty</h4>
+                        <p class="sentence">セクション <code>Mintty</code>では，minttyに関連したパラメータを設定します．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">Mintty</span>]
+    <span class="s_param">foreground</span>     = white                            <span class="s_comment">; 文字色</span>
+    <span class="s_param">background</span>     = black                            <span class="s_comment">; 背景色</span>
+    <span class="s_param">cursorColor</span>    = red                              <span class="s_comment">; カーソル色</span>
+    <span class="s_param">cursorImeColor</span> = green                            <span class="s_comment">; カーソル色（IME ON時）</span>
+    <span class="s_param">windowSize</span>     = 91,27                            <span class="s_comment">; ウィンドウサイズ（幅,高さ）</span>
+    <span class="s_param">position</span>       = 70,27                            <span class="s_comment">; ウィンドウ位置（X座標,Y座標）</span>
+    <span class="s_param">fontName</span>       = %_font_%                         <span class="s_comment">; 表示フォント</span>
+    <span class="s_param">fontSize</span>       = 12                               <span class="s_comment">; 表示フォントサイズ</span>
+    <span class="s_param">title</span>          = bash                             <span class="s_comment">; ウィンドウタイトル</span>
+    <span class="s_param">icon</span>           = %INST_DIR%\app\icon\mintty.ico   <span class="s_comment">; 表示アイコン</span>
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <br /><h4>セクション Emacs</h4>
+                        <p class="sentence">セクション <code>Emacs</code>では，emacsに関連したパラメータを設定します．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">Emacs</span>]
+   <span class="s_comment">;foreground     = white         ; 文字色</span>
+   <span class="s_comment">;background     = black         ; 背景色</span>
+    <span class="s_param">geometry</span>       = 91x31+70+28   <span class="s_comment">; ウィンドウサイズ・位置（幅x高さ+X座標+Y座標）</span>
+    <span class="s_param">fontName</span>       = %_font_%      <span class="s_comment">; 表示フォント</span>
+    <span class="s_param">fontSize</span>       = 12            <span class="s_comment">; 表示フォントサイズ</span>
+    <span class="s_param">colorTheme</span>     = simple-1      <span class="s_comment">; color-themeの使用テーマ</span>
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <br /><h4>セクション Gvim</h4>
+                        <p class="sentence">セクション <code>Gvim</code>では，gvimに関連したパラメータを設定します．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">Gvim</span>]
+    <span class="s_param">foreground</span>     = white      <span class="s_comment">; 文字色</span>
+    <span class="s_param">background</span>     = black      <span class="s_comment">; 背景色</span>
+    <span class="s_param">cursorColor</span>    = red        <span class="s_comment">; カーソル色</span>
+    <span class="s_param">cursorImeColor</span> = green      <span class="s_comment">; カーソル色（IME ON時）</span>
+    <span class="s_param">windowHeight</span>   = 90         <span class="s_comment">; ウィンドウサイズ（高さ）</span>
+    <span class="s_param">windowWidth</span>    = 25         <span class="s_comment">; ウィンドウサイズ（幅）</span>
+    <span class="s_param">positionX</span>      = 70         <span class="s_comment">; ウィンドウ位置（X座標）</span>
+    <span class="s_param">positionY</span>      = 0          <span class="s_comment">; ウィンドウ位置（Y座標）</span>
+    <span class="s_param">fontName</span>       = %_font_%   <span class="s_comment">; 表示フォント</span>
+    <span class="s_param">fontSize</span>       = 11         <span class="s_comment">; 表示フォントサイズ</span>
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <br /><h4>セクション Font</h4>
+                        <p class="sentence">セクション <code>Font</code>では，ロードするプライベートフォントのTTFファイルパスをフルパスで設定します．本セクションには複数のパラメータが設定できます．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">Font</span>]
+    <span class="s_param">font_file1</span> = %INST_DIR%\app\font\Migu\Migu-1M-regular.ttf
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <br /><h4>セクション Mnt</h4>
+                        <p class="sentence">セクション <code>Mnt</code>では，cygwinのマウントポイントを設定します．設定方法については後述の「<a target="_self" href="#_customize_mnt">マウントポイントの設定</a>」を参照ください．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">Mnt</span>]
+    <span class="s_param">mount_point0</span> = none          ;/         ;cygdrive;binary,nouser,noacl,posix=0;
+    <span class="s_param">mount_point1</span> = %_local_%     ;/usr/local;ntfs    ;binary,nouser,noacl,posix=0;
+    <span class="s_param">mount_point2</span> = %INST_DIR%\app;/app      ;ntfs    ;binary,nouser,noacl,posix=0;
+    <span class="s_param">mount_point3</span> = %TEMP%        ;/tmp      ;ntfs    ;binary,nouser,noacl,posix=0;
+    <span class="s_param">mount_point4</span> = %HOME%        ;/home     ;ntfs    ;binary,nouser,noacl,posix=0;
+    <span class="s_param">mount_point5</span> = %DESK%        ;/top      ;ntfs    ;binary,nouser,noacl,posix=0;
+    <span class="s_param">mount_point6</span> = %INST_DIR%    ;/root     ;ntfs    ;binary,nouser,noacl,posix=0;
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <br /><h4>セクション Mode</h4>
+                        <p class="sentence">セクション <code>Mode</code>では，gnupack startupの各種動作を制御するフラグを設定します．フラグは <code>yes</code>あるいは <code>no</code>のどちらかを指定します．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">Mode</span>]
+    <span class="s_param">dir_auto_change</span>  = no    <span class="s_comment">; クリップボード上のディレクトリへの自動移動フラグ</span>
+    <span class="s_param">temp_auto_create</span> = yes   <span class="s_comment">; TEMPディレクトリの自動生成フラグ</span>
+    <span class="s_param">mnt_auto_mount</span>   = yes   <span class="s_comment">; マウントポイントの自動調整フラグ</span>
+    <span class="s_param">font_auto_load</span>   = yes   <span class="s_comment">; プライベートフォントの自動ロードフラグ</span>
+    <span class="s_param">debug_msg_print</span>  = no    <span class="s_comment">; 起動時デバッグメッセージの出力フラグ</span>
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_customize_env" id="_customize_env">環境変数の設定</a></h3>
+                        <p class="sentence">gnupackではシステムの設定を変更することなく，bash，emacs，gvimで必要な環境変数が設定できます．</p>
+                        <p class="sentence">環境変数は設定ファイル中のセクション <code>SetEnv</code>で指定し，システムで設定している環境変数や設定ファイル中で先に記載した環境変数を利用することもできます．また，gnupackの展開したディレクトリを表す環境変数として <code>INST_DIR</code>が，ログオンユーザのデスクトップを表す環境変数として <code>DESK</code>が利用できます．いくつかの例を示して，設定ファイルの記述方法について具体的に説明します．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">SetEnv</span>]
+    <span class="s_param">CYGWIN</span>    = nodosfilewarning noenvcache strip_title title upcaseenv notty
+    <span class="s_param">SHELL</span>     = /bin/bash
+    <span class="s_param">MAKE_MODE</span> = unix
+    <span class="s_param">TZ</span>        = JST-9
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <p class="sentence">これは，<code>CYGWIN</code>という環境変数に <code>nodosfilewarning noenvcache strip_title title upcaseenv notty</code>，<code>SHELL</code>という環境変数に <code>/usr/bin/bash</code>，<code>MAKE_MODE</code>という環境変数に <code>unix</code>，<code>TZ</code>という環境変数に <code>JST-9</code>を設定しています．なお，すでにシステムで <code>CYGWIN</code>という環境変数を設定していて，上記のような設定をした場合，その値はここで指定した値に上書きされます．その際，上書きされる影響範囲は gnupackから起動するプロセスのみです．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">SetEnv</span>]
+    <span class="s_param">TEMP</span> = %TEMP%\gnupack
+    <span class="s_param">TMP</span>  = %TMP%\gnupack
+
+[<span class="s_sec">Mode</span>]
+    <span class="s_param">temp_auto_create</span> = yes
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <p class="sentence">これは，システムで既に設定されている環境変数を使って <code>TEMP</code>と <code>TMP</code>を設定しています．なお，gnupackではシステムで既に設定されている <code>TEMP</code>と <code>TMP</code>の環境変数で指定されるディレクトリの有無をチェックし，存在しない場合は起動しない仕様になっています．また，上記で新たに設定した <code>TEMP</code>と <code>TMP</code>の環境変数についてはディレクトリの有無をチェックし，存在しない場合は自動作成するようになっています．これは設定ファイル中のセクション <code>Mode</code>，パラメータ <code>temp_auto_create</code>を <code>no</code>にすることで自動作成を無効にもできます．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">SetEnv</span>]
+    <span class="s_param">HOME</span>      = %INST_DIR%\home
+    <span class="s_param">_cygwin_</span>  = %INST_DIR%\app\cygwin\cygwin
+    <span class="s_param">PATH</span>      = %_cygwin_%\bin
+    <span class="s_param">PATH</span>      = %PATH%;c:\WINDOWS\system32;c:\WINDOWS;c:\WINDOWS\system32\Wbem
+
+[<span class="s_sec">UnSetEnv</span>]
+    <span class="s_param">_cygwin_</span> =
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <p class="sentence">最後に少し複雑な例を説明します．まずセクション <code>SetEnv</code>の 1行目は gnupackの展開したディレクトリ直下にある <code>home</code>ディレクトリを環境変数 <code>HOME</code>に設定しています．つまり gnupackを <code>C:\gnupack</code>にインストールした場合，環境変数 <code>HOME</code>は <code>C:\gnupack\home</code>となり，展開先を <code>C:\Program Files\gnupack</code>とした場合，環境変数 <code>HOME</code>は <code>C:\Program Files\gnupack\home</code>になります．</p>
+                        <p class="sentence">次のセクション <code>SetEnv</code>の 2行目は gnupackの展開したディレクトリ直下にある <code>cygwin</code>ディレクトリを環境変数 <code>_cygwin_</code>に設定しています．そして，3行目で 環境変数 <code>_cygwin_</code>を使って，環境変数 <code>PATH</code>を設定しています．展開したディレクトリ <code>INST_DIR</code>を <code>C:\gnupack</code>と仮定すると，環境変数 <code>_cygwin_</code>は <code>C:\gnupack\app\cygwin\cygwin</code>と設定され，3行目の段階で環境変数 <code>PATH</code>は <code>C:\gnupack\app\cygwin\cygwin\bin</code>となります．</p>
+                        <p class="sentence">そしてセクション <code>SetEnv</code>の 4行目は，3行目で設定した環境変数 <code>PATH</code>を再帰的に設定し，最終的に環境変数 <code>PATH</code>は <code>C:\gnupack\app\cygwin\cygwin\bin;c:\WINDOWS\system32;c:\WINDOWS;c:\WINDOWS\system32\Wbem</code>となります．</p>
+                        <p class="sentence">一時利用のために設定した環境変数は，セクション <code>UnSetEnv</code>に不要な環境変数を値なしで定義することで，自動的に環境変数から削除します．</p>
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_customize_mnt" id="_customize_mnt">マウントポイントの設定</a></h3>
+                        <p class="sentence">gnupackは展開したディレクトリに応じて cygwinのマウントポイントを自動設定します．これは設定ファイル中のセクション <code>Mode</code>，パラメータ <code>mnt_auto_mount</code>を <code>no</code>にすることで自動設定を無効にもできます．</p>
+                        <p class="sentence">マウントポイントは設定ファイル中のセクション <code>Mnt</code>に従い設定されます．ここで書き方の注意事項を含め，例を示して説明します．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">SetEnv</span>]
+    <span class="s_param">_local_</span>     = %inst_dir%\app\cygwin\local
+    <span class="s_param">HOME</span>        = %inst_dir%\home
+    <span class="s_param">TEMP</span>        = %TEMP%\gnupack
+    ...
+
+[<span class="s_sec">Mnt</span>]
+    <span class="s_param">mount_point0</span> = none          ;/         ;cygdrive;binary,nouser,noacl,posix=0;
+    <span class="s_param">mount_point1</span> = %_local_%     ;/usr/local;ntfs    ;binary,nouser,noacl,posix=0;
+    <span class="s_param">mount_point2</span> = %INST_DIR%\app;/app      ;ntfs    ;binary,nouser,noacl,posix=0;
+    <span class="s_param">mount_point3</span> = %TEMP%        ;/tmp      ;ntfs    ;binary,nouser,noacl,posix=0;
+    <span class="s_param">mount_point4</span> = %HOME%        ;/home     ;ntfs    ;binary,nouser,noacl,posix=0;
+    <span class="s_param">mount_point5</span> = %DESK%        ;/top      ;ntfs    ;binary,nouser,noacl,posix=0;
+    <span class="s_param">mount_point6</span> = %INST_DIR%    ;/root     ;ntfs    ;binary,nouser,noacl,posix=0;
+
+[<span class="s_sec">Mode</span>]
+    <span class="s_param">mnt_auto_mount</span> = yes
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <p class="sentence">パラメータの名前は，上記は <code>point + 数字</code>の書式を取っていますが，ユニークな名称であれば特に制約はありません．次にパラメータの値ですが，これは cygwinの <code>/etc/fstab</code>に記載する <code>&lt;WinPath&gt;</code>，<code>&lt;CygPath&gt;</code>，<code>&lt;FsType&gt;</code>，<code>&lt;Option&gt;</code>を <code>;(セミコロン)</code>区切りで指定します．</p>
+                        <p class="sentence"><code>/etc/fstab</code>の書式は以下のとおりです．詳細は<a href="http://cygwin.com/cygwin-ug-net/using.html#mount-table">http://cygwin.com/cygwin-ug-net/using.html#mount-table</a>を参照ください．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+<span class="s_comment"># Comment</span>
+&lt;WinPath&gt; &lt;CygPath&gt; &lt;FsType&gt; &lt;Option&gt; 0 0
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <table summary="セクション Mntのパラメータ">
+                            <tr>
+                              <th width="25%">パラメータ</th>
+                              <th>概要</th>
+                            </tr>
+                            <tr>
+                              <td class="text"><code>WinPath</code></td>
+                              <td class="text">cygwinにマウントする Windowsフォルダのパスを指定する．パス区切り文字は <code>\</code>ではなく <code>/</code>を使う必要がある．また，パス中に空白を含む場合，空白を <code>\040</code>に置換する必要がある．</td>
+                            </tr>
+                            <tr>
+                              <td class="text"><code>CygPath</code></td>
+                              <td class="text">WinPathをマウントする cygwin上のディレクトリのパスを指定する．パス中に空白を含む場合，空白を <code>\040</code>に置換する必要がある．</td>
+                            </tr>
+                            <tr>
+                              <td class="text"><code>FsType</code></td>
+                              <td class="text">本来はファイルシステム種別を指定するが，cygwinでは使わない（参照しない）．ただし，cygdriveを設定する際には <code>cygdrive</code>を指定する．</td>
+                            </tr>
+                            <tr>
+                              <td class="text"><code>Option</code></td>
+                              <td class="text">ファイルシステムに対応したオプションをカンマ「,」区切りで指定する．
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="text">第5，6引数</td>
+                              <td class="text">Linuxの <code>/etc/fstab</code>の書式を踏襲するためのダミー．gnupackでは <code>0</code>固定としている． </td>
+                            </tr>
+                        </table>
+                        <p class="sentence">ここでもパラメータの値に環境変数を利用することもできます．gnupackの展開したディレクトリ <code>INST_DIR</code>を <code>C:\gnupack</code>，環境変数 <code>_local_</code>を <code>%INST_DIR%\app\cygwin\local</code>と仮定すると，上記の例は以下のように読み替えられます．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">Mnt</span>]
+    <span class="s_param">mount_point0</span> = none                        ; /          ; ... (省略)
+    <span class="s_param">mount_point1</span> = C:\gnupack\app\cygwin\local ; /usr/local ; ... (省略)
+    <span class="s_param">mount_point2</span> = C:\gnupack\app              ; /app       ; ... (省略)
+    <span class="s_param">mount_point3</span> = &lt;システムのTEMP&gt;\gnupack    ; /tmp       ; ... (省略)
+    <span class="s_param">mount_point4</span> = C:\gnupack\home             ; /home      ; ... (省略)
+    <span class="s_param">mount_point5</span> = &lt;ユーザのデスクトップ&gt;      ; /top       ; ... (省略)
+    <span class="s_param">mount_point6</span> = C:\gnupack                  ; /root      ; ... (省略)
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <p class="sentence">修正したマウントポイントを再度設定したい場合は，すべてのbashを再起動してください．</p>
+                        <p class="sentence">なお，<code>/usr/bin</code>，および <code>/usr/lib</code>はデフォルトで設定されるため定義する必要はありません．</p>
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_customize_font" id="_customize_font">プライベートフォントの設定</a></h3>
+                        <p class="sentence">通常，追加フォントを利用するには Wdinwosの管理者権限が必要になりますが，gnupackでは一時的にフォントを Windowsにロードすることで一般ユーザでも任意のフォントをインストールせずに利用できます．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">Font</span>]
+    <span class="s_param">font_file1</span>     = %INST_DIR%\app\font\Migu\Migu-1M-Regular.ttf
+
+[<span class="s_sec">Mode</span>]
+    <span class="s_param">font_auto_load</span> = yes
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <p class="sentence">ロードするフォントは設定ファイル中のセクション <code>Font</code>に記述します．他と同様に定義済みの環境変数が使えます．また，パラメータの名前はセクション <code>Mnt</code>と同じくユニークであれば問題ありません．これは設定ファイル中のセクション <code>Mode</code>，パラメータ <code>font_auto_load</code>を <code>no</code>にすれば自動ロードを無効にもできます．</p>
+                        <p class="sentence">なお，フォントのロードは Win32APIの <code>AddFontResource</code>という関数で実現しているのですが，今からロードしようとしているフォントが既にロードされているかどうかをチェックする処理が実装できていないため，<code>RemoveFontResource</code>で一度フォントを削除してから <code>AddFontResource</code>するような仕様になっています．そして，<code>RemoveFontResource</code>の際，前回 <code>AddFontResource</code>したTTFファイルがないとフォント表示がおかしくなることがあったため，TTFフォントは gnupackで設定した環境変数 <code>TEMP</code>のディレクトリにコピーしてからロードするようになっています．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">Mintty</span>]
+    <span class="s_param">fontName</span>       = Migu 1M
+
+    ...
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <p class="sentence">プライベートフォントはセクション <code>Mintty</code>と <code>Emacs</code>，<code>Gvim</code>にあるパラメータ <code>fontName</code>に設定することで利用することができます．パラメータ <code>fontName</code>にはフォントの書体名を指定してください．フォントの書体名が分からない場合，TTFファイルをダブルクリックして表示されるウィンドウで確認できます．</p>
+                        <div class="imgbox"><a href="./img/custom_font01.png"><img src="./img/custom_font01.gif" border="1" width="99%" alt="フォントの書体名の確認方法" /></a></div>
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                    </div><!-- / #body -->
+               </div><!-- / #section -->
+            </div><!-- / #main -->
+        </div><!-- / #content -->
+        <div id="footer">
+            <p>Copyright (C) 2009-2013 k.sugita, Inc. All rights reserved.</p>
+        </div><!-- / #footer -->
+    </div><!-- / #top -->
+</body>
+</html>

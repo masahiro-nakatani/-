@@ -1,0 +1,1057 @@
+#!/usr/bin/perl
+
+# #####################################################################
+#
+#  cyg-pm - Cygwin Package Manager
+#
+# #####################################################################
+#
+#  Copyright (C) 2010-2011 ksugita <ksugita0510@gmail.com>
+#
+#  Author:        ksugita
+#  Version:       Beta 2011-07-11
+#
+#  This file is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2, or (at your option)
+#  any later version.
+#
+#  This file is distributed in the hope that it will be useful, but
+#  WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+#  General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; see the file COPYING.  If not, write to the
+#  Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+#  Boston, MA 02110-1301, USA.
+#
+# #####################################################################
+
+# Load Module
+use Encoding 'shiftjis';
+use Net::FTP;
+use LWP::UserAgent;
+use Getopt::Long;
+use File::Path;
+use File::Basename;
+use File::Copy;
+use File::Copy::Recursive qw(dirmove);
+use Digest::MD5;
+use Archive::Tar;
+use Compress::Zlib; 
+
+# ----------------------------------------------------------------------
+# customize point
+my $DEFAULT_FTP_URL   = 'ftp.jaist.ac.jp';
+my $DEFAULT_FTP_DIR   = '/pub/cygwin';
+my $DEFAULT_FIELD     = 'name,version,sdesc';
+my $DEFAULT_SETUP_EXE = 'http://cygwin.com/setup.exe';
+
+# ----------------------------------------------------------------------
+# Args Parameter
+my $COMMAND = '';
+my @PKGNAME = ();
+
+# Option Parameter
+my $ROOT           = '';   # Cygwin Root Directory
+my $FILE           = '';   # File setup.ini Path
+my $URL            = '';   # Ftp Mirror Site
+my $DIST           = '';   # Distribution Type
+my $COL            = '';   # Display Field Column
+my $OUTDIR         = '';   # Output Directory
+my $FORMAT         = '';   # Output Format
+my $FLG_REGEXP     = '';   # Flag for regexp
+my $FLG_REQUIRE    = '';   # Flag for require
+my $FLG_DEPEND     = '';   # Flag for depend
+my $FLG_NEWER      = '';   # Flag for newer
+my $FLG_SRC        = '';   # Flag for src
+my $FLG_WITH_SRC   = '';   # Flag for with-src
+my $FLG_WITH_SETUP = '';   # Flag for with-setup
+my $FLG_SIZE_COUNT = '';   # Flag for size-count
+my $DUMMY          = '';   # Dummy 
+
+# Ftp Parameter
+my $Ftp_Url;        # Ftp Mirror Url
+my $Ftp_Dir;        # Ftp Remote Directory
+
+# Local File Parameter
+my $Root_Dir;       # Cygwin Root Directory
+my $Setup_Dir;      # setup.ini's Directory
+my $Cache_Dir;      # tar.bz2 Download Directory
+my $Setup_Ini;      # File setup.ini Path
+my $Installed_Db;   # File installed.db Path
+
+# Command 'search' Parameter
+my @Search_Col_List;   # Display Field Column
+my %Search_Title_List; # Display Field Column for Title
+
+# Etc Parameter
+my $Dist_Type;
+my $Format_Type;
+
+# File Size Paramter
+my $File_Size_Binary = 0;
+my $File_Size_Source = 0;
+
+# Package List
+my @Pkg_Fullset_List;  # Package Name Fullset List
+my @Pkg_Target_List;
+my %Pkg_Require_List;
+my %Pkg_Depend_List;
+
+# CygCheck List
+my @CygCheck_PkgName_List = ();
+my %CygCheck_Version_List = ();
+my %CygCheck_Status_List  = ();
+
+my @InstalledDb_PkgName_List = ();
+my %InstalledDb_File_List    = ();
+my %InstalledDb_Status_List  = ();
+
+my $Tab = '    ';
+
+# ----------------------------------------------------------------------
+sub commandHelp {
+   print 'cyg-pm - Cygwin Package Manager
+         Copyright (C) 2010 ksugita <ksugita0510@gmail.com>
+
+Usage:
+  cyg-pm Command [Option...]
+
+Command:
+  check   [PKGNAME ...]  インストール済みのパッケージ情報を表示．
+  search   PKGNAME ...   最新のパッケージ情報を検索．
+  download PKGNAME ...   最新のパッケージを取得．
+  install  PKGNAME ...   最新のパッケージをインストール
+  remove   PKGNAME ...   インストール済みのパッケージを削除（未実装）
+                         
+Option:                  
+  -root ROOT             Cygwinのルートディレクトリ ($Root_Dir) を指定．
+                         デフォルトは環境変数 CYGWIN_DIR．
+  -inifile FILE          setup.iniの格納パスを指定．デフォルトは
+                         $Root_Dir/etc/setup．
+  -mirror URL            ディレクトリ含めたミラーサイトのパスを指定．
+                         デフォルトは ftp.jaist.ac.jp/pub/cygwin．
+  -dist DIST             パッケージ種別を指定．デフォルトは curr．
+                             test     : 前バージョン
+                             curr     : 安定バージョン
+                             prev     : 試験バージョン
+  -field COL1,COL2,...   \'search\' で表示する項目をカンマ区切りで指定．
+                         デフォルトは name,version,sdesc．
+                             name     : パッケージ名
+                             dist     : パッケージ種別
+                             version  : バージョン
+                             sdesc    : パッケージ説明（概要）
+                             ldesc    : パッケージ説明
+                             category : カテゴリ
+                             requires : 依存するパッケージ
+                             bin_url  : バイナリファイルの URL
+                             bin_size : バイナリファイルのサイズ
+                             bin_md5  : バイナリファイルのハッシュ値
+                             src_url  : ソースファイルの URL
+                             src_size : ソースファイルのサイズ
+                             src_md5  : ソースファイルのハッシュ値
+                             all      : 上記のすべて
+  -output OUTDIR         setup.iniおよび取得パッケージのダウンロード先
+                         ディレクトリを指定．
+  -format FORMAT         \'search\' で表示するフォーマットを指定．
+                         デフォルトは text．
+                             text : テキストフォーマット
+                             csv  : カンマ区切りのCSVフォーマット
+                             list : 空白区切りの1行フォーマット
+  -regexp                引数の PKGNAMEの表記に正規表現を使用．
+                         デフォルトは無効．
+  -require               引数の PKGNAMEのインストールに必要な
+                         パッケージを処理対象に含む．デフォルトは無効．
+                         -requireと -dependの兼用は不可．
+  -depend                引数の PKGNAMEを必要とするパッケージを
+                         処理対象に含む．デフォルトは無効．
+                         -requireと -dependの兼用は不可．
+  -newer                 インストール済みのパッケージのうち，
+                         バージョンアップ可能なパッケージを
+                         処理対象に含む．デフォルトは無効．
+  -with-src              \'download\' の実行時にソースファイルも取得．
+                         デフォルトは無効．
+  -with-setup            \'download\' の実行時に setup.exeも取得．
+                         デフォルトは無効．
+  -size-count            \'search\' で検索したパッケージのバイナリ
+                         およびソースファイルの合計バイト数を表示．
+                         デフォルトは無効．
+'
+}
+
+# ----------------------------------------------------------------------
+sub printError {
+    die("[ERROR] \n\e[31;1m[Error] $_[0]");
+    exit 1;
+}
+
+# ----------------------------------------------------------------------
+sub createSetupDir {
+    if(! -d $Setup_Dir) {
+        printf("* Create setup directory (%s)\n", $Setup_Dir);
+        mkpath["$Setup_Dir"] ||
+            die("[ERROR] ダウンロード先ディレクトリ \'$Setup_Dir\' が作成できません");
+    }
+}
+
+# ----------------------------------------------------------------------
+sub createCacheDir {
+    if(! -d $Cache_Dir) {
+        printf("* Create cache directory (%s)\n", $Cache_Dir);
+        mkpath["$Cache_Dir"] ||
+            die("[ERROR] ダウンロード先ディレクトリ \'$Cache_Dir\' が作成できません");
+    }
+}
+
+# ----------------------------------------------------------------------
+sub getMd5sum {
+    open IN, $_[0] ||
+        die("[ERROR] ファイル \'$_[0]\' がオープンできません");
+    binmode IN;
+    my $_ctx = Digest::MD5->new;
+    my $_md5 = $_ctx->addfile(*IN)->hexdigest;
+    close(IN);
+    return $_md5;
+}
+
+# ----------------------------------------------------------------------
+sub connectFtp {
+  # my %option = (
+  #     Debug        => 1,
+  #     Firewall     => '189.31.143.76',
+  #     Port         => 8080,
+  #     FirewallType => 2,
+  #     );
+  # my $_ftp_conn = Net::FTP->new($Ftp_Url, %option) ||
+  #     die("[ERROR] FTPサイト \'$Ftp_Url\' に接続できません");
+
+    my $_ftp_conn = Net::FTP->new($Ftp_Url, Debug => 0) ||
+        die("[ERROR] FTPサイト \'$Ftp_Url\' に接続できません");
+    $_ftp_conn->login("anonymous",'-anonymous@') ||
+        die("[ERROR] FTPサイト \'$Ftp_Url\' にログインできません");
+    $_ftp_conn->binary;
+    $_ftp_conn->cwd($Ftp_Dir) ||
+        die("[ERROR] FTPサイト \'$Ftp_Url\' のリモートディレクトリ \'$Ftp_Dir\' に移動できません");
+    return $_ftp_conn;
+}
+
+# ----------------------------------------------------------------------
+sub getFtpFile {
+    my $_ftp_conn = $_[0];
+    my $_pkg      = $_[1];
+    my $_type     = $_[2];
+
+    my $_path     = $_type . '_path';
+    my $_md5      = $_type . '_md5';
+
+    if(${$_pkg . $Dist_Type}{$_path} eq "") {
+        return;
+    }
+    chdir $Cache_Dir ||
+        die("[ERROR] ダウンロード先ディレクトリ \'$Cache_Dir\' に移動できません");
+    my $_local  = dirname(${$_pkg . $Dist_Type}{$_path});
+    my $_remote = $Ftp_Dir . '/' . $_local;
+    my $_file   = basename(${$_pkg . $Dist_Type}{$_path});
+
+    # 既にファイル取得済みの場合
+    if(-f "./$_local/$_file") {
+        if(&getMd5sum("./$_local/$_file") eq ${$_pkg . $Dist_Type}{$_md5}) {
+            printf("%s-> already got file: %s/%s/%s\n", $Tab, $Cache_Dir, $_local, $_file);
+            return;
+        }
+    }
+
+    mkpath["./$_local"] ||
+        die("[ERROR] パッケージ格納ディレクトリ \'$Cache_Dir/$_local\' が作成できません");
+    $_ftp_conn->cwd("$_remote") ||
+        die("[ERROR] FTPサイト \'$Ftp_Url\' のリモートディレクトリ \'$_remote\' に移動できません");
+    printf("%s-> get file: %s/%s/%s\n", $Tab, $Cache_Dir, $_local, $_file);
+    $_ftp_conn->get($_file) ||
+        die("[ERROR] FTPサイト \'$Ftp_Url\' から パッケージ \'$_remote/$_file\' が取得できません");
+    move("$_file", "./$_local") ||
+        die("[ERROR] 取得したパッケージ \'$_file\' を \'$Cache_Dir/$_local\' に移動できません");
+    if(&getMd5sum("./$_local/$_file") ne ${$_pkg . $Dist_Type}{$_md5}) {
+        die("[ERROR] 取得したパッケージ \'$_file\' のチェックサムが正しくありません");
+    }
+}
+
+# ----------------------------------------------------------------------
+sub initialize {
+
+    # ----------
+    # set Option
+    GetOptions('root=s'       => \$ROOT,
+               'inifile=s'    => \$FILE,
+               'mirror=s'     => \$URL,
+               'dist=s'       => \$DIST,
+               'field=s'      => \$COL,
+               'output=s'     => \$OUTDIR,
+               'format=s'     => \$FORMAT,
+               'regexp'       => \$FLG_REGEXP,
+               'require'      => \$FLG_REQUIRE,
+               'depend'       => \$FLG_DEPEND,
+               'newer'        => \$FLG_NEWER,
+               'with-src'     => \$FLG_WITH_SRC,
+               'with-setup'   => \$FLG_WITH_SETUP,
+               'size-count'   => \$FLG_SIZE_COUNT,
+               'dummy'        => \$DUMMY );
+
+    # --------
+    # set Args
+    $COMMAND = $ARGV[0];
+    shift @ARGV;
+    @PKGNAME = @ARGV;
+    
+    # ------------
+    # set $Ftp_Url
+    if($URL ne "") {
+        $Ftp_Url = $URL;
+        $Ftp_Url =~ s/\/.*//g;
+    } else {
+        $Ftp_Url = $DEFAULT_FTP_URL;
+    }
+    
+    # ------------
+    # set $Ftp_Dir
+    if($URL ne "") {
+        $Ftp_Dir = $URL;
+        $Ftp_Dir =~ s/[^\/]+//;
+    } else {
+        $Ftp_Dir = $DEFAULT_FTP_DIR;
+    }
+    $Ftp_Dir =~ s/\/$//;
+    
+    # -------------
+    # set $Root_Dir
+    if($ROOT ne "") {
+        $Root_Dir = $ROOT;
+    } else {
+        if($ENV{'CYGWIN_DIR'}) {
+            $Root_Dir = $ENV{'CYGWIN_DIR'};
+            $Root_Dir =~ s/\\/\//g;
+        } else {
+            if($OUTDIR eq "") {
+                printError("環境変数 CYGWIN_DIRを設定してください");
+            } else {
+                $Root_Dir = $OUTDIR;
+            }
+        }
+    }
+    $Root_Dir =~ s/\/$//;
+    if($Root_Dir =~ /[a-zA-Z]:/) {
+        $Root_Dir =~ s/:\//\//;
+        $Root_Dir =~ s/^/\//;
+        $Root_Dir =~ tr/A-Z/a-z/;
+    }
+
+    # --------------
+    # set $Setup_Dir
+    if($OUTDIR ne "") {
+        $Setup_Dir = $OUTDIR;
+    } else {
+        $Setup_Dir = $Root_Dir . '/etc/setup';
+    }
+    $Setup_Dir =~ s/\/$//;
+    
+    # --------------
+    # set $Cache_Dir
+    if($OUTDIR ne "") {
+        $Cache_Dir = $OUTDIR;
+    } else {
+        # my $_url = $Ftp_Url . $Ftp_Dir;
+        # $_url =~ s/([^\w ])/'%'.unpack('H2', $1)/eg;
+        # $_url =~ tr/ /+/;
+        # $_url =~ s/%2e/\./g;
+        # $Cache_Dir = $Root_Dir . '/var/cache/setup/' . $_url;
+        $Cache_Dir = $Root_Dir . '/var/cache/setup';
+    }
+    
+    # --------------
+    # set $Setup_Ini
+    if($FILE ne "") {
+        $Setup_Ini = $FILE;
+    } else {
+        $Setup_Ini = $Setup_Dir . '/setup.ini';
+    }
+    
+    # -----------------
+    # set $Installed_Db
+    $Installed_Db = $Setup_Dir . '/installed.db';
+    
+    # --------------------
+    # set @Search_Col_List
+    if($COL eq "all") {
+        @Search_Col_List = qw / name
+                                dist
+                                version
+                                sdesc
+                                ldesc
+                                category
+                                requires
+                                bin_path
+                                bin_url
+                                bin_size
+                                bin_md5
+                                src_path
+                                src_url
+                                src_size
+                                src_md5 /;
+    } elsif($COL ne "") {
+        @Search_Col_List = split(/,/, $COL);
+    } else {
+        @Search_Col_List = split(/,/, $DEFAULT_FIELD);
+    }
+    
+    # ----------------------
+    # set %Search_Title_List
+    %Search_Title_List = ("name",     "Package Name",
+                          "dist",     "Distribution",
+                          "version",  "Version",
+                          "sdesc",    "Abstract",
+                          "ldesc",    "Description",
+                          "category", "Category",
+                          "requires", "Requires",
+                          "bin_path", "Binary Path",
+                          "bin_url",  "Binary Url",
+                          "bin_size", "Binary Size (MB)",
+                          "bin_md5",  "Binary md5sum",
+                          "src_path", "Source Path",
+                          "src_url",  "Source Url",
+                          "src_size", "Source Size (MB)",
+                          "src_md5",  "Source md5sum"
+        );
+    
+    # --------------
+    # set $Dist_Type
+    if($DIST ne "") {
+        $Dist_Type = $DIST;
+    } else {
+        $Dist_Type = 'curr';
+    }
+      
+    # ----------------
+    # set $Format_Type
+    if($FORMAT ne "") {
+        $Format_Type = $FORMAT;
+    } else {
+        $Format_Type = 'text';
+    }
+
+    # ---------------
+    # check parameter
+    # if($ROOT ne "" && ! -d $ROOT) {
+    #     die("[ERROR] -root指定の Cygwinのルートディレクトリ \'$ROOT\' が見つかりません");
+    # }
+    if($FILE ne "" && ! -f $FILE) {
+        die("[ERROR] -inifile指定の setup.ini \'$FILE\' が見つかりません");
+    }
+    if($DIST ne "" && $DIST !~ /^curr$|^prev$|^test$/) {
+        die("[ERROR] -dist指定のパッケージ種別 \'$DIST\' が正しくありません");
+    }
+    # if($OUTDIR ne "" && ! -d $OUTDIR) {
+    #     die("[ERROR] -output指定の出力ディレクトリ \'$OUTDIR\' が見つかりません");
+    # }
+    if($FORMAT ne "" && $FORMAT !~ /^text$|^csv$|^list$|^web$/) {
+        die("[ERROR] -format指定の出力フォーマット \'$FORMAT\' が正しくありません");
+    }
+    foreach my $i (@Search_Col_List) {
+        if($Search_Title_List{$i} eq "") {
+            die("[ERROR] -field指定の項目 \'$i\' が正しくありません");
+        }
+    }
+    if($FLG_REQUIRE ne "" && $FLG_DEPEND ne "") {
+        die("[ERROR] -require と -dependの両方は指定できません");
+    }
+
+    $File_Size_Binary = 0;
+    $File_Size_Source = 0;
+
+    # 環境変数を設定
+    $ENV{'PATH'}   = "$Root_Dir/bin";
+    $ENV{'CYGWIN'} = "nodosfilewarning";
+    $ENV{'HOME'}   = $ENV{'TMP'};
+}
+
+# ----------------------------------------------------------------------
+sub updateSetup {
+    my $_ftp_url  = $Ftp_Url . $Ftp_Dir;
+    my $_ftp_conn;
+    if(-f $Setup_Ini) {
+        printf("* Update setup.ini");
+    } else {
+        printf("* Download setup.ini");
+    }
+    printf(" (%s -> %s)\n", $_ftp_url . '/setup.ini', $Setup_Ini);
+
+    $_ftp_conn = &connectFtp();
+    chdir($Setup_Dir) ||
+        die("[ERROR] setup.ini格納ディレクトリ \'$Setup_Dir\' に移動できません");
+    $_ftp_conn->get("setup.ini") ||
+        die("[ERROR] FTPサイト \'$Ftp_Url$Ftp_Dir\' から setup.iniを取得できません");
+    $_ftp_conn->quit;
+}
+
+# ----------------------------------------------------------------------
+sub analyzeSetup {
+    my $_current_line  = '';
+    my $_previous_line = '';
+    my $_pkg_name;
+    my $_prev_flag;
+    my $_test_flag;
+    my @_dist_list;
+    my $_key;
+    my $_val;
+    printf("* Analyze setup.ini (%s)\n", $Setup_Ini);
+    open IN, $Setup_Ini ||
+        die("[ERROR] setup.ini \'$Setup_Ini\' がオープンできません");
+    while(<IN>) {
+        # 現在の行を設定
+        $_current_line = $_;
+        # 直前の行が空白で，現在の行が @で始まることがパッケージの開始のしるし
+        # パッケージじゃない先頭のコメントやバージョン情報はスキップされる
+        if($_previous_line =~ /^\s*$/ && $_current_line =~ /^@ \S*/) {
+            # パッケージ名を取得，設定
+            s/^@ //;
+            $_pkg_name = $_;
+            chomp($_pkg_name);
+            push(@Pkg_Fullset_List, $_pkg_name);
+            # [prev] / [test] チェックフラグが0のままなら連想連想配列を初期化
+            $_prev_flag = 0;
+            $_test_flag = 0;
+            # 初期は全ディストリビューションを設定（区切り文字が出たら設定先を制限）
+            @_dist_list = ("curr", "prev", "test");
+            while(<IN>) {
+                chomp;
+                # パッケージ情報の区切りである空行が出たら，次のパッケージに進む
+                if(/^\s*$/) {
+                    # 次のパッケージに行く前に [prev], [test]をチェック
+                    if($_prev_flag eq "0") {
+                        %{$_pkg_name . "prev"} = ();
+                    }
+                    if($_test_flag eq "0") {
+                        %{$_pkg_name . "test"} = ();
+                    }
+                    last;
+                }
+                # [prev], [test]の場合，連想配列の設定先を制限
+                if(/^\[prev\]$/) {
+                    @_dist_list = ("prev");
+                    $_prev_flag = 1;
+                    next;
+                }
+                elsif(/^\[test\]$/) {
+                    @_dist_list = ("test");
+                    $_test_flag = 1;
+                    next;
+                }
+                # 基本は，「: 」でキーと値を分離，後続文字列がある場合は次の処理で補足
+                $_key = $_;
+                $_val = $_;
+                $_key =~ s/: .*//;
+                $_val =~ s/^\S*: //;
+                # 一行に2つの " がなければ，複数行と判断，続きの文字列を連結
+                if(/"/ && index($_, '"') eq rindex($_, '"')) {
+                    while(<IN>) {
+                        chomp;
+                        $_val .= " " . $_;
+                        if(/"/) { last; }
+                    }
+                }
+                # ディストリビューションに対しキーと値の連想配列を設定
+                foreach my $i (@_dist_list) {
+                    my $_target = $_pkg_name . $i;
+                    if($_key eq "install") {
+                        my @_value  = split(/ /, $_val);
+                        ${$_target}{'bin_byte'} = $_value[1];
+                        $_value[1] = sprintf("%.1f", $_value[1] / 1024.0 / 1024.0);
+                        ${$_target}{'bin_path'} = $_value[0];
+                        ${$_target}{'bin_url'}  = $Ftp_Url . '/' . $Ftp_Dir . '/' . $_value[0];
+                        ${$_target}{'bin_size'} = $_value[1];
+                        ${$_target}{'bin_md5'}  = $_value[2];
+                    } elsif($_key eq "source") {
+                        my @_value  = split(/ /, $_val);
+                        ${$_target}{'src_byte'} = $_value[1];
+                        $_value[1] = sprintf("%.1f", $_value[1] / 1024.0 / 1024.0);
+                        ${$_target}{'src_path'} = $_value[0];
+                        ${$_target}{'src_url'}  = $Ftp_Url . '/' . $Ftp_Dir . '/' . $_value[0];
+                        ${$_target}{'src_size'} = $_value[1];
+                        ${$_target}{'src_md5'}  = $_value[2];
+                    } else {
+                        ${$_target}{$_key} = $_val;
+                        ${$_target}{'name'} = $_pkg_name;
+                        ${$_target}{'dist'} = $i;
+                    }
+                }
+            }
+        }
+        # 次のパッケージに進む直前なので，基本は空白しか入らないはず
+        $_previous_line = $_;
+    }
+    close(IN);
+}
+
+# ----------------------------------------------------------------------
+sub analyzeCygCheck {
+    if($#CygCheck_PkgName_List > -1) {
+        return;
+    }
+
+    my $_cygcheck = $Root_Dir . '/bin/cygcheck.exe';
+
+    if(! -f $_cygcheck) {
+        $FLG_NEWER = '';
+        return;
+    }
+    printf("* Analyze CygCheck (/usr/bin/cygcheck -c)\n");
+    open IN, "$_cygcheck -c 2>&1 |" ||
+        die("[ERROR] コマンド \'/usr/bin/cygcheck -c\' が実行できません");
+
+    <IN>; # skip 'Cygwin Package Information'
+    <IN>; # skip 'Package Version Status'
+    while(<IN>) {
+        my @_line   = split(/\s+/, $_);
+        my $_pkg    = $_line[0];
+        my $_ver    = $_line[1];
+        my $_status = $_line[2];
+        
+        push(@CygCheck_PkgName_List, $_pkg);
+        $CygCheck_Version_List{$_pkg} = $_ver;
+        $CygCheck_Status_List{$_pkg}  = $_status;
+    }
+}
+
+# ----------------------------------------------------------------------
+sub reAnalyzeCygCheck {
+    @CygCheck_PkgName_List = ();
+    %CygCheck_Version_List = ();
+    %CygCheck_Status_List  = ();
+    &analyzeCygCheck();
+}
+
+# ----------------------------------------------------------------------
+sub analyzeInstalledDb {
+    if($#InstalledDb_PkgName_List > -1) {
+        return;
+    }
+    printf("* Analyze installed.db (%s)\n", $Installed_Db);
+    if(! -r $Installed_Db) {
+        printf("%s-> %s not exist. skip.\n", $Tab, $Installed_Db);
+        return;
+    }
+    open IN, $Installed_Db ||
+        die("[ERROR] installed.db \'$Installed_Db\' がオープンできません");
+    while(<IN>) {
+
+        if($_ eq "INSTALLED.DB 2\n") {
+            next;
+        }
+
+        my @_line = split(/\s+/, $_);
+        push(@InstalledDb_PkgName_List, $_line[0]);
+        $InstalledDb_File_List{$_line[0]}   = $_line[1];
+        $InstalledDb_Status_List{$_line[0]} = $_line[2];
+    }
+}
+
+# ----------------------------------------------------------------------
+sub reAnalyzeInstalledDb {
+    @InstalledDb_PkgName_List = ();
+    %InstalledDb_File_List    = ();
+    %InstalledDb_Status_List  = ();
+    &analyzeInstalledDb();
+}
+
+# ----------------------------------------------------------------------
+sub checkPackage {
+    if($FLG_NEWER) {
+        printf("* Show Installed Package which can be updated\n");
+    } else {
+        printf("* Show Installed Package\n");
+    }
+    printf("   ==============================================================================\n");
+    printf("   %-25s %-10s %-17s    %s [%s]\n", 'Package Name', 'Status', 'Installed Version', 'Latest Version', $Dist_Type);
+    printf("   ========================= ========== ================= == ====================\n");
+    foreach my $i (@CygCheck_PkgName_List) {
+        my $_inst_ver = $CygCheck_Version_List{$i};
+        my $_curr_ver = ${$i . $Dist_Type}{'version'};
+
+        if($_inst_ver ne "") {
+            if($FLG_NEWER) {
+                if($_curr_ver ne $_inst_ver) {
+                    printf("   %-25s %-10s %-17s -> %-17s\n", $i, $CygCheck_Status_List{$i}, $_inst_ver, $_curr_ver);
+                }
+            } else {
+                printf("   %-25s %-10s %-17s\n", $i, $CygCheck_Status_List{$i}, $_inst_ver);
+            }
+        }
+    }
+    printf("\n");
+}
+
+# ----------------------------------------------------------------------
+sub selectPackage {
+    printf("* Select Target Package (");
+    # foreach my $i (@PKGNAME) {
+    #     printf(" $i");
+    # }
+    # printf(")\n");
+    
+    my %_target_pkg;
+
+    # -regexpの処理
+    if($FLG_REGEXP) {
+        foreach my $i (@PKGNAME) {
+            foreach my $j (@Pkg_Fullset_List) {
+                if($j =~ /$i/) {
+                    $_target_pkg{$j} = 1;
+                }
+            }
+        }
+    } else {
+        foreach my $i (@PKGNAME) {
+            $_target_pkg{$i} = 1;
+        }
+    }
+
+    # -require/-dependの処理
+    if($FLG_REQUIRE) {
+        foreach my $i (sort keys(%_target_pkg)) {
+            &selectRequire($i);
+        }
+        foreach my $i (sort keys(%Pkg_Require_List)) {
+            push(@Pkg_Target_List, $i);
+        }
+    } elsif($FLG_DEPEND) {
+        foreach my $i (sort keys(%_target_pkg)) {
+            foreach my $j (@Pkg_Fullset_List) {
+                if(${$j . $Dist_Type}{'requires'} =~ / $i |^$i | $i$/) {
+                    $Pkg_Depend_List{$j} = 1;
+                }
+            }
+        }
+        foreach my $i (sort keys(%Pkg_Depend_List)) {
+            push(@Pkg_Target_List, $i);
+        }
+    } else {
+        foreach my $i (sort keys(%_target_pkg)) {
+            if(${$i . $Dist_Type}{'sdesc'} ne "") {
+                push(@Pkg_Target_List, $i);
+            }
+        }
+    }
+
+    # -newerの処理
+    if($FLG_NEWER) {
+        %_target_pkg = ();
+        foreach my $i (@Pkg_Target_List) {
+            my $_inst_ver = $CygCheck_Version_List{$i};
+            my $_curr_ver = ${$i . $Dist_Type}{'version'};
+            if($_inst_ver ne "") {
+                if($_curr_ver ne $_inst_ver) {
+                    $_target_pkg{$i} = 1;
+                }
+            }
+        }
+        @Pkg_Target_List = ();
+        foreach my $i (sort keys(%_target_pkg)) {
+            push(@Pkg_Target_List, $i);
+        }
+    }
+
+    foreach my $i (@Pkg_Target_List) {
+        printf(" %s", $i);
+    }
+    printf(")\n");
+}
+
+# ----------------------------------------------------------------------
+sub searchPackage {
+    printf("* Search package (format %s)\n", $Format_Type);
+
+    if($#Pkg_Target_List < 0) {
+        foreach my $i (@PKGNAME) {
+            printf("\n");
+            printf("    %s [%s] Not Found.\n", $i, $Dist_Type);
+        }
+    }
+    if($Format_Type eq "text") {
+        foreach my $_pkg (@Pkg_Target_List) {
+            my $_target = $_pkg . $Dist_Type;            
+            if(${$_target}{'sdesc'} eq "") {
+                printf("\n");
+                printf("    %s [%s] Not Found.\n", $_pkg, $Dist_Type);
+            } else {
+                printf("\n");
+                foreach my $i (@Search_Col_List) {
+                    printf("    %16s : %s\n", $Search_Title_List{$i}, ${$_target}{$i});
+                }
+            }
+        }
+    } elsif($Format_Type eq "csv") {
+        printf("\n");
+        foreach my $i (@Search_Col_List) {
+            printf("%s,",$Search_Title_List{$i});
+        }
+        printf("\n");
+        foreach my $_pkg (@Pkg_Target_List) {
+            my $_target = $_pkg . $Dist_Type;            
+            foreach my $i (@Search_Col_List) {
+                printf("%s,",${$_target}{$i});
+            }
+            printf("\n");
+        }
+    } elsif($Format_Type eq "list") {
+        foreach my $_pkg (@Pkg_Target_List) {
+            printf("%s ", $_pkg);
+        }
+        printf("\n");
+    } elsif($Format_Type eq "web") {
+        foreach my $_pkg (@Pkg_Target_List) {
+            my $_url = 'http://cygwin.com/cgi-bin2/package-grep.cgi?grep=' . $PKGNAME[0];
+            my $_ua  = LWP::UserAgent->new();
+            my $_res = $_ua->get($_url);
+            my @_line = split(/<tr><td><img src="http:\/\/sourceware.org\/icons\/ball.gray.gif" height=10 width=10 alt=""><\/td><td cellspacing=10>/, $_res->content);
+            my %_result = ();
+            print "\n  keyword \'$_pkg\' contain package is...\n";
+            foreach my $i (@_line) {
+                if($i =~ /<a href=\S+>(\S+)\/\S+<\/a>.*/) {
+                    $_result{$1} = 1;
+                }
+            }
+            foreach my $i (sort keys(%_result)) {
+                print "$Tab$i\n";
+            }
+        }
+    }
+}
+
+# ----------------------------------------------------------------------
+sub selectRequire {
+    my $_pkg    = $_[0];
+    my $_target = $_pkg . $Dist_Type;
+    my @_require_list = split(/ /, ${$_target}{'requires'});
+    $Pkg_Require_List{$_pkg} = 1;
+    foreach my $i (@_require_list) {
+        if($Pkg_Require_List{$i} ne "1") {
+            &selectRequire($i);
+        }
+    }
+}
+
+# ----------------------------------------------------------------------
+sub countPackage {
+    if($FLG_SIZE_COUNT) {
+        foreach my $_pkg (@Pkg_Target_List) {
+            my $_target = $_pkg . $Dist_Type;            
+            if(${$_target}{'bin_byte'} ne "") {
+                $File_Size_Binary = $File_Size_Binary + ${$_target}{'bin_byte'};
+            }
+            if(${$_target}{'src_byte'} ne "") {
+                $File_Size_Source = $File_Size_Source + ${$_target}{'src_byte'};
+            }
+        }
+        printf("\n* Select Package Total Size \n");
+        printf("   Binary Total Size : %5.1f MB\n", $File_Size_Binary / 1024.0 / 1024.0);
+        printf("   Source Total Size : %5.1f MB\n", $File_Size_Source / 1024.0 / 1024.0);
+    }
+}
+
+# ----------------------------------------------------------------------
+sub downloadPackage {
+    printf("* Download Package\n");
+    # chdir($Cache_Dir) ||
+    #     die("[ERROR] ダウンロード先ディレクトリ \'$Cache_Dir\' に移動できません");
+
+    my $_ftp_conn;
+    $_ftp_conn = &connectFtp();
+
+    foreach my $i (@Pkg_Target_List) {
+        if($FLG_WITH_SRC) {
+            &getFtpFile($_ftp_conn, $i, 'bin');
+            &getFtpFile($_ftp_conn, $i, 'src');
+        } else {
+            &getFtpFile($_ftp_conn, $i, 'bin');
+        }
+    }
+    $_ftp_conn->quit;
+
+    if($FLG_WITH_SETUP) {
+        my $_url = $DEFAULT_SETUP_EXE;
+        my $_ua  = LWP::UserAgent->new();
+        my $_res = $_ua->get($_url);
+        printf("%s-> get %s/setup.exe\n", $Tab, $Cache_Dir);
+        open OUT, ">setup.exe";
+        binmode OUT;
+        print OUT $_res->content;
+        close(OUT);
+    }
+}
+
+# ----------------------------------------------------------------------
+sub installPackage {
+    printf("* Install Package\n");
+
+    my $_ftp_conn;
+    $_ftp_conn = &connectFtp();
+    my $_tar = Archive::Tar->new;
+
+    local $Archive::Tar::FOLLOW_SYMLINK    = 1;
+    local $Archive::Tar::CHOWN             = 0;
+    local $Archive::Tar::CHMOD             = 0;
+    local $Archive::Tar::SAME_PERMISSIONS  = 0;
+
+    my @_target_pkg = ();
+
+    foreach my $i (@Pkg_Target_List) {
+        printf("  $i %s\n", ${$i . $Dist_Type}{'version'});
+
+        # インストール済みの場合はスキップ
+        if($InstalledDb_Status_List{$i} eq "0") {
+            printf("%s-> already installed. skip\n", $Tab);
+            next;
+        }
+
+        # パッケージファイルをダウンロード
+        &getFtpFile($_ftp_conn, $i, 'bin');
+        $_tar->read("$Cache_Dir/${$i . $Dist_Type}{'bin_path'}");
+
+        # パッケージリストを作成
+        my @_tar_list_files = $_tar->list_files;
+        # パッケージが空の場合はスキップ
+        if($#_tar_list_files < 0) {
+            printf("%s-> no use/exist. skip\n", $Tab);
+            next;
+        }
+
+        push(@_target_pkg, $i);
+
+        printf("%s-> write list file: %s/%s.lst.gz\n", $Tab, $Setup_Dir, $i);
+        my $_lst = gzopen("$Setup_Dir/$i.lst.gz", "wb");
+        foreach my $j ($_tar->list_files) {
+            $_lst->gzwrite("$j\n");
+        }
+        $_lst->gzclose;
+
+        # installed.dbの変数に新規パッケージの情報を追加
+        push(@InstalledDb_PkgName_List, $i);
+        $InstalledDb_File_List{$i}   = basename(${$i . $Dist_Type}{'bin_path'});
+        $InstalledDb_Status_List{$i} = '0';
+
+        # /usr/bin，/usr/libを /bin，/libに変更
+        # foreach my $j ($_tar->list_files) {
+        #     if($j =~ /^usr\/bin|^usr\/lib/) {
+        #         my $_old = $j;
+        #         my $_new = $j;
+        #         $_new =~ s/^usr\/bin/bin/;
+        #         $_new =~ s/^usr\/lib/lib/;
+        #         $_tar->rename($_old, $_new);
+        #     }
+        # }
+        chdir "$Root_Dir" ||
+            die("[ERROR] Cygwinのルートディレクトリ \'$Root_Dir\' に移動できません");
+        printf("%s-> extract file: %s/%s\n", $Tab, $Cache_Dir, ${$i . $Dist_Type}{'bin_path'});
+        $_tar->extract ||
+            die("[ERROR] パッケージ \'$i\' の展開が失敗しました");
+    }
+    $_ftp_conn->quit;
+
+    # /usr/bin, /usr/libを /bin，/libに移動
+    if( -d "$Root_Dir/usr/bin") {
+        dirmove("$Root_Dir/usr/bin", "$Root_Dir/bin");
+    }
+    if( -d "$Root_Dir/usr/lib") {
+        dirmove("$Root_Dir/usr/lib", "$Root_Dir/lib");
+    }
+
+    # installed.dbを更新
+    open OUT, ">$Installed_Db";
+    print OUT "INSTALLED.DB 2\n";
+    foreach my $i (sort{ lc $a cmp lc $b } @InstalledDb_PkgName_List) {
+        print OUT "$i $InstalledDb_File_List{$i} $InstalledDb_Status_List{$i}\n";
+    }
+    close OUT;
+
+    # postinstallを実行
+    printf("\n");
+    printf("* Run PostInstall Script\n");
+    chdir "$Root_Dir/etc/postinstall" ||
+        die("[ERROR] Cygwinの /etc/postinstallディレクトリ \'$Root_Dir/etc/postinstall\' に移動できません");
+
+    foreach my $i (glob "*.sh") {
+        printf("  $i\n");
+        my @_result = `./$i 2>&1`;
+        my $_retv   = $?;
+        foreach my $j (@_result) {
+            print "$Tab|  $j";
+        }
+        # my $_retv = system("./$i");
+        if($_retv eq "0") {
+            printf("$Tab-> Success\n");
+        } else {
+            printf("$Tab-> Failure\n");
+        }
+        rename("$i", "$i.done");
+    }
+
+    printf("\n");
+    printf("* Show Installed Package\n");
+    &reAnalyzeCygCheck();
+    # インストール結果の表示
+    foreach my $i (@_target_pkg) {
+        printf("  %-35s : %s\n", $i . ' ' . $CygCheck_Version_List{$i}, $CygCheck_Status_List{$i});
+    }
+}
+
+########################################################################
+
+&initialize();
+
+if(! defined $COMMAND || 
+   $COMMAND !~ /^check$|^search$|^download$|^install$|^remove$/ ||
+   $COMMAND =~ /^search$|^download$|^install$|^remove$/ and $#ARGV < 0) {
+    &commandHelp();
+    exit 0;
+}
+
+&createSetupDir();
+&updateSetup();
+&analyzeSetup();
+
+if($COMMAND eq "check") {
+    &analyzeCygCheck();
+    printf("\n");
+    &checkPackage();
+    exit 0;
+}
+
+if($FLG_NEWER) {
+    &analyzeCygCheck();
+}
+
+&selectPackage();
+
+if($COMMAND eq "search") {
+    printf("\n");
+    &searchPackage();
+    &countPackage();
+    exit 0;
+}
+
+if($COMMAND eq "download") {
+    printf("\n");
+    &createCacheDir();
+    &downloadPackage();
+    exit 0;
+}
+
+if($COMMAND eq "install") {
+    &analyzeCygCheck();
+    &analyzeInstalledDb();
+    &createCacheDir();
+
+    printf("\n");
+    &installPackage();
+    exit 0;
+}

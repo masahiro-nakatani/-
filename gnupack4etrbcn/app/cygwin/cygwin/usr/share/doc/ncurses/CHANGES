@@ -1,0 +1,259 @@
+2009-Jan-02  Charles Wilson
+
+	* Remove symlinks in /usr/include/ to /usr/include/ncurses/*
+	* Because the API changes (upstream "ABI 5" vs "ABI 6" are handled
+	  transparently by macros, we assist clients that explicitly search
+	  for ncurses5-config by providing it as a symlink to ncurses6-config.
+	  (Suggestion by Yaakov Selkowitz)
+	* Add symlinks in /usr/lib/ncurses/ to the import, static, and
+	  libtool libs in /usr/lib/.  Also symlink pkgconfig.
+
+2009-Dec-31  Charles Wilson
+
+	* Update to 20091227 patchset
+	* compile with reentrancy and and various other
+	  ABI-breaking changes (also don't use broken-linker).
+	  Now at ncurses API #6 (cygwin ncurses ABI #10).
+
+2009-Nov-20  Charles Wilson
+
+	* Update to 20091114 patchset
+	* Fix coredump in tput
+
+2009-Oct-26  Charles Wilson
+
+	* Update to 20091024 patchset
+	* Rename installed ncurses9-config to ncurses5-config
+	  as the '9' abi is an artifact of cygwin-specific history.
+	  The actual ABI, as understood by other packages attempting
+	  to compile against ncurses on cygwin, is still '5' -- so
+	  they will look for ncurses5-config.
+	* Moved ncurses*-config file to -devel package
+
+2009-Mar-26  Charles Wilson
+
+        * Rebuild with --with-manpage-format=normal and
+          --with-manpage-aliases, instead of
+          --with-manpage-symlinks, to work around installation
+          bug related to the latter option.
+	* Update to 20090321 patchset, which includes many
+	  of our pre-existing cygwin fixes
+
+2009-Mar-04  Charles Wilson
+
+	* Recompile to fix linker error with libtic DLL
+	  (build links against *installed* ncurses not
+	  the just-built one. So, requires a build,
+	  install, rebuild cycle to remove dependency on
+	  old ncurses (and libtinfo).
+
+2009-Feb-28  Charles Wilson
+
+	* Fork for cygwin-1.7 development
+
+2009-Feb-27  Charles Wilson
+
+	* update to 5.7, latest official patchset
+	* DLL version number bump
+	* Turned on 5-button mouse support, sp-funcs,
+          and separate ticlib and terminfo lib.
+	  - these changes together constitute a new ABI,
+	    which is why the DLL version number was
+	    bumped to 9.
+	* Did not enable reentrancy, threading support,
+	  or wide character support. For the first two,
+	  see the document ThreadingSupport. The last
+	  item may be added later, but only for cygwin-1.7.
+	* Modified spelling of public, but wrapped 
+	  symbols to avoid "private" _nc_* namespace.
+	* Added preremove script, in preparation for
+	  deprecating the back-compatibility symlinks.
+	* Upstream changes:
+	  - tack program now distributed separately
+	  - pkg-config .pc files now provided
+	  - ncurses9-config script now provided
+	  - many more demo programs in ncurses-demo
+
+2006-Nov-14  Charles Wilson
+
+	* update to 5.5, latest official patchset
+	* switch to cygport build framework
+
+2006-Mar-23  Charles Wilson
+
+	* update to 5.5, latest official patchset
+
+2005-Jul-10  Charles Wilson
+
+	* bump to latest official patchset
+	* fix bugs related to .la files
+
+2004-Oct-09  Charles Wilson
+
+	* update to 5.4, latest official patchset
+	* build using libtool (yay!)
+	  - requires bump to version 8
+	  - but very few other changes
+
+2003-Jul-30  Charles Wilson
+
+	* update to latest official patchset
+	* add patches from Nicholas Wourms for libtool support
+	  doesn't completely work, yet, but it's getting there.
+
+2003-Jul-15  Charles Wilson
+
+	* Fix ordering bug in postinstall script
+	* Update docs.
+
+2003-Mar-07  Charles Wilson
+
+	* update to the 5.3 source.  Most of the support
+	needed to build shared libs on cygwin has been added
+	-- in much different form -- to the main dist.  However,
+	this difference means that the ABI has once again 
+	changed.
+
+	* There is no longer a C++ shared library.  It's not
+	really necessary, anyway, since it doesn't save that
+	much disk space and, and a shared library would have
+	ALL of the other ncurses libs as direct dependencies.
+	Which means that you'd always need to link in -lpanel
+	even when you don't use that portion of the C++ code,
+	for instance.  The ncurses maintainer has removed
+	almost all existing support for building libncurses++
+	as a shared lib on every platform; I'm not going to
+	add it back in just for cygwin.
+
+	* split the dist into 4 separate packages (not counting
+	the forked terminfo package): ncurses, libncurses-devel,
+	libncurses7, and ncurses-demo.
+
+2002-Jan-07  Charles Wilson
+
+	* form/Makefile.in: add bindir, INSTALL_PROGRAM, create
+	bindir in DESTDIR (to minimize dll patch size)
+	* menu/Makefile.in: ditto
+	* panel/Makefile.in: ditto
+	* ncurses/Makefile.in: ditto
+	* test/Makefile.in: add DYN version of the LOCAL_LIBS list
+	* c++/Makefile.in: add bindir, INSTALL_PROGRAM, create
+	bindir in DESTDIR. Split LIB_OBJS into two groups -- 
+	cursesmain.o can't be included in the DLL, but must be 
+	ar'ed onto the import lib.
+	* CYGWIN-PATCHES/ncurses-build: remove (replaced
+	by external ncurses-VER-REL.sh buildscript)
+	* CYGWIN-PATCHES/ncurses-5.2.README: remove
+	* CYGWIN-PATCHES/ncurses.README: new (copy of above)
+	also, various documentation updates
+	* include/curses.h.in: add BROKEN_LINKER
+	* configure.in, configure: add cf_cv_broken_linker
+	variable for curses.h.in, above
+
+2001-Sep-29  Charles Wilson
+
+	* -dll.patch: no longer use --enable-auto-import
+	(because latest binutils has that as default).
+	no longer use --enable-auto-image-base (on rare
+	occaisions, causes conflicts with cygwin1.dll)
+	* CYGWIN-PATCHES/ncurses-5.2.README: update accordingly
+	* CYGWIN-PATCHES/ncurses-build: update pkg version
+
+2001-Sep-13  Charles Wilson
+
+	* disk.mk: add NCURSES_ABI variable; bump to '6'
+	* aclocal.m4(CF_SUBST_NCURSES_VERSION): add 
+	processing for NCURSES_ABI; set cf_cv_abi_version
+	to it.
+	* configure: reflect aclocal changes
+
+2001-Sep-03  Kazuhiro Fujieda  <fujieda@jaist.ac.jp>
+
+	* terminfo.src(cygwin) rmcup: fix typo.
+
+2001-Jul-10  Egor Duda  <deo@logos-m.ru>
+
+        * terminfo.src(cygwin) hs: New capability. 
+	Window title is treated as status line.
+        (cygwin) tsl: Add command to "move from status line"
+        (cygwin) fsl: Add command to "move to status line"
+        (cygwin) sgr, sgr0: Remove unsupported rendition code.
+        (cygwin) flash: Remove.
+
+2001-Sep-13  Charles Wilson
+
+	* CYGWIN-PATCHES/ncurses-5.2.README: update docs
+	* CYGWIN-PATCHES/CHANGES: update
+	* c++/edit_cfg.sh: Add BROKEN_LINKER to list (fix 
+	acs_map bug when --enable-broken-linker
+	* c++/etip.h.in: Add stanza for BROKEN_LINKER (ditto)
+	* include/curses.h.in: Add functional declaration
+	and define if BROKEN_LINKER (ditto)
+	* ncurses/tinfo/lib_acs.c(acs_mapf): New function 
+	(only defined if BROKEN_LINKER)
+	* CYGWIN-PATCHES/ncurses-5.2-6-dll.patch: add
+	-Wl,--enable-auto-import to all Makefiles.
+	* all .def files: removed
+	* all .c and .h files: eliminate the NCURSES_IMPEXP
+	and NCURSES_EXPORT() stuff.  Use auto-import 
+	functionality instead.
+	* ncurses_dll.h: removed
+
+2001-Apr-24  Charles Wilson
+
+	* misc/terminfo.src: add entries for enter_ca_mode
+	(smcup) and exit_ca_mode (rmcup).
+	* binary package no longer includes statically-linked
+	test and utility programs
+
+2001-Jan-21  Charles Wilson
+
+	* ncurses-5.2-4 released
+
+2001-Jan-21  Charles Wilson
+
+	* include/ncurses_dll.h: added ALL_STATIC as an
+	alias for NCURSES_STATIC
+	* include/headers: install ncurses_dll.h automatically
+	* CYGWIN-PATCHES/ncurses-5.2.README: update install
+	instructions; install headers into /usr/include/ncurses
+	directory and create a few symlinks in /usr/include
+
+
+2000-Dec-5  Charles Wilson
+ 
+	* ncurses-5.2-3 release
+
+2000-Dec-5  Steven O'Brien  steven_obrien@lineone.net
+
+	* c++/cursesapp.h: Due to a gcc bug, static data
+	members do not pick up the NCURSES_IMPEXP decoration
+	from the class declaration, so you must add it
+	explicitly.
+	* c++/cursesf.h: ditto
+	* c++/cursesp.h: ditto
+	* c++/cursesw.h: ditto
+	* c++/cursslk.h: ditto
+	* c++/etip.h.in: no longer need to force definition
+	of NCURSES_STATIC
+	* c++/demo.cc: no longer need kludged-up main() function
+
+2000-Dec-5  Charles Wilson
+
+	* configure.in: fix a mistake related to --enable-colorfgbg
+	* configre: ditto
+	* c++/libncurses++.def: new file
+	* CYGWIN-PATCHES/ncurses-5.2-c++-dll.patch: REMOVED. 
+	file no longer necessary, since c++ dll is built by 
+	default, using the ncurses-5.2-X-dll.patch (this file 
+	is not yet part of CVS)
+	* CYGWIN-PATCHES/ncurses-5.2.README: remove references
+	to broken c++ dll stuff (it works, now).
+	* CYGWIN-PATCHES/CHANGES: new file, track cygwin-specific
+	changes
+
+2000-Nov-25  Charles Wilson
+
+	* ncurses-5.2-2 RELEASED
+
+

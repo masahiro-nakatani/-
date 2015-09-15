@@ -1,0 +1,17 @@
+libintl1
+sdesc: "GNU Internationalization runtime library"
+ldesc: "The GNU gettext package provides a set of tools and
+documentation for producing
+multi-lingual messages in programs. Tools include a set of conventions about
+how programs should be written to support message catalogs, a directory and
+file naming organization for the message catalogs, a runtime library which
+supports the retrieval of translated messages, and stand-alone programs for
+handling the translatable and the already translated strings. Gettext provides
+an easy to use library and tools for creating, using, and modifying natural
+language catalogs and is a powerful and simple method for internationalizing
+programs."
+category: Libs
+requires: cygwin _autorebase
+version: 0.10.40-1
+install: release/gettext/libintl1/libintl1-0.10.40-1.tar.bz2 11120 d44a0971f9b49b658d9dbe4bc2bda5e3
+source: release/gettext/libintl1/libintl1-0.10.40-1-src.tar.bz2 1373283 578ba3edc1f077e5b27716f18bc3f7d1

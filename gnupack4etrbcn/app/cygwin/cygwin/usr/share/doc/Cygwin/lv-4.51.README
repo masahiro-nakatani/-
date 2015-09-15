@@ -1,0 +1,65 @@
+lv
+------------------------------------------
+
+Multilingual less-like viewer
+
+A powerful file viewer like less. lv can decode and encode
+multilingual streams through many coding systems: ISO-8859, ISO-2022,
+EUC, SJIS, Big5, HZ, Unicode. Program recognizes multi-bytes patterns
+as regular expressions, lv also provides multilingual grep. In
+addition, lv can recognize ANSI escape sequences for text decoration.
+
+Runtime requirements:
+  cygwin
+
+Build requirements:
+  cygwin
+
+Canonical homepage:
+  http://www.ff.iij4u.or.jp/~nrt/lv
+  http://packages.debian.org/unstable/lv
+
+Canonical download:
+  See above
+
+Version control repository:
+
+Mailing list:
+
+Forum / Wiki:
+
+IRC channel:
+
+Upstream contact:
+  Maintainer: NARITA Tomio <nrt@ff.iij4u.or.jp>
+  Bugs: NARITA Tomio <nrt@ff.iij4u.or.jp>
+
+License:
+  GPL
+
+Language:
+  C
+
+------------------------------------------
+
+Build instructions:
+  unpack lv-*-src.tar.bz2
+    if you use setup to install this source package, it will be
+    unpacked under /usr/src automatically
+  cd /usr/src
+  ./lv*.sh all
+
+------------------------------------------
+
+Files included in the binary distribution:
+  See content of *.tar.gz
+
+------------------------------------------
+
+Port Notes:
+
+----- version 4.51-1 -----
+- Initial release 2008-03-11 Jari Aalto
+
+Cygwin port maintained by: Jari Aalto <jari.aalto@cante.net>
+Copyright (C) 2008 Jari Aalto; Licensed under GPL v2 or later

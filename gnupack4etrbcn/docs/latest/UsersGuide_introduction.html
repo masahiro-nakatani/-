@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=Shift_JIS" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="description" content="gnupackはアーカイブ展開のみで即座に cygwinと emacsが使える環境を提供します．">
+    <meta name="keyword" content="gnupack,emacs,gvim,cygwin,windows">
+    <title>gnupack Users Guide - はじめに</title>
+    <link href="./css/guide.css"  rel="stylesheet" type="text/css" />
+    <link href="./css/common.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div id="top">
+        <div id="header">
+            <div id="header_left"><p>gnupack is package that quickly start cygwin and emacs.</p></div>
+            <div id="header_right"><a href="http://sourceforge.jp/projects/gnupack/"><div class="sfjp"></div></a></div>
+            <div id="header_bottom"><h1>gnupack Users Guide (2012-07-15)</h1></div>
+        </div><!-- / #header -->
+        <div id="content">
+            <div id="menu">
+                <div class="section">
+                    <h2>目次</h2>
+                    <div class="body">
+                        <dl>
+                            <dd> <span class="item">■</span> <a href="UsersGuide.html">トップページ</a></dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_introduction.html">はじめに</a></dd>
+                            <dd>
+                                <dl>
+                                    <dd> <span class="item">▼</span> <a href="#_whatis">gnupackとは</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_install">インストール方法</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_uninstall">アンインストール方法</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_restriction">制約事項</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_website">関連Webサイトと連絡先</a></dd>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_download.html">ダウンロード</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_description.html">パッケージ詳細</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_customize.html">カスタマイズ</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_tips.html">便利な使い方</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_technical_info.html">技術情報</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_build_procedure.html">ビルド記録</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_release_note.html">リリースノート</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_ntemacs_build_history.html">NTEmacs Build History</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                        </dl>
+                    </div><!-- / #body -->
+                </div><!-- / #section -->
+            </div><!-- / #menu -->
+            <div id="main">
+                <div class="section">
+                    <h2><a name="_introduction" id="_introduction">はじめに</a></h2>
+                    <div class="body">
+                        <h3><a name="_whatis" id="_whatis">gnupackとは</a></h3>
+                        <p class="sentence">gnupackはアーカイブ展開のみで即座に cygwinと emacsが使える環境を提供します．gnupackの配布ライセンスは GPLv2です．</p>
+                        <p class="sentence">gnupackには，最低限のパッケージで構成された gnupack basicとコンパイラを含めたパッケージで構成された gnupack develの2種類があります．gnupackで提供する主なソフトウェアとそのバージョンは以下のとおりです．</p>
+                        <p class="sentence">（凡例 ○：含む ‐：含まない）</p>
+                        <table summary="gnupackのソフトウェアとバージョンの概要">
+                            <tr>
+                                <th width="50%">Software</th>
+                                <th>Version</th>
+                                <th width="10%">gnupack<br />basic</th>
+                                <th width="10%">gnupack<br />devel</th></tr>
+                            <tr>
+                                <td><a href="UsersGuide_description.html#_gnupack_startup">gnupack startup</a></td>
+                                <td>2011-09-23</td>
+                                <td>○</td>
+                                <td>○</td></tr>
+                            <tr>
+                                <td><a href="http://sourceware.org/cygwin/">cygwin</a></td>
+                                <td>1.7.15-1</td>
+                                <td>○</td>
+                                <td>○</td></tr>
+                            <tr>
+                                <td><a href="http://www.tdragon.net/recentgcc/">mingw (TDM's GCC/mingw32 Builds)</a></td>
+                                <td>4.6.1</td>
+                                <td>‐</td>
+                                <td>○</td></tr>
+                            <tr>
+                                <td><a href="http://sourceforge.jp/projects/nkf/">nkf Network Kanji Filter</a></td>
+                                <td>2.1.2</td>
+                                <td>○</td>
+                                <td>○</td></tr>
+                            <tr>
+                                <td><a href="http://mama.indstate.edu/users/ice/tree/">tree</a></td>
+                                <td>1.6.0</td>
+                                <td>○</td>
+                                <td>○</td></tr>
+                            <tr>
+                                <td><a href="http://www.gnu.org/software/global/">GNU Global</a></td>
+                                <td>6.2.4</td>
+                                <td>○</td>
+                                <td>○</td></tr>
+                            <tr>
+                                <td><a href="http://www.gnu.org/software/emacs/">emacs</a></td>
+                                <td>24.1.1</td>
+                                <td>○</td>
+                                <td>○</td></tr>
+                            <tr>
+                                <td><a href="http://www.vim.org/">gvim</a></td>
+                                <td>7.3.600</td>
+                                <td>○</td>
+                                <td>○</td></tr>
+                            <tr>
+                                <td><a href="http://sourceforge.jp/projects/mix-mplus-ipa/">Migu</a></td>
+                                <td>20120411</td>
+                                <td>○</td>
+                                <td>○</td></tr>
+                        </table>
+                        <p class="sentence">gnupackの主な特徴は以下のとおりです．</p>
+                        <ul>
+                            <li>インストールや設定を行うことなく，起動プログラムを実行するだけですぐに利用できます．</li>
+                            <li>既存の環境変数を変更することなく必要な環境変数を独立して設定できます．</li>
+                            <li>システムにインストールすることなく任意のフォントが利用できます．</li>
+                            <li>導入した環境に応じ cygwinのマウントポイントおよび <code>/etc/passwd</code>，<code>/etc/group</code>を自動で設定します．</li>
+                            <li>cygwinパッケージをコマンドラインから追加インストール，バージョンアップすることができます．</li>
+                        </ul>
+                        <br />
+                        <p class="sentence">開発者の動作確認は WindowsXP 32bit環境のみになっています．Windows95/98/98SE/Meは動作しない可能性があります．Windows Vista以降の OSバージョンについては動作する可能性はありますが，サポート外になります．gnupackのバグ改修や機能追加等のバージョンアップは<strong>本パッケージの開発者の対応可能な範囲内，かつ開発者の作業ペースにて行わせていただきます．</strong></p>
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_install" id="_install">インストール方法</a></h3>
+                        <ol>
+                            <li><a href="http://sourceforge.jp/projects/gnupack/releases/?package_id=10360">SourceForge.JP</a>よりアーカイブファイル（<code>gnupack_basic-X.XX.exe</code> or <code>gnupack_devel-X.XX.exe</code>）をダウンロードします．</li>
+                            <li>ダウンロードしたアーカイブファイル（7-Zipの自己解凍形式）を実行して，展開します．展開先ディレクトリは日本語が含まれていないパスを指定してください．展開先ディレクトリの推奨は <code>C:\Program Files</code>です．64bit版 Windows 7の場合は <code>C:\Program Files(x86)</code>です．（下記の例では <code>gnupack_devel-7.00.exe</code>を <code>C:\Program Files</code>に展開します）<br /><div class="imgbox"><a href="./img/inst/inst01.png"><img src="./img/inst/inst01.gif" border="1" width="99%" alt="インストール手順 その1" /></a></div></li>
+                            <li>起動プログラムを実行して，ソフトウェアを起動します．
+                                <ul>
+                                    <li>cygwinの場合<br />展開したディレクトリ直下の <code>mintty.exe</code>を実行します（例では <code>C:\Program Files\gnupack_devel-7.00\mintty.exe</code>にあります）<br /><div class="imgbox"><a href="./img/inst/inst02.png"><img src="./img/inst/inst02.gif" border="1" width="99%" alt="インストール手順 その2" /></a></div></li>
+                                    <li>emacsの場合<br />展開したディレクトリ直下の <code>emacs.exe</code>を実行します（例では <code>C:\Program Files\gnupack_devel-7.00\emacs.exe</code>にあります）<br /><div class="imgbox"><a href="./img/inst/inst03.png"><img src="./img/inst/inst03.gif" border="1" width="99%" alt="インストール手順 その3" /></a></div></li>
+                                    <li>gvimの場合<br />展開したディレクトリ直下の <code>gvim.exe</code>を実行します（例では <code>C:\Program Files\gnupack_devel-7.00\gvim.exe</code>にあります）<br /><div class="imgbox"><a href="./img/inst/inst04.png"><img src="./img/inst/inst04.gif" border="1" width="99%" alt="インストール手順 その4" /></a></div></li>
+                                </ul>
+                            </li>
+                        </ol>
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_uninstall" id="_uninstall">アンインストール方法</a></h3>
+                        <p class="sentence">gnupackをシステムから削除するには，gnupackを展開したディレクトリと <code>/tmp</code>ディレクトリ（<code>%TEMP%/gnupack</code> *1）を手動で削除してください．<code>/tmp</code>ディレクトリについて，<code>/tmp</code>のマウントポイントをデフォルト設定から変更した場合は変更内容に応じて読み替えてください．</p>
+                        <p class="sentence">cygwinのレジストリ情報も削除する場合，以下の項目を手動で削除してください．なお，レジストリ操作は自己責任で対応ください．</p>
+                        <ul>
+                            <li> <code>HKCU\Software\Cygnus</code></li>
+                            <li> <code>HKLM\SOFTWARE\Cygnus</code></li>
+                        </ul>
+                        <div class="noticebox">
+                            <div class="notice">*1 <code>%TEMP%</code>はシステムの環境変数 <code>TEMP</code>で設定されたディレクトリを表します．</div>
+                        </div>
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_restriction" id="_restriction">制約事項</a></h3>
+                        <p class="sentence">2012-07-15時点の gnupackの制約事項は以下のとおりです．下記の制約事項は gnupackで提供しているソフトウェア自体に起因する内容も含まれます．</p>
+                        <ul>
+                            <li> gnupackの格納パスのいずれかに日本語が含まれている場合，emacsが正しく動作しない場合があります．</li>
+                            <li> 設定ファイルのフォント名が誤っている場合，エラーメッセージを表示することなく emacsの起動に失敗します．</li>
+                            <li> システムの環境変数 <code>TMP</code>と <code>TEMP</code>に存在しないディレクトリを設定していた場合，bashおよび emacsの起動に失敗します．</li>
+                            <li> gnupackの環境変数 <code>LANG</code>を <code>ja_JP.utf8</code>にするとデスクトップ（<code>/top</code>）のマウントに失敗します．</li>
+                            <li> cygwinの gcc以外でビルドしたバイナリは cygwinのマウントポイントを認識できません．</li>
+                            <li> 環境変数 <code>CD</code>，<code>DESK</code>，<code>INST_DIR</code>は起動プログラムの内部ロジックで使用しているため，設定を変更すると正しく動作しない可能性があります．</li>
+                            <li> emacsおよび bashの初回起動時に起動が失敗する場合があります．原因不明．</li>
+                        </ul>
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_website" id="_website">関連Webサイトと連絡先</a></h3>
+                        <p class="sentence">gnupackの関連Webサイトは以下のとおりです．</p>
+                        <ul>
+                            <li>プロジェクト トップページ<br />
+                            <a href="http://sourceforge.jp/projects/gnupack/">http://gnupack.sourceforge.jp/</a></li>
+                            <li>ダウンロードページ<br />
+                            <a href="http://sourceforge.jp/projects/gnupack/releases/">http://sourceforge.jp/projects/gnupack/releases/</a></li>
+                            <li>gnupack Users Guide（最新版）<br />
+                            <a href="http://gnupack.sourceforge.jp/docs/latest/UsersGuide.html">http://gnupack.sourceforge.jp/docs/latest/UsersGuide.html</a></li>
+                            <li>リリースノート<br />
+                            <a href="http://gnupack.sourceforge.jp/docs/latest/UsersGuide_release_note.html">http://gnupack.sourceforge.jp/docs/latest/UsersGuide_release_note.html</a></li>
+                            <li>フォーラム：ご意見掲示板<br />
+                            <a href="http://sourceforge.jp/forum/forum.php?forum_id=22824">http://sourceforge.jp/forum/forum.php?forum_id=22824</a></li>
+                            <li>ブログ<br />
+                            <a href="http://d.hatena.ne.jp/ksugita0510/">http://d.hatena.ne.jp/ksugita0510/</a></li>
+                        </ul>
+                        <br />
+                        <p class="sentence">連絡先は<a href="http://sourceforge.jp/projects/gnupack/memberlist">開発メンバー一覧</a>を確認ください．</p>
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                    </div><!-- / #body -->
+               </div><!-- / #section -->
+            </div><!-- / #main -->
+        </div><!-- / #content -->
+        <div id="footer">
+            <p>Copyright (C) 2009-2013 k.sugita, Inc. All rights reserved.</p>
+        </div><!-- / #footer -->
+    </div><!-- / #top -->
+</body>
+</html>

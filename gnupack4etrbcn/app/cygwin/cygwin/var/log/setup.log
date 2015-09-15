@@ -1,0 +1,332 @@
+2012/07/14 17:59:04 Starting cygwin install, version 2.774
+2012/07/14 17:59:04 User has backup/restore rights
+2012/07/14 17:59:04 io_stream_cygfile: fopen(/etc/setup/setup.rc) failed 2 No such file or directory
+2012/07/14 17:59:04 io_stream_cygfile: fopen(/etc/setup/last-action) failed 2 No such file or directory
+2012/07/14 17:59:04 io_stream_cygfile: fopen(/etc/setup/net-method) failed 2 No such file or directory
+2012/07/14 17:59:04 io_stream_cygfile: fopen(/etc/setup/net-proxy-host) failed 2 No such file or directory
+2012/07/14 17:59:04 io_stream_cygfile: fopen(/etc/setup/net-proxy-port) failed 2 No such file or directory
+2012/07/14 17:59:04 io_stream_cygfile: fopen(/etc/setup/last-mirror) failed 2 No such file or directory
+2012/07/14 17:59:04 io_stream_cygfile: fopen(/etc/setup/extrakeys) failed 2 No such file or directory
+2012/07/14 17:59:04 io_stream_cygfile: fopen(/etc/setup/chooser_window_settings) failed 2 No such file or directory
+2012/07/14 17:59:04 Current Directory: C:\tmp
+2012/07/14 17:59:04 Could not open service McShield for query, start and stop. McAfee may not be installed, or we don't have access.
+2012/07/14 17:59:04 root: C:\gnupack_devel\app\cygwin\cygwin binary system
+2012/07/14 17:59:04 Selected local directory: C:\tmp
+2012/07/14 17:59:05 io_stream_cygfile: fopen(/etc/setup/installed.db) failed 2 No such file or directory
+2012/07/14 17:59:05 io_stream_cygfile: fopen(/etc/setup/timestamp) failed 2 No such file or directory
+2012/07/14 17:59:06 Found category All in package _autorebase
+2012/07/14 17:59:06 Added manual package _autorebase
+2012/07/14 17:59:06 Found category All in package _update-info-dir
+2012/07/14 17:59:06 Added manual package _update-info-dir
+2012/07/14 17:59:06 Found category All in package alternatives
+2012/07/14 17:59:06 Added manual package alternatives
+2012/07/14 17:59:06 Found category All in package base-cygwin
+2012/07/14 17:59:06 Added manual package base-cygwin
+2012/07/14 17:59:06 Found category All in package base-files
+2012/07/14 17:59:06 Added manual package base-files
+2012/07/14 17:59:06 Found category All in package bash
+2012/07/14 17:59:06 Added manual package bash
+2012/07/14 17:59:06 Found category All in package bc
+2012/07/14 17:59:06 Added manual package bc
+2012/07/14 17:59:06 Found category All in package bzip2
+2012/07/14 17:59:06 Added manual package bzip2
+2012/07/14 17:59:06 Found category All in package coreutils
+2012/07/14 17:59:06 Added manual package coreutils
+2012/07/14 17:59:06 Found category All in package crypt
+2012/07/14 17:59:06 Added manual package crypt
+2012/07/14 17:59:06 Found category All in package csih
+2012/07/14 17:59:06 Added manual package csih
+2012/07/14 17:59:06 Found category All in package cygrunsrv
+2012/07/14 17:59:06 Added manual package cygrunsrv
+2012/07/14 17:59:06 Found category All in package cygutils
+2012/07/14 17:59:06 Added manual package cygutils
+2012/07/14 17:59:06 Found category All in package cygwin
+2012/07/14 17:59:06 Added manual package cygwin
+2012/07/14 17:59:06 Found category All in package dash
+2012/07/14 17:59:06 Added manual package dash
+2012/07/14 17:59:06 Found category All in package diffutils
+2012/07/14 17:59:06 Added manual package diffutils
+2012/07/14 17:59:06 Found category All in package dos2unix
+2012/07/14 17:59:06 Added manual package dos2unix
+2012/07/14 17:59:06 Found category All in package editrights
+2012/07/14 17:59:06 Added manual package editrights
+2012/07/14 17:59:06 Found category All in package expect
+2012/07/14 17:59:06 Added manual package expect
+2012/07/14 17:59:06 Found category All in package findutils
+2012/07/14 17:59:06 Added manual package findutils
+2012/07/14 17:59:06 Found category All in package gawk
+2012/07/14 17:59:06 Added manual package gawk
+2012/07/14 17:59:06 Found category All in package gettext
+2012/07/14 17:59:06 Added manual package gettext
+2012/07/14 17:59:06 Found category All in package grep
+2012/07/14 17:59:06 Added manual package grep
+2012/07/14 17:59:06 Found category All in package gzip
+2012/07/14 17:59:06 Added manual package gzip
+2012/07/14 17:59:06 Found category All in package inetutils
+2012/07/14 17:59:06 Added manual package inetutils
+2012/07/14 17:59:06 Found category All in package less
+2012/07/14 17:59:06 Added manual package less
+2012/07/14 17:59:06 Found category All in package libasn1_8
+2012/07/14 17:59:06 Added manual package libasn1_8
+2012/07/14 17:59:06 Found category All in package libattr1
+2012/07/14 17:59:06 Added manual package libattr1
+2012/07/14 17:59:06 Found category All in package libblkid1
+2012/07/14 17:59:06 Added manual package libblkid1
+2012/07/14 17:59:06 Found category All in package libbz2_1
+2012/07/14 17:59:06 Added manual package libbz2_1
+2012/07/14 17:59:06 Found category All in package libcom_err2
+2012/07/14 17:59:06 Added manual package libcom_err2
+2012/07/14 17:59:06 Found category All in package libdb4.5
+2012/07/14 17:59:06 Added manual package libdb4.5
+2012/07/14 17:59:06 Found category All in package libedit0
+2012/07/14 17:59:06 Added manual package libedit0
+2012/07/14 17:59:06 Found category All in package libgcc1
+2012/07/14 17:59:06 Added manual package libgcc1
+2012/07/14 17:59:06 Found category All in package libgcrypt11
+2012/07/14 17:59:06 Added manual package libgcrypt11
+2012/07/14 17:59:06 Found category All in package libgdbm4
+2012/07/14 17:59:06 Added manual package libgdbm4
+2012/07/14 17:59:06 Found category All in package libgmp3
+2012/07/14 17:59:06 Added manual package libgmp3
+2012/07/14 17:59:06 Found category All in package libgnutls26
+2012/07/14 17:59:06 Added manual package libgnutls26
+2012/07/14 17:59:06 Found category All in package libgpg-error0
+2012/07/14 17:59:06 Added manual package libgpg-error0
+2012/07/14 17:59:06 Found category All in package libgssapi3
+2012/07/14 17:59:06 Added manual package libgssapi3
+2012/07/14 17:59:06 Found category All in package libheimbase1
+2012/07/14 17:59:06 Added manual package libheimbase1
+2012/07/14 17:59:06 Found category All in package libheimntlm0
+2012/07/14 17:59:06 Added manual package libheimntlm0
+2012/07/14 17:59:06 Found category All in package libhx509_5
+2012/07/14 17:59:06 Added manual package libhx509_5
+2012/07/14 17:59:06 Found category All in package libiconv2
+2012/07/14 17:59:06 Added manual package libiconv2
+2012/07/14 17:59:06 Found category All in package libidn11
+2012/07/14 17:59:06 Added manual package libidn11
+2012/07/14 17:59:06 Found category All in package libintl8
+2012/07/14 17:59:06 Added manual package libintl8
+2012/07/14 17:59:06 Found category All in package libkafs0
+2012/07/14 17:59:06 Added manual package libkafs0
+2012/07/14 17:59:06 Found category All in package libkrb5_26
+2012/07/14 17:59:06 Added manual package libkrb5_26
+2012/07/14 17:59:06 Found category All in package liblzma5
+2012/07/14 17:59:06 Added manual package liblzma5
+2012/07/14 17:59:06 Found category All in package liblzo2_2
+2012/07/14 17:59:06 Added manual package liblzo2_2
+2012/07/14 17:59:06 Found category All in package libncurses10
+2012/07/14 17:59:06 Added manual package libncurses10
+2012/07/14 17:59:06 Found category All in package libncurses8
+2012/07/14 17:59:06 Added manual package libncurses8
+2012/07/14 17:59:06 Found category All in package libncurses9
+2012/07/14 17:59:06 Added manual package libncurses9
+2012/07/14 17:59:06 Found category All in package libncursesw10
+2012/07/14 17:59:06 Added manual package libncursesw10
+2012/07/14 17:59:06 Found category All in package libopenssl100
+2012/07/14 17:59:06 Added manual package libopenssl100
+2012/07/14 17:59:06 Found category All in package libpcre0
+2012/07/14 17:59:06 Added manual package libpcre0
+2012/07/14 17:59:06 Found category All in package libpopt0
+2012/07/14 17:59:06 Added manual package libpopt0
+2012/07/14 17:59:06 Found category All in package libreadline6
+2012/07/14 17:59:06 Added manual package libreadline6
+2012/07/14 17:59:06 Found category All in package libreadline7
+2012/07/14 17:59:06 Added manual package libreadline7
+2012/07/14 17:59:06 Found category All in package libroken18
+2012/07/14 17:59:06 Added manual package libroken18
+2012/07/14 17:59:06 Found category All in package libsigsegv2
+2012/07/14 17:59:06 Added manual package libsigsegv2
+2012/07/14 17:59:06 Found category All in package libsqlite3_0
+2012/07/14 17:59:06 Added manual package libsqlite3_0
+2012/07/14 17:59:06 Found category All in package libssp0
+2012/07/14 17:59:06 Added manual package libssp0
+2012/07/14 17:59:06 Found category All in package libstdc++6
+2012/07/14 17:59:06 Added manual package libstdc++6
+2012/07/14 17:59:06 Found category All in package libtasn1_3
+2012/07/14 17:59:06 Added manual package libtasn1_3
+2012/07/14 17:59:06 Found category All in package libuuid1
+2012/07/14 17:59:06 Added manual package libuuid1
+2012/07/14 17:59:06 Found category All in package libwind0
+2012/07/14 17:59:06 Added manual package libwind0
+2012/07/14 17:59:06 Found category All in package libwrap0
+2012/07/14 17:59:06 Added manual package libwrap0
+2012/07/14 17:59:06 Found category All in package lv
+2012/07/14 17:59:06 Added manual package lv
+2012/07/14 17:59:06 Found category All in package make
+2012/07/14 17:59:06 Added manual package make
+2012/07/14 17:59:06 Found category All in package mintty
+2012/07/14 17:59:06 Added manual package mintty
+2012/07/14 17:59:06 Found category All in package ncurses
+2012/07/14 17:59:06 Added manual package ncurses
+2012/07/14 17:59:06 Found category All in package openssh
+2012/07/14 17:59:06 Added manual package openssh
+2012/07/14 17:59:06 Found category All in package patch
+2012/07/14 17:59:06 Added manual package patch
+2012/07/14 17:59:06 Found category All in package perl
+2012/07/14 17:59:06 Added manual package perl
+2012/07/14 17:59:06 Found category All in package perl-Win32-GUI
+2012/07/14 17:59:06 Added manual package perl-Win32-GUI
+2012/07/14 17:59:06 Found category All in package perl-XML-Simple
+2012/07/14 17:59:06 Added manual package perl-XML-Simple
+2012/07/14 17:59:06 Found category All in package perl-libwin32
+2012/07/14 17:59:06 Added manual package perl-libwin32
+2012/07/14 17:59:06 Found category All in package ping
+2012/07/14 17:59:06 Added manual package ping
+2012/07/14 17:59:06 Found category All in package procps
+2012/07/14 17:59:06 Added manual package procps
+2012/07/14 17:59:06 Found category All in package rebase
+2012/07/14 17:59:06 Added manual package rebase
+2012/07/14 17:59:06 Found category All in package sed
+2012/07/14 17:59:06 Added manual package sed
+2012/07/14 17:59:06 Found category All in package tar
+2012/07/14 17:59:06 Added manual package tar
+2012/07/14 17:59:06 Found category All in package tcl
+2012/07/14 17:59:06 Added manual package tcl
+2012/07/14 17:59:06 Found category All in package termcap
+2012/07/14 17:59:06 Added manual package termcap
+2012/07/14 17:59:06 Found category All in package terminfo
+2012/07/14 17:59:06 Added manual package terminfo
+2012/07/14 17:59:06 Found category All in package terminfo0
+2012/07/14 17:59:06 Added manual package terminfo0
+2012/07/14 17:59:06 Found category All in package texinfo
+2012/07/14 17:59:06 Added manual package texinfo
+2012/07/14 17:59:06 Found category All in package time
+2012/07/14 17:59:06 Added manual package time
+2012/07/14 17:59:06 Found category All in package tzcode
+2012/07/14 17:59:06 Added manual package tzcode
+2012/07/14 17:59:06 Found category All in package unzip
+2012/07/14 17:59:06 Added manual package unzip
+2012/07/14 17:59:06 Found category All in package util-linux
+2012/07/14 17:59:06 Added manual package util-linux
+2012/07/14 17:59:06 Found category All in package vim
+2012/07/14 17:59:06 Added manual package vim
+2012/07/14 17:59:06 Found category All in package vim-common
+2012/07/14 17:59:06 Added manual package vim-common
+2012/07/14 17:59:06 Found category All in package wget
+2012/07/14 17:59:06 Added manual package wget
+2012/07/14 17:59:06 Found category All in package which
+2012/07/14 17:59:06 Added manual package which
+2012/07/14 17:59:06 Found category All in package xxd
+2012/07/14 17:59:06 Added manual package xxd
+2012/07/14 17:59:06 Found category All in package xz
+2012/07/14 17:59:06 Added manual package xz
+2012/07/14 17:59:06 Found category All in package zip
+2012/07/14 17:59:06 Added manual package zip
+2012/07/14 17:59:06 Found category All in package zlib0
+2012/07/14 17:59:06 Added manual package zlib0
+2012/07/14 17:59:09 Extracting from file://C:\tmp/release/_autorebase/_autorebase-000090-1.tar.bz2
+2012/07/14 17:59:09 Extracting from file://C:\tmp/release/_update-info-dir/_update-info-dir-01055-1.tar.bz2
+2012/07/14 17:59:09 Extracting from file://C:\tmp/release/alternatives/alternatives-1.3.30c-10.tar.bz2
+2012/07/14 17:59:10 Extracting from file://C:\tmp/release/base-cygwin/base-cygwin-3.1-1.tar.bz2
+2012/07/14 17:59:10 Extracting from file://C:\tmp/release/base-files/base-files-4.1-1.tar.bz2
+2012/07/14 17:59:11 Extracting from file://C:\tmp/release/bash/bash-4.1.10-4.tar.bz2
+2012/07/14 17:59:13 Extracting from file://C:\tmp/release/bc/bc-1.06-2.tar.bz2
+2012/07/14 17:59:13 Extracting from file://C:\tmp/release/bzip2/bzip2-1.0.6-2.tar.bz2
+2012/07/14 17:59:13 Extracting from file://C:\tmp/release/coreutils/coreutils-8.15-1.tar.bz2
+2012/07/14 17:59:19 Extracting from file://C:\tmp/release/crypt/crypt-1.2-1.tar.bz2
+2012/07/14 17:59:19 Extracting from file://C:\tmp/release/csih/csih-0.9.6-1.tar.bz2
+2012/07/14 17:59:19 Extracting from file://C:\tmp/release/cygrunsrv/cygrunsrv-1.40-2.tar.bz2
+2012/07/14 17:59:19 Extracting from file://C:\tmp/release/cygutils/cygutils-1.4.10-2.tar.bz2
+2012/07/14 17:59:20 Extracting from file://C:\tmp/release/cygwin/cygwin-1.7.15-1.tar.bz2
+2012/07/14 17:59:23 Extracting from file://C:\tmp/release/dash/dash-0.5.7-1.tar.bz2
+2012/07/14 17:59:23 Extracting from file://C:\tmp/release/diffutils/diffutils-3.2-1.tar.bz2
+2012/07/14 17:59:28 Extracting from file://C:\tmp/release/dos2unix/dos2unix-6.0-1.tar.bz2
+2012/07/14 17:59:28 Extracting from file://C:\tmp/release/editrights/editrights-1.01-2.tar.bz2
+2012/07/14 17:59:29 Extracting from file://C:\tmp/release/Tcl/expect/expect-5.45-1.tar.bz2
+2012/07/14 17:59:29 Extracting from file://C:\tmp/release/findutils/findutils-4.5.9-2.tar.bz2
+2012/07/14 17:59:31 Extracting from file://C:\tmp/release/gawk/gawk-4.0.1-1.tar.bz2
+2012/07/14 17:59:31 Extracting from file://C:\tmp/release/gettext/gettext-0.18.1.1-2.tar.bz2
+2012/07/14 17:59:32 Extracting from file://C:\tmp/release/grep/grep-2.6.3-1.tar.bz2
+2012/07/14 17:59:33 Extracting from file://C:\tmp/release/gzip/gzip-1.4-1.tar.bz2
+2012/07/14 17:59:33 Extracting from file://C:\tmp/release/inetutils/inetutils-1.7-2.tar.bz2
+2012/07/14 17:59:34 Extracting from file://C:\tmp/release/less/less-444-1.tar.bz2
+2012/07/14 17:59:34 Extracting from file://C:\tmp/release/heimdal/libasn1_8/libasn1_8-1.5.2-2.tar.bz2
+2012/07/14 17:59:34 Extracting from file://C:\tmp/release/attr/libattr1/libattr1-2.4.46-1.tar.bz2
+2012/07/14 17:59:34 Extracting from file://C:\tmp/release/util-linux/libblkid1/libblkid1-2.21-1.tar.bz2
+2012/07/14 17:59:34 Extracting from file://C:\tmp/release/bzip2/libbz2_1/libbz2_1-1.0.6-2.tar.bz2
+2012/07/14 17:59:34 Extracting from file://C:\tmp/release/e2fsprogs/libcom_err2/libcom_err2-1.41.14-1.tar.bz2
+2012/07/14 17:59:34 Extracting from file://C:\tmp/release/db/db4.5/libdb4.5/libdb4.5-4.5.20.2-3.tar.bz2
+2012/07/14 17:59:34 Extracting from file://C:\tmp/release/libedit/libedit0/libedit0-20120311-1.tar.bz2
+2012/07/14 17:59:34 Extracting from file://C:\tmp/release/gcc4/libgcc1/libgcc1-4.5.3-3.tar.bz2
+2012/07/14 17:59:34 Extracting from file://C:\tmp/release/libgcrypt/libgcrypt11/libgcrypt11-1.4.6-1.tar.bz2
+2012/07/14 17:59:34 Extracting from file://C:\tmp/release/gdbm/libgdbm4/libgdbm4-1.8.3-20.tar.bz2
+2012/07/14 17:59:34 Extracting from file://C:\tmp/release/gmp/libgmp3/libgmp3-4.3.2-1.tar.bz2
+2012/07/14 17:59:34 Extracting from file://C:\tmp/release/gnutls/libgnutls26/libgnutls26-2.12.14-1.tar.bz2
+2012/07/14 17:59:34 Extracting from file://C:\tmp/release/libgpg-error/libgpg-error0/libgpg-error0-1.10-1.tar.bz2
+2012/07/14 17:59:34 Extracting from file://C:\tmp/release/heimdal/libgssapi3/libgssapi3-1.5.2-2.tar.bz2
+2012/07/14 17:59:34 Extracting from file://C:\tmp/release/heimdal/libheimbase1/libheimbase1-1.5.2-2.tar.bz2
+2012/07/14 17:59:35 Extracting from file://C:\tmp/release/heimdal/libheimntlm0/libheimntlm0-1.5.2-2.tar.bz2
+2012/07/14 17:59:35 Extracting from file://C:\tmp/release/heimdal/libhx509_5/libhx509_5-1.5.2-2.tar.bz2
+2012/07/14 17:59:35 Extracting from file://C:\tmp/release/libiconv/libiconv2/libiconv2-1.14-2.tar.bz2
+2012/07/14 17:59:35 Extracting from file://C:\tmp/release/libidn/libidn11/libidn11-1.22-1.tar.bz2
+2012/07/14 17:59:35 Extracting from file://C:\tmp/release/gettext/libintl8/libintl8-0.18.1.1-2.tar.bz2
+2012/07/14 17:59:35 Extracting from file://C:\tmp/release/heimdal/libkafs0/libkafs0-1.5.2-2.tar.bz2
+2012/07/14 17:59:35 Extracting from file://C:\tmp/release/heimdal/libkrb5_26/libkrb5_26-1.5.2-2.tar.bz2
+2012/07/14 17:59:35 Extracting from file://C:\tmp/release/xz/liblzma5/liblzma5-5.0.2_20110517-1.tar.bz2
+2012/07/14 17:59:35 Extracting from file://C:\tmp/release/liblzo2/liblzo2_2/liblzo2_2-2.06-1.tar.bz2
+2012/07/14 17:59:35 Extracting from file://C:\tmp/release/ncurses/libncurses10/libncurses10-5.7-18.tar.bz2
+2012/07/14 17:59:35 Extracting from file://C:\tmp/release/ncurses/libncurses8/libncurses8-5.5-10.tar.bz2
+2012/07/14 17:59:35 Extracting from file://C:\tmp/release/ncurses/libncurses9/libncurses9-5.7-16.tar.bz2
+2012/07/14 17:59:35 Extracting from file://C:\tmp/release/ncursesw/libncursesw10/libncursesw10-5.7-18.tar.bz2
+2012/07/14 17:59:35 Extracting from file://C:\tmp/release/openssl/libopenssl100/libopenssl100-1.0.1c-1.tar.bz2
+2012/07/14 17:59:36 Extracting from file://C:\tmp/release/pcre/libpcre0/libpcre0-8.21-2.tar.bz2
+2012/07/14 17:59:36 Extracting from file://C:\tmp/release/popt/libpopt0/libpopt0-1.6.4-4.tar.bz2
+2012/07/14 17:59:36 Extracting from file://C:\tmp/release/readline/libreadline6/libreadline6-5.2.14-12.tar.bz2
+2012/07/14 17:59:36 Extracting from file://C:\tmp/release/readline/libreadline7/libreadline7-6.1.2-3.tar.bz2
+2012/07/14 17:59:36 Extracting from file://C:\tmp/release/heimdal/libroken18/libroken18-1.5.2-2.tar.bz2
+2012/07/14 17:59:36 Extracting from file://C:\tmp/release/libsigsegv/libsigsegv2/libsigsegv2-2.10-1.tar.bz2
+2012/07/14 17:59:36 Extracting from file://C:\tmp/release/sqlite3/libsqlite3_0/libsqlite3_0-3.7.12.1-1.tar.bz2
+2012/07/14 17:59:36 Extracting from file://C:\tmp/release/gcc4/libssp0/libssp0-4.5.3-3.tar.bz2
+2012/07/14 17:59:36 Extracting from file://C:\tmp/release/gcc4/libstdc++6/libstdc++6-4.5.3-3.tar.bz2
+2012/07/14 17:59:36 Extracting from file://C:\tmp/release/libtasn1/libtasn1_3/libtasn1_3-2.12-1.tar.bz2
+2012/07/14 17:59:36 Extracting from file://C:\tmp/release/util-linux/libuuid1/libuuid1-2.21-1.tar.bz2
+2012/07/14 17:59:36 Extracting from file://C:\tmp/release/heimdal/libwind0/libwind0-1.5.2-2.tar.bz2
+2012/07/14 17:59:36 Extracting from file://C:\tmp/release/tcp_wrappers/libwrap0/libwrap0-7.6-21.tar.bz2
+2012/07/14 17:59:36 Extracting from file://C:\tmp/release/lv/lv-4.51-1.tar.bz2
+2012/07/14 17:59:37 Extracting from file://C:\tmp/release/make/make-3.82.90-1.tar.bz2
+2012/07/14 17:59:37 Extracting from file://C:\tmp/release/mintty/mintty-1.1.1-1.tar.bz2
+2012/07/14 17:59:37 Extracting from file://C:\tmp/release/ncurses/ncurses-5.7-18.tar.bz2
+2012/07/14 17:59:40 Extracting from file://C:\tmp/release/openssh/openssh-6.0p1-2.tar.bz2
+2012/07/14 17:59:40 Extracting from file://C:\tmp/release/patch/patch-2.6.1-1.tar.bz2
+2012/07/14 17:59:40 Extracting from file://C:\tmp/release/perl/perl-5.10.1-5.tar.bz2
+2012/07/14 18:00:05 Extracting from file://C:\tmp/release/perl/perl-Win32-GUI/perl-Win32-GUI-1.06-3.tar.bz2
+2012/07/14 18:00:06 Extracting from file://C:\tmp/release/perl/perl-XML-Simple/perl-XML-Simple-2.18-10.tar.bz2
+2012/07/14 18:00:07 Extracting from file://C:\tmp/release/perl/perl-libwin32/perl-libwin32-0.28-3.tar.bz2
+2012/07/14 18:00:08 Extracting from file://C:\tmp/release/ping/ping-1.0-1.tar.bz2
+2012/07/14 18:00:08 Extracting from file://C:\tmp/release/procps/procps-3.2.7-1.tar.bz2
+2012/07/14 18:00:08 Extracting from file://C:\tmp/release/rebase/rebase-4.3.0-1.tar.bz2
+2012/07/14 18:00:08 Extracting from file://C:\tmp/release/sed/sed-4.2.1-2.tar.bz2
+2012/07/14 18:00:09 Extracting from file://C:\tmp/release/tar/tar-1.25-1.tar.bz2
+2012/07/14 18:00:09 Extracting from file://C:\tmp/release/Tcl/tcl/tcl-8.5.11-1.tar.bz2
+2012/07/14 18:00:15 Extracting from file://C:\tmp/release/terminfo/termcap/termcap-5.7_20091114-14.tar.bz2
+2012/07/14 18:00:15 Extracting from file://C:\tmp/release/terminfo/terminfo-5.7_20091114-14.tar.bz2
+2012/07/14 18:00:17 Extracting from file://C:\tmp/release/terminfo/terminfo0/terminfo0-5.5_20061104-12.tar.bz2
+2012/07/14 18:00:18 Extracting from file://C:\tmp/release/texinfo/texinfo-4.13-4.tar.bz2
+2012/07/14 18:00:19 Extracting from file://C:\tmp/release/time/time-1.7-2.tar.bz2
+2012/07/14 18:00:19 Extracting from file://C:\tmp/release/tzcode/tzcode-2012b-1.tar.bz2
+2012/07/14 18:00:26 Extracting from file://C:\tmp/release/unzip/unzip-6.0-10.tar.bz2
+2012/07/14 18:00:27 Extracting from file://C:\tmp/release/util-linux/util-linux-2.21-1.tar.bz2
+2012/07/14 18:00:28 Extracting from file://C:\tmp/release/vim/vim-7.3.566-1.tar.bz2
+2012/07/14 18:00:28 Extracting from file://C:\tmp/release/vim/vim-common/vim-common-7.3.566-1.tar.bz2
+2012/07/14 18:00:39 Extracting from file://C:\tmp/release/wget/wget-1.13.4-1.tar.bz2
+2012/07/14 18:00:39 Extracting from file://C:\tmp/release/which/which-2.20-2.tar.bz2
+2012/07/14 18:00:39 Extracting from file://C:\tmp/release/vim/xxd/xxd-7.3.566-1.tar.bz2
+2012/07/14 18:00:40 Extracting from file://C:\tmp/release/xz/xz-5.0.2_20110517-1.tar.bz2
+2012/07/14 18:00:40 Extracting from file://C:\tmp/release/zip/zip-3.0-11.tar.bz2
+2012/07/14 18:00:40 Extracting from file://C:\tmp/release/zlib/zlib0/zlib0-1.2.7-1.tar.bz2
+2012/07/14 18:00:40 Changing gid back to original
+2012/07/14 18:00:40 running: C:\gnupack_devel\app\cygwin\cygwin\bin\bash.exe --norc --noprofile "/etc/postinstall/000-cygwin-post-install.sh"
+2012/07/14 18:00:46 running: C:\gnupack_devel\app\cygwin\cygwin\bin\bash.exe --norc --noprofile "/etc/postinstall/update-info-dir.sh"
+2012/07/14 18:00:54 running: C:\gnupack_devel\app\cygwin\cygwin\bin\bash.exe --norc --noprofile "/etc/postinstall/terminfo.sh"
+2012/07/14 18:00:58 running: C:\gnupack_devel\app\cygwin\cygwin\bin\bash.exe --norc --noprofile "/etc/postinstall/bash.sh"
+2012/07/14 18:00:59 running: C:\gnupack_devel\app\cygwin\cygwin\bin\bash.exe --norc --noprofile "/etc/postinstall/coreutils.sh"
+2012/07/14 18:00:59 running: cmd.exe /c "C:\gnupack_devel\app\cygwin\cygwin\etc\postinstall\autorebase.bat"
+2012/07/14 18:01:08 running: C:\gnupack_devel\app\cygwin\cygwin\bin\bash.exe --norc --noprofile "/etc/postinstall/base-files-profile.sh"
+2012/07/14 18:01:11 running: C:\gnupack_devel\app\cygwin\cygwin\bin\bash.exe --norc --noprofile "/etc/postinstall/base-files-mketc.sh"
+2012/07/14 18:01:12 running: C:\gnupack_devel\app\cygwin\cygwin\bin\bash.exe --norc --noprofile "/etc/postinstall/cygutils.sh"
+2012/07/14 18:01:12 running: C:\gnupack_devel\app\cygwin\cygwin\bin\bash.exe --norc --noprofile "/etc/postinstall/inetutils.sh"
+2012/07/14 18:01:43 running: C:\gnupack_devel\app\cygwin\cygwin\bin\bash.exe --norc --noprofile "/etc/postinstall/terminfo0.sh"
+2012/07/14 18:01:47 running: C:\gnupack_devel\app\cygwin\cygwin\bin\bash.exe --norc --noprofile "/etc/postinstall/vim.sh"
+2012/07/14 18:01:47 running: C:\gnupack_devel\app\cygwin\cygwin\bin\bash.exe --norc --noprofile "/etc/postinstall/wget.sh"
+2012/07/14 18:01:48 Changing gid to Administrators
+2012/07/14 18:01:48 Ending cygwin install

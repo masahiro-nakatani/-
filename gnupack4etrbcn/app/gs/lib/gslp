@@ -1,0 +1,8 @@
+#!/bin/sh
+# $Id$
+
+# This definition is changed on install to match the
+# executable name set in the makefile
+GS_EXECUTABLE=gswin32c
+
+"$GS_EXECUTABLE" -q -sDEVICE=epson -r180 -P- -dSAFER -dNOPAUSE -sPROGNAME=$0 -- gslp.ps --heading-center "`date`" "$@"

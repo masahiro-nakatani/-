@@ -1,0 +1,14 @@
+#!/bin/sh
+
+########################################################
+# OSKのプロキシ設定を有効にします。										 #
+# 																										 #
+# Auther: Takaya Shimizu <t-shimizu@mx.omronsoft.co.jp #
+# Date  : 2012/07/19																	 #
+########################################################
+
+FILE=/etc/wgetrc
+PROXY_SERVER=proxy.osk.jp.omron.net:8080
+
+sed -i -e "s/^\#\(h\?[ft]tps\?_proxy\) = .\+/\1 = http:\/\/$PROXY_SERVER/g" $FILE
+

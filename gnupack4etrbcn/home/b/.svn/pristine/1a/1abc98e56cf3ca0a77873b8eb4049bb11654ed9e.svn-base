@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A9E511CE-D537-4C31-865A-A046909F6E9D}</ProjectGuid>
+    <Keyword>MakeFileProj</Keyword>
+    <ProjectName>osk_et_robocon</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeOutput>osk_et_robocon_3030.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeOutput>osk_et_robocon_3030.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="implementation.oil" />
+    <None Include="Main.oil" />
+    <None Include="Makefile" />
+    <None Include="mk.cmd" />
+    <None Include="readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="balancer_param.c" />
+    <ClCompile Include="CourseInfo.cpp" />
+    <ClCompile Include="Driver.cpp" />
+    <ClCompile Include="kernel_cfg.c" />
+    <ClCompile Include="MarkerCheck.cpp" />
+    <ClCompile Include="Mission.cpp" />
+    <ClCompile Include="MissionDefault.cpp" />
+    <ClCompile Include="MissionCourseG1.cpp" />
+    <ClCompile Include="MissionCourseG1_LookupGate.cpp" />
+    <ClCompile Include="MissionCourseG1_SeeSaw.cpp" />
+    <ClCompile Include="MissionGarageIn.cpp" />
+    <ClCompile Include="MissionLookupGate.cpp" />
+    <ClCompile Include="MissionLookupGateDouble.cpp" />
+    <ClCompile Include="MissionSeesawDouble.cpp" />
+    <ClCompile Include="MissionSeesawSingle.cpp" />
+    <ClCompile Include="MissionSlope.cpp" />
+    <ClCompile Include="MissionStart.cpp" />
+    <ClCompile Include="MissionTailStraight.cpp" />
+    <ClCompile Include="Mission_S_Turn.cpp" />
+    <ClCompile Include="Navigator.cpp" />
+    <ClCompile Include="PIDController.cpp" />
+    <ClCompile Include="PositionEstimation.cpp" />
+    <ClCompile Include="Robot.cpp" />
+    <ClCompile Include="Technic.cpp" />
+    <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="Vec.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BezierCourseInfo.h" />
+    <ClInclude Include="CourseInfo.h" />
+    <ClInclude Include="Debug.h" />
+    <ClInclude Include="Driver.h" />
+    <ClInclude Include="InfoType.h" />
+    <ClInclude Include="kernel_id.h" />
+    <ClInclude Include="List.h" />
+    <ClInclude Include="MarkerCheck.h" />
+    <ClInclude Include="Mission.h" />
+    <ClInclude Include="MusicData.h" />
+    <ClInclude Include="music_data.h" />
+    <ClInclude Include="Navigator.h" />
+    <ClInclude Include="Note.h" />
+    <ClInclude Include="PIDController.h" />
+    <ClInclude Include="PositionEstimation.h" />
+    <ClInclude Include="Robot.h" />
+    <ClInclude Include="Technic.h" />
+    <ClInclude Include="Utils.h" />
+    <ClInclude Include="Vec.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

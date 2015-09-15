@@ -1,0 +1,10 @@
+CursorType=block
+CursorBlinks=no
+BackspaceSendsBS=yes
+WindowShortcuts=no
+SwitchShortcuts=no
+CopyOnSelect=no
+CopyAsRTF=no
+RightClickAction=paste
+ClicksTargetApp=no
+BoldAsFont=yes

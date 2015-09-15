@@ -1,0 +1,1062 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=Shift_JIS" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="description" content="gnupackはアーカイブ展開のみで即座に cygwinと emacsが使える環境を提供します．">
+    <meta name="keyword" content="gnupack,emacs,gvim,cygwin,windows">
+    <title>gnupack Users Guide - 便利な使い方</title>
+    <link href="./css/guide.css"  rel="stylesheet" type="text/css" />
+    <link href="./css/common.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div id="top">
+        <div id="header">
+            <div id="header_left"><p>gnupack is package that quickly start cygwin and emacs.</p></div>
+            <div id="header_right"><a href="http://sourceforge.jp/projects/gnupack/"><div class="sfjp"></div></a></div>
+            <div id="header_bottom"><h1>gnupack Users Guide (2012-07-15)</h1></div>
+        </div><!-- / #header -->
+        <div id="content">
+            <div id="menu">
+                <div class="section">
+                    <h2>目次</h2>
+                    <div class="body">
+                        <dl>
+                            <dd> <span class="item">■</span> <a href="UsersGuide.html">トップページ</a></dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_introduction.html">はじめに</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_download.html">ダウンロード</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_description.html">パッケージ詳細</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_customize.html">カスタマイズ</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_tips.html">便利な使い方</a></dd>
+                            <dd>
+                                <dl>
+                                    <dd> <span class="item">▼</span> <a href="#_tips_update_cygwin">cygwinパッケージの追加方法</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_tips_start_bash">ディレクトリ指定で bash起動</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_tips_access_clipboard">bashからクリップボードを操作</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_tips_access_desktop">bashからデスクトップにアクセス</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_tips_prompt_color">bashのプロンプト色を変更</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_tips_emacs_theme">emacsのcolor-themeを変更</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_gdi_install">gdi++の導入・設定</a></dd>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_technical_info.html">技術情報</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_build_procedure.html">ビルド記録</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_release_note.html">リリースノート</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_ntemacs_build_history.html">NTEmacs Build History</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                        </dl>
+                    </div><!-- / #body -->
+                </div><!-- / #section -->
+            </div><!-- / #menu -->
+            <div id="main">
+                <div class="section">
+                    <h2><a name="_tips" id="_tips">便利な使い方</a></h2>
+                    <div class="body">
+                        <h3><a name="_tips_update_cygwin" id="_tips_update_cygwin">cygwinパッケージの追加方法</a></h3>
+                        <p class="sentence">gnupackでは，cygwinパッケージを追加，更新する際にコマンドラインから実行するためのスクリプトを提供します．スクリプトは gnupackで独自実装した <code>cyg-pm</code>と 別プロジェクトの成果物である <code>apt-cyg</code>の2種類があり，それぞれ以下のような特徴があります．</p>
+                        <table summary="cygwinパッケージマネージャの比較">
+                            <tr>
+                              <th width="15%">&nbsp;</th>
+                              <th>メリット</th>
+                              <th>デメリット</th>
+                            </tr>
+                            <tr>
+                              <td class="text"><code>cyg-pm</code></td>
+                              <td class="text">　基本Perlのみで実装しているため，処理が高速．<br />　パッケージを検索する機能が豊富．</td>
+                              <td class="text">　アンインストール機能が未実装．<br />　プロキシ経由の通信に未対応．</td>
+                            </tr>
+                            <tr>
+                              <td class="text"><code>apt-cyg</code></td>
+                              <td class="text">　<code>cyg-pm</code>よりも動作実績がある．<br />　アンインストール機能が実装済み．また，プロキシ経由の通信に対応．</td>
+                              <td class="text">　シェルスクリプトで実装されているため，処理が非常に遅い．</td>
+                            </tr>
+                        </table>
+                        <br />
+                        <h4>cygwinパッケージマネージャ <code>cyg-pm</code></h4>
+                        <p class="sentence">cygwinパッケージマネージャ <code>cyg-pm</code>で提供する機能は以下のとおりです．</p>
+                        <table summary="cyg-pmの提供機能">
+                            <tr>
+                              <th width="15%"><code>check</code><br />機能</th>
+                              <td class="text">　現在インストールされている cygwinパッケージを表示します．<br /><br />
+                        　例：インストール済みの cygwinパッケージを表示．<pre>　# cyg-pm check</pre></td>
+                            </tr>
+                            <tr>
+                              <th width="15%"><code>search</code><br />機能</th>
+                              <td class="text">　引数指定されたパッケージ名およびオプション指定の条件と一致したパッケージの最新情報を表示します．さらにオプション指定することで表示形式を変更することができます．<br /><br />
+                        　例：引数指定のパッケージに関する情報を表示．<pre>　# cyg-pm search &lt;パッケージ名&gt;</pre></td>
+                            </tr>
+                            <tr>
+                              <th width="15%"><code>download</code><br />機能</th>
+                              <td class="text">　引数指定されたパッケージ名およびオプション指定の条件と一致したパッケージをダウンロードします．引数の指定方法は <code>search</code>と同じものが指定できます．なお，既にダウンロード済みのファイルは MD5SUMを確認のうえ，同一内容であれば再度ダウンロードしません．<br /><br />
+                        　例：引数指定のパッケージをダウンロード．<pre>　# cyg-pm download &lt;パッケージ名&gt;</pre></td>
+                            </tr>
+                            <tr>
+                              <th width="15%"><code>install</code><br />機能</th>
+                              <td class="text">　引数指定されたパッケージ名およびオプション指定の条件と一致したパッケージをインストールします．引数の指定方法は <code>search</code>と同じものが指定できます．なお，既にインストール済みのパッケージは，再度インストールしません．<br /><br />
+                        　例：引数指定のパッケージにをインストール．<pre>　# cyg-pm install &lt;パッケージ名&gt;</pre></td>
+                            </tr>
+                            <tr>
+                              <th width="15%"><code>remove</code><br />機能</th>
+                              <td class="text">未実装です．</td>
+                            </tr>
+                        </table>
+                        <p class="sentence">cygwinパッケージマネージャ <code>cyg-pm</code>を引数なしで実行するとヘルプを表示します．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_prompt">[Path: /tmp]#</span> cyg-pm 
+<span class="s_stdout">cyg-pm - Cygwin Package Manager
+         Copyright (C) 2010 ksugita &#60;ksugita0510@gmail.com&#62;
+<br>
+Usage:
+  cyg-pm Command [Option...]
+<br>
+Command:
+  check   [PKGNAME ...]  インストール済みのパッケージ情報を表示．
+  search   PKGNAME ...   最新のパッケージ情報を検索．
+  download PKGNAME ...   最新のパッケージを取得．
+  install  PKGNAME ...   最新のパッケージをインストール
+  remove   PKGNAME ...   インストール済みのパッケージを削除（未実装）
+<br>
+Option:                  
+  -root ROOT             cygwinのルートディレクトリ ($Root_Dir) を指定．
+                         デフォルトは環境変数 CYGWIN_DIR．
+  -inifile FILE          setup.iniの格納パスを指定．デフォルトは
+                         $Root_Dir/etc/setup．
+  -mirror URL            ディレクトリ含めたミラーサイトのパスを指定．
+                         デフォルトは ftp.jaist.ac.jp/pub/cygwin．
+  -dist DIST             パッケージ種別を指定．デフォルトは curr．
+                             test     : 前バージョン
+                             curr     : 安定バージョン
+                             prev     : 試験バージョン
+  -field COL1,COL2,...   'search' で表示する項目をカンマ区切りで指定．
+                         デフォルトは name,version,sdesc．
+                             name     : パッケージ名
+                             dist     : パッケージ種別
+                             version  : バージョン
+                             sdesc    : パッケージ説明（概要）
+                             ldesc    : パッケージ説明
+                             category : カテゴリ
+                             requires : 依存するパッケージ
+                             bin_url  : バイナリファイルの URL
+                             bin_size : バイナリファイルのサイズ
+                             bin_md5  : バイナリファイルのハッシュ値
+                             src_url  : ソースファイルの URL
+                             src_size : ソースファイルのサイズ
+                             src_md5  : ソースファイルのハッシュ値
+                             all      : 上記のすべて
+  -output OUTDIR         setup.iniおよび取得パッケージのダウンロード先
+                         ディレクトリを指定．
+  -format FORMAT         'search' で表示するフォーマットを指定．
+                         デフォルトは text．
+                             text : テキストフォーマット
+                             csv  : カンマ区切りのCSVフォーマット
+                             list : 空白区切りの1行フォーマット
+  -regexp                引数の PKGNAMEの表記に正規表現を使用．
+                         デフォルトは無効．
+  -require               引数の PKGNAMEのインストールに必要な
+                         パッケージを処理対象に含む．デフォルトは無効．
+                         -requireと -dependの兼用は不可．
+  -depend                引数の PKGNAMEを必要とするパッケージを
+                         処理対象に含む．デフォルトは無効．
+                         -requireと -dependの兼用は不可．
+  -newer                 インストール済みのパッケージのうち，
+                         バージョンアップ可能なパッケージを
+                         処理対象に含む．デフォルトは無効．
+  -with-src              'download' の実行時にソースファイルも取得．
+                         デフォルトは無効．
+  -with-setup            'download' の実行時に setup.exeも取得．
+                         デフォルトは無効．
+  -size-count            'search' で検索したパッケージのバイナリ
+                         およびソースファイルの合計バイト数を表示．
+                         デフォルトは無効．</span>
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <p class="sentence"><code>check</code>機能に関する実行例を以下に示します．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_comment"># インストール済みのパッケージを表示．</span>
+<span class="s_prompt">[Path: /tmp]#</span> cyg-pm check
+<span class="s_stdout">&#42; Update setup.ini (ftp.jaist.ac.jp/pub/cygwin/setup.ini -&#62; /c/gnupack_devel-5.02/app/cygwin/cygwin/etc/setup/setup.ini)
+&#42; Analyze setup.ini (/c/gnupack_devel-5.02/app/cygwin/cygwin/etc/setup/setup.ini)
+&#42; Analyze CygCheck (/usr/bin/cygcheck -c)
+<br>
+&#42; Show Installed Package
+   ==============================================================================
+   Package Name              Status     Installed Version    Latest Version [curr]
+   ========================= ========== ================= == ====================
+   _update-info-dir          OK         00941-1          
+   alternatives              OK         1.3.30c-10       
+   base-cygwin               OK         3.0-1            
+   base-files                OK         3.9-3            
+   bash                      OK         3.2.51-24        
+
+＜省略＞
+</br />
+   zlib                      OK         1.2.5-1          
+   zlib-devel                OK         1.2.5-1          
+   zlib0                     OK         1.2.5-1          </span>
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <p class="sentence"><code>search</code>機能に関する実行例を以下に示します．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_comment"># perlのバージョン番号，依存するパッケージ，ファイルサイズを表示．</span>
+<span class="s_prompt">[Path: /tmp]#</span> cyg-pm search perl -field name,version,requires,bin_size
+<span class="s_stdout">&#42; Update setup.ini (ftp.jaist.ac.jp/pub/cygwin/setup.ini -&#62; /c/gnupack_devel-5.02/app/cygwin/cygwin/etc/setup/setup.ini)
+&#42; Analyze setup.ini (/c/gnupack_devel-5.02/app/cygwin/cygwin/etc/setup/setup.ini)
+&#42; Select Target Package ( perl)
+<br>
+&#42; Search package (format text)
+<br>
+        Package Name : perl
+             Version : 5.10.1-5
+            Requires : libssp0 libgcc1 libgdbm4 libdb4.5 crypt libexpat1 libbz2_1 cygwin
+    Binary Size (MB) : 15.0</span>
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        &nbsp;
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_comment"># パッケージ名が perlから始まるパッケージを表示．</span>
+<span class="s_prompt">[Path: /tmp]#</span> cyg-pm search ^perl* -regexp
+<span class="s_stdout">&#42; Update setup.ini (ftp.jaist.ac.jp/pub/cygwin/setup.ini -&#62; /c/gnupack_devel-5.02/app/cygwin/cygwin/etc/setup/setup.ini)
+&#42; Analyze setup.ini (/c/gnupack_devel-5.02/app/cygwin/cygwin/etc/setup/setup.ini)
+&#42; Select Target Package ( perl perl-Error perl-ExtUtils-Depends perl-ExtUtils-PkgConfig perl-Graphics-Magick perl-Image-Magick perl-Locale-gettext perl-SGMLSpm perl-Tk perl-Win32-GUI perl-XML-Simple perl-libwin32 perl-ming perl_manpages)
+<br>
+&#42; Search package (format text)
+<br>
+        Package Name : perl
+             Version : 5.10.1-5
+            Abstract : "Larry Wall's Practical Extracting and Report Language"
+<br>
+        Package Name : perl-Error
+             Version : 0.17016-1
+            Abstract : "Perl module for OO error/exception handling"
+<br>
+        Package Name : perl-ExtUtils-Depends
+             Version : 0.302-1
+            Abstract : "Build Perl XS that depend on other XS"
+<br>
+        Package Name : perl-ExtUtils-PkgConfig
+             Version : 1.12-1
+            Abstract : "Perl module for using pkg-config"
+
+＜省略＞
+</br />
+        Package Name : perl_manpages
+             Version : 5.10.1-5
+            Abstract : "Perl manpages"</span>
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        &nbsp;
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_comment"># perlのインストールに必要な全パッケージを表示．</span>
+<span class="s_prompt">[Path: /tmp]#</span> cyg-pm search perl -require -format csv
+<span class="s_stdout">&#42; Update setup.ini (ftp.jaist.ac.jp/pub/cygwin/setup.ini -&#62; /c/gnupack_devel-5.02/app/cygwin/cygwin/etc/setup/setup.ini)
+&#42; Analyze setup.ini (/c/gnupack_devel-5.02/app/cygwin/cygwin/etc/setup/setup.ini)
+&#42; Select Target Package ( base-cygwin crypt cygwin libbz2_1 libdb4.5 libexpat1 libgcc1 libgdbm4 libssp0 perl)
+<br>
+&#42; Search package (format csv)
+<br>
+Package Name,Version,Abstract,
+base-cygwin,3.0-1,"Initial base installation helper script.",
+crypt,1.1-1,"Encryption/Decryption utility and library",
+cygwin,1.7.7-1,"The UNIX emulation engine",
+libbz2_1,1.0.6-1,"A high-quality block-sorting file compressor (runtime)",
+libdb4.5,4.5.20.2-2,"Oracle Berkeley DB (db4.5 - C and C++ libs)",
+libexpat1,2.0.1-1,"Expat XML parser library (runtime)",
+libgcc1,4.3.4-3,"GCC compiler support shared runtime",
+libgdbm4,1.8.3-20,"GNU dbm database routines (runtime)",
+libssp0,4.3.4-3,"Static Stack Protection shared runtime",
+perl,5.10.1-5,"Larry Wall's Practical Extracting and Report Language",</span>
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <p class="sentence"><code>download</code>機能に関する実行例を以下に示します．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_comment"># perlのパッケージ（バイナリのみ）を /var/cache/setupにダウンロード．</span>
+<span class="s_prompt">[Path: /tmp]#</span> cyg-pm download perl
+<span class="s_stdout">&#42; Update setup.ini (ftp.jaist.ac.jp/pub/cygwin/setup.ini -&#62; /c/gnupack_devel-5.02/app/cygwin/cygwin/etc/setup/setup.ini)
+&#42; Analyze setup.ini (/c/gnupack_devel-5.02/app/cygwin/cygwin/etc/setup/setup.ini)
+&#42; Select Target Package ( perl)
+<br>
+&#42; Download Package
+    -&#62; get file: /c/gnupack_devel-5.02/app/cygwin/cygwin/var/cache/setup/release/perl/perl-5.10.1-5.tar.bz2</span>
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        &nbsp;
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_comment"># perlのインストールに必要な全パッケージ（ソース含む）を /topにダウンロード．</span>
+<span class="s_prompt">[Path: /tmp]#</span> cyg-pm download perl -require -output /top -with-src
+<span class="s_stdout">&#42; Download setup.ini (ftp.jaist.ac.jp/pub/cygwin/setup.ini -&#62; /top/setup.ini)
+&#42; Analyze setup.ini (/top/setup.ini)
+&#42; Select Target Package ( base-cygwin crypt cygwin libbz2_1 libdb4.5 libexpat1 libgcc1 libgdbm4 libssp0 perl)
+<br>
+&#42; Download Package
+    -&#62; get file: /top/release/base-cygwin/base-cygwin-3.0-1.tar.bz2
+    -&#62; get file: /top/release/crypt/crypt-1.1-1.tar.bz2
+    -&#62; get file: /top/release/crypt/crypt-1.1-1-src.tar.bz2
+    -&#62; get file: /top/release/cygwin/cygwin-1.7.7-1.tar.bz2
+    -&#62; get file: /top/release/cygwin/cygwin-1.7.7-1-src.tar.bz2
+    -&#62; get file: /top/release/bzip2/libbz2_1/libbz2_1-1.0.6-1.tar.bz2
+    -&#62; get file: /top/release/bzip2/bzip2-1.0.6-1-src.tar.bz2
+    -&#62; get file: /top/release/db/db4.5/libdb4.5/libdb4.5-4.5.20.2-2.tar.bz2
+    -&#62; get file: /top/release/db/db4.5/db-4.5.20.2-2-src.tar.bz2
+    -&#62; get file: /top/release/expat/libexpat1/libexpat1-2.0.1-1.tar.bz2
+    -&#62; get file: /top/release/expat/expat-2.0.1-1-src.tar.bz2
+    -&#62; get file: /top/release/gcc4/libgcc1/libgcc1-4.3.4-3.tar.bz2
+    -&#62; get file: /top/release/gcc4/gcc4-4.3.4-3-src.tar.bz2
+    -&#62; get file: /top/release/gdbm/libgdbm4/libgdbm4-1.8.3-20.tar.bz2
+    -&#62; get file: /top/release/gdbm/gdbm-1.8.3-20-src.tar.bz2
+    -&#62; get file: /top/release/gcc4/libssp0/libssp0-4.3.4-3.tar.bz2
+    -&#62; already got file: /top/release/gcc4/gcc4-4.3.4-3-src.tar.bz2
+    -&#62; get file: /top/release/perl/perl-5.10.1-5.tar.bz2
+    -&#62; get file: /top/release/perl/perl-5.10.1-5-src.tar.bz2</span>
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        &nbsp;
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_comment"># perlと rubyのインストールに必要なパッケージと setup.exeを /topにダウンロード．</span>
+<span class="s_prompt">[Path: /tmp]#</span> cyg-pm download perl ruby -require -output /top -with-setup
+<span class="s_stdout">&#42; Update setup.ini (ftp.jaist.ac.jp/pub/cygwin/setup.ini -&#62; /top/setup.ini)
+&#42; Analyze setup.ini (/top/setup.ini)
+&#42; Select Target Package ( _update-info-dir base-cygwin bash coreutils crypt cygwin gawk libattr1 libbz2_1 libdb4.5 libexpat1 libgcc1 libgdbm4 libgmp3 libiconv2 libintl8 libncurses8 libncurses9 libopenssl098 libreadline6 libreadline7 libsigsegv2 libssp0 perl ruby tcltk terminfo terminfo0 texinfo tzcode zlib zlib-devel zlib0)
+<br>
+&#42; Download Package
+    -&#62; get file: /top/release/_update-info-dir/_update-info-dir-00941-1.tar.bz2
+    -&#62; already got file: /top/release/base-cygwin/base-cygwin-3.0-1.tar.bz2
+    -&#62; get file: /top/release/bash/bash-3.2.51-24.tar.bz2
+    -&#62; get file: /top/release/coreutils/coreutils-8.8-1.tar.bz2
+    -&#62; already got file: /top/release/crypt/crypt-1.1-1.tar.bz2
+    -&#62; already got file: /top/release/cygwin/cygwin-1.7.7-1.tar.bz2
+    -&#62; get file: /top/release/gawk/gawk-3.1.8-1.tar.bz2
+    -&#62; get file: /top/release/attr/libattr1/libattr1-2.4.43-1.tar.bz2
+    -&#62; already got file: /top/release/bzip2/libbz2_1/libbz2_1-1.0.6-1.tar.bz2
+    -&#62; already got file: /top/release/db/db4.5/libdb4.5/libdb4.5-4.5.20.2-2.tar.bz2
+    -&#62; already got file: /top/release/expat/libexpat1/libexpat1-2.0.1-1.tar.bz2
+    -&#62; already got file: /top/release/gcc4/libgcc1/libgcc1-4.3.4-3.tar.bz2
+    -&#62; already got file: /top/release/gdbm/libgdbm4/libgdbm4-1.8.3-20.tar.bz2
+    -&#62; get file: /top/release/gmp/libgmp3/libgmp3-4.3.1-3.tar.bz2
+    -&#62; get file: /top/release/libiconv/libiconv2/libiconv2-1.13.1-1.tar.bz2
+    -&#62; get file: /top/release/gettext/libintl8/libintl8-0.17-11.tar.bz2
+    -&#62; get file: /top/release/ncurses/libncurses8/libncurses8-5.5-10.tar.bz2
+    -&#62; get file: /top/release/ncurses/libncurses9/libncurses9-5.7-16.tar.bz2
+    -&#62; get file: /top/release/openssl/libopenssl098/libopenssl098-0.9.8q-1.tar.bz2
+    -&#62; get file: /top/release/readline/libreadline6/libreadline6-5.2.14-12.tar.bz2
+    -&#62; get file: /top/release/readline/libreadline7/libreadline7-6.0.3-2.tar.bz2
+    -&#62; get file: /top/release/libsigsegv/libsigsegv2/libsigsegv2-2.8-1.tar.bz2
+    -&#62; already got file: /top/release/gcc4/libssp0/libssp0-4.3.4-3.tar.bz2
+    -&#62; already got file: /top/release/perl/perl-5.10.1-5.tar.bz2
+    -&#62; get file: /top/release/ruby/ruby-1.8.7-p72-2.tar.bz2
+    -&#62; get file: /top/release/tcltk/tcltk-20080420-1.tar.bz2
+    -&#62; get file: /top/release/terminfo/terminfo-5.7_20091114-14.tar.bz2
+    -&#62; get file: /top/release/terminfo/terminfo0/terminfo0-5.5_20061104-12.tar.bz2
+    -&#62; get file: /top/release/texinfo/texinfo-4.13-3.tar.bz2
+    -&#62; get file: /top/release/tzcode/tzcode-2010j-1.tar.bz2
+    -&#62; get file: /top/release/zlib/zlib-1.2.5-1.tar.bz2
+    -&#62; get file: /top/release/zlib/zlib-devel/zlib-devel-1.2.5-1.tar.bz2
+    -&#62; get file: /top/release/zlib/zlib0/zlib0-1.2.5-1.tar.bz2
+    -&#62; get /top/setup.exe</span>
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <p class="sentence"><code>install</code>機能に関する実行例を以下に示します．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_comment"># rubyと rubyに必要なパッケージをインストール．</span>
+<span class="s_prompt">[Path: /tmp]#</span> cyg-pm install ruby -require
+<span class="s_stdout">&#42; Update setup.ini (ftp.jaist.ac.jp/pub/cygwin/setup.ini -&#62; /c/gnupack_devel-5.02/app/cygwin/cygwin/etc/setup/setup.ini)
+&#42; Analyze setup.ini (/c/gnupack_devel-5.02/app/cygwin/cygwin/etc/setup/setup.ini)
+&#42; Select Target Package ( _update-info-dir base-cygwin bash coreutils crypt cygwin gawk libattr1 libgcc1 libgdbm4 libgmp3 libiconv2 libintl8 libncurses8 libncurses9 libopenssl098 libreadline6 libreadline7 libsigsegv2 ruby tcltk terminfo terminfo0 texinfo tzcode zlib zlib-devel zlib0)
+&#42; Analyze CygCheck (/usr/bin/cygcheck -c)
+&#42; Analyze installed.db (/c/gnupack_devel-5.02/app/cygwin/cygwin/etc/setup/installed.db)
+<br>
+&#42; Install Package
+  _update-info-dir 00941-1
+    -&#62; already installed. skip
+  base-cygwin 3.0-1
+    -&#62; already installed. skip
+  bash 3.2.51-24
+    -&#62; already installed. skip
+  coreutils 8.8-1
+    -&#62; already installed. skip
+  crypt 1.1-1
+    -&#62; already installed. skip
+  cygwin 1.7.7-1
+    -&#62; already installed. skip
+  gawk 3.1.8-1
+    -&#62; already installed. skip
+  libattr1 2.4.43-1
+    -&#62; already installed. skip
+  libgcc1 4.3.4-3
+    -&#62; already installed. skip
+  libgdbm4 1.8.3-20
+    -&#62; already installed. skip
+  libgmp3 4.3.1-3
+    -&#62; already installed. skip
+  libiconv2 1.13.1-1
+    -&#62; already installed. skip
+  libintl8 0.17-11
+    -&#62; already installed. skip
+  libncurses8 5.5-10
+    -&#62; already installed. skip
+  libncurses9 5.7-16
+    -&#62; already installed. skip
+  libopenssl098 0.9.8q-1
+    -&#62; already installed. skip
+  libreadline6 5.2.14-12
+    -&#62; already installed. skip
+  libreadline7 6.0.3-2
+    -&#62; already installed. skip
+  libsigsegv2 2.8-1
+    -&#62; already installed. skip
+  ruby 1.8.7-p72-2
+    -&#62; get file: /c/gnupack_devel-5.02/app/cygwin/cygwin/var/cache/setup/release/ruby/ruby-1.8.7-p72-2.tar.bz2
+    -&#62; write list file: /c/gnupack_devel-5.02/app/cygwin/cygwin/etc/setup/ruby.lst.gz
+    -&#62; extract file: /c/gnupack_devel-5.02/app/cygwin/cygwin/var/cache/setup/release/ruby/ruby-1.8.7-p72-2.tar.bz2
+  tcltk 20080420-1
+    -&#62; already installed. skip
+  terminfo 5.7_20091114-14
+    -&#62; already installed. skip
+  terminfo0 5.5_20061104-12
+    -&#62; already installed. skip
+  texinfo 4.13-3
+    -&#62; already installed. skip
+  tzcode 2010j-1
+    -&#62; already installed. skip
+  zlib 1.2.5-1
+    -&#62; already installed. skip
+  zlib-devel 1.2.5-1
+    -&#62; already installed. skip
+  zlib0 1.2.5-1
+    -&#62; already installed. skip
+<br>
+&#42; Run PostInstall Script
+<br>
+&#42; Show Installed Package
+&#42; Analyze CygCheck (/usr/bin/cygcheck -c)
+  ruby 1.8.7-p72-2                    : OK
+</span>
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <br />
+                        <h4>cygwinパッケージマネージャ <code>apt-cyg</code></h4>
+                        <p class="sentence">cygwinパッケージマネージャ <code>apt-cyg</code>を引数なしで実行するとヘルプを表示します．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_prompt">[Path: /tmp]#</span> apt-cyg
+<span class="s_stdout">apt-cyg: Installs and removes Cygwin packages.
+  "apt-cyg install &lt;package names&gt;" to install packages
+  "apt-cyg remove &lt;package names&gt;" to remove packages
+  "apt-cyg update" to update setup.ini
+  "apt-cyg show" to show installed packages
+  "apt-cyg find &lt;patterns&gt;" to find packages matching patterns
+  "apt-cyg describe &lt;patterns&gt;" to describe packages matching patterns
+  "apt-cyg packageof &lt;commands or files&gt;" to locate parent packages
+Options:
+  --mirror, -m &lt;url&gt; : set mirror
+  --cache, -c &lt;dir&gt;  : set cache
+  --file, -f &lt;file&gt;  : read package names from file
+  --noupdate, -u     : don't update setup.ini from mirror
+  --help
+  --version</span>
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <p class="sentence">パッケージをインストールする場合，<code>apt-cyg install</code>を実行します．例えば，「ruby」をインストールするには，<code>apt-cyg install ruby</code>を実行します．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_prompt">[Path: /tmp]#</span> cygcheck -c ruby
+<span class="s_stdout">Cygwin Package Information
+Package              Version        Status</span>
+
+<span class="s_prompt">[Path: /tmp]#</span> apt-cyg install ruby
+<span class="s_stdout">...
+Unpacking...
+Package ruby requires the following packages, installing:
+cygwin crypt libgdbm4 libiconv2 libncurses8 libreadline6 libopenssl098 zlib tcltk
+Package cygwin is already installed, skipping
+Package crypt is already installed, skipping
+Package libgdbm4 is already installed, skipping
+Package libiconv2 is already installed, skipping
+Package libncurses8 is already installed, skipping
+Package libreadline6 is already installed, skipping
+Package libopenssl098 is already installed, skipping
+Package zlib is already installed, skipping
+Package tcltk is already installed, skipping
+Package ruby installed</span>
+
+<span class="s_prompt">[Path: /tmp]#</span> cygcheck -c ruby
+<span class="s_stdout">Cygwin Package Information
+Package              Version         Status
+ruby                 1.8.7-p72-2     OK</span>
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <p class="sentence">もしプロキシ経由に <code>apt-cyg</code>を使用する場合は，<code>http_proxy</code>および <code>ftp_proxy</code>にプロキシサーバを設定してください．これらの環境変数は <code>config.ini</code>で設定できます．例えば，<code>proxy.example.co.jp:8080</code>を設定する場合，以下のように記述します．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">SetEnv</span>]
+    <span class="s_param">http_proxy</span>  = http://proxy.example.co.jp:8080
+    <span class="s_param">ftp_proxy</span>   = ftp://proxy.example.co.jp:8080
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_tips_start_bash" id="_tips_start_bash">ディレクトリ指定で bash起動</a></h3>
+                        <p class="sentence">クリップボードにディレクトリパスをコピーした状態で <code>bash.exe</code>を実行することで，そのディレクトリをカレントディレクトリとして bashが起動できます．なお，本機能を利用するには，<code>config.ini</code>のセクション <code>Mode</code>にある <code>dir_auto_change</code>を <code>yes</code>にする必要があります．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">Mode</span>]
+    <span class="s_param">dir_auto_change</span>  = yes    <span class="s_comment">; クリップボード上のディレクトリへの自動移動フラグ</span>
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <p class="sentence">また，<code>dir_auto_change</code>を <code>no</code>の場合，あるいはクリップボードにディレクトリパスがコピーされていない状態における起動時のカレントディレクトリは，<code>config.ini</code>のセクション <code>Common</code>にある <code>initial_dir</code>で指定できます．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">Common</span>]
+    <span class="s_param">initial_dir</span>    = %HOME%                           <span class="s_comment">; ホームディレクトリの場合</span>
+   <span class="s_comment">;initial_dir    = %DESK%</span>                           <span class="s_comment">; デスクトップの場合</span>
+   <span class="s_comment">;initial_dir    = %CYGWIN_DIR%</span>                     <span class="s_comment">; cygwinのルートディレクトリの場合</span>
+   <span class="s_comment">;initial_dir    = C:/Program Files</span>                 <span class="s_comment">; C:\Program Filesの場合</span>
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_tips_access_clipboard" id="_tips_access_clipboard">bashからクリップボードを操作</a></h3>
+                        <p class="sentence"><code>/dev/clipboard</code>を実体にした <code>/buf</code>というシンボリックリンクにアクセスすることで，bash上からクリップボードを操作できます．以下にクリップボードの値を画面表示する例と，特定文字列をクリップボードにコピーする例を示します．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_comment"># クリップボードに「sample string」をコピーしていると仮定</span>
+<span class="s_prompt">[Path: /]#</span> cat /buf
+<span class="s_stdout">sample string</span>
+
+<span class="s_prompt">[Path: /]#</span> echo "update string" &gt; /buf
+<span class="s_prompt">[Path: /]#</span> cat /buf
+<span class="s_stdout">update string</span>
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_tips_access_desktop" id="_tips_access_desktop">bashからデスクトップにアクセス</a></h3>
+                        <p class="sentence">ユーザのデスクトップを <code>/top</code>にマウントしているので，<code>/top</code>にアクセスすることでデスクトップに対する操作が可能です．以下にデスクトップ上にファイルを作成する例を示します．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_prompt">[Path: /]#</span> cd /top
+<span class="s_prompt">[Path: /top]#</span> touch sample.txt
+<span class="s_prompt">[Path: /top]#</span> ls "$USERPROFILE\デスクトップ\sample.txt"
+<span class="s_stdout">C:\Documents and Settings\user\デスクトップ\sample.txt</span>
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_tips_prompt_color" id="_tips_prompt_color">bashのプロンプト色を変更</a></h3>
+                        <p class="sentence">bashのプロンプトはコマンド実行の成功・失敗に応じ，文字色を変更しています．デフォルトの文字色から変更したい場合は，<code>config.ini</code>のセクション <code>SetEnv</code>にある <code>BASH_PROMPT_OK</code>と <code>BASH_PROMPT_NG</code>を修正してください．<code>BASH_PROMPT_OK</code>は成功時の文字色，<code>BASH_PROMPT_NG</code>は失敗時の文字色を指定します．指定可能な配色は<a href="UsersGuide_technical_info.html#_color_bash">bashで利用可能な配色一覧</a>を参照ください．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">SetEnv</span>]
+    <span class="s_param">BASH_PROMPT_OK</span>    = \e[1m\e[38;5;160m   <span class="s_comment">; コマンド成功時の文字色</span>
+    <span class="s_param">BASH_PROMPT_NG</span>    = \e[1m\e[38;5;129m   <span class="s_comment">; コマンド失敗時の文字色</span>
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                        <p class="sentence">上記設定の実行例は以下のとおりです．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span style="color:#D70000">[Path: /]#</span> true
+<span style="color:#D70000">[Path: /]#</span> 
+<span style="color:#D70000">[Path: /]#</span> false
+<span style="color:#AF00FF">[Path: /]#</span> 
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_tips_emacs_theme" id="_tips_emacs_theme">emacsのcolor-themeを変更</a></h3>
+                        <p class="sentence">emacsの見た目を変更するのに，elispの color-themeが利用できます．color-themeのテーマを変更するには<code>config.ini</code>のセクション <code>Emacs</code>にある <code>colorTheme</code>を修正してください．利用可能なテーマ一覧は<a href="UsersGuide_technical_info.html#_color_theme">color-themeのテーマ一覧</a>を参照ください．</p>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">Emacs</span>]
+    <span class="s_param">colorTheme</span>    = simple-1
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_gdi_install" id="_gdi_install">gdi++の導入・設定</a></h3>
+                        <ol>
+                            <li> ブラウザから gdi++ FreeType版の配布サイト<a href="http://www18.atwiki.jp/gdiplus2/">http://www18.atwiki.jp/gdiplus2/</a>にアクセスします．
+                                <div class="imgbox"><a href="./img/gdi/gdi01.png"><img src="./img/gdi/gdi01.png" border="1" width="99%" alt="gdi++の導入・設定 その1" /></a></div></li>
+                            <li> バイナリ <a href="http://www18.atwiki.jp/gdiplus2/pages/15.html">http://www18.atwiki.jp/gdiplus2/pages/15.html</a>から gdi++のアーカイブファイルを入手します（下記の例では「gdi0789 実験版(ソース整理・機能削減。再up・転載は控えて) 」をダウンロードしています）
+                                <div class="imgbox"><a href="./img/gdi/gdi02.png"><img src="./img/gdi/gdi02.png" border="1" width="99%" alt="gdi++の導入・設定 その2" /></a></div></li>
+                            <li> <code>freetype.dll</code>のリンク <a href="http://www18.atwiki.jp/gdiplus2/pages/35.html">http://www18.atwiki.jp/gdiplus2/pages/35.html</a>より，FreeType.dllのダウンロードページに移動し，<code>freetype.dll</code>のアーカイブファイルを入手します（下記の例では「gdi0869.7z FreeType2.3.7 」をダウンロードしています）
+                                <div class="imgbox"><a href="./img/gdi/gdi03.png"><img src="./img/gdi/gdi03.png" border="1" width="99%" alt="gdi++の導入・設定 その3" /></a></div>
+                                <div class="imgbox"><a href="./img/gdi/gdi04.png"><img src="./img/gdi/gdi04.png" border="1" width="99%" alt="gdi++の導入・設定 その4" /></a></div></li>
+                            <li> ダウンロードした2つのアーカイブファイルを展開します（下記の例では展開の手順を省略しています）
+                                <div class="imgbox"><a href="./img/gdi/gdi05.png"><img src="./img/gdi/gdi05.png" border="1" width="99%" alt="gdi++の導入・設定 その5" /></a></div></li>
+                            <li> 展開してディレクトリのすべてのファイルを gnupackの格納ディレクトリ配下にコピーします（下記の例では <code>%inst_dir%\app\gdi++</code>にコピーしています）
+                                <div class="imgbox"><a href="./img/gdi/gdi06.png"><img src="./img/gdi/gdi06.png" border="1" width="99%" alt="gdi++の導入・設定 その6" /></a></div></li>
+                            <li> gdi++を配下したディレクトリにある <code>gdi++.ini</code>を設定します．
+                                <div class="imgbox"><a href="./img/gdi/gdi07.png"><img src="./img/gdi/gdi07.png" border="1" width="99%" alt="gdi++の導入・設定 その7" /></a></div>
+                                以下に設定例を示します．</li>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_emacs"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_menu">
+                                                <div class="f_menu_emacs"></div>
+                                            </div><!-- / #f_menu -->
+                                            <div class="f_body">
+                        <pre class="emacs">
+[<span class="s_sec">General</span>]
+  <span class="s_param">HookChildProcesses</span>=1
+  <span class="s_param">HintingMode</span>=2
+  <span class="s_param">AntiAliasMode</span>=2
+  <span class="s_param">TextTuning</span>=0
+  <span class="s_param">TextTuningR</span>=1
+  <span class="s_param">TextTuningG</span>=1
+  <span class="s_param">TextTuningB</span>=1
+  <span class="s_param">NormalWeight</span>=40
+  <span class="s_param">BoldWeight</span>=32
+  <span class="s_param">ItalicSlant</span>=32
+  <span class="s_param">EnableKerning</span>=0
+  <span class="s_param">MaxHeight</span>=128
+  <span class="s_param">LcdFilter</span>=2
+  <span class="s_param">LoadOnDemand</span>=1
+                        </pre>
+                                            </div><!-- / #f_body -->
+                                            <div class="f_modeline">
+                                                <div class="f_modeline1"></div>
+                                                <div class="f_modeline2"></div>
+                                            </div><!-- / #f_modeline -->
+                                            <div class="f_minibuf"></div>
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+                            <li> gnupackの格納ディレクトリ直下にある <code>config.ini</code>のセクション <code>App</code>のパラメータ <code>gdi</code>を <code>gdi++.exe</code>の格納先に合わせて設定します（下記の例では <code>%inst_dir%\app\gdi++</code>に設定しています）
+                                <div class="imgbox"><a href="./img/gdi/gdi08.png"><img src="./img/gdi/gdi08.png" border="1" width="99%" alt="gdi++の導入・設定 その8" /></a></div></li>
+                            <li> cygwinと emacsの起動方法は gdi++の設定後も変わらず <code>bash.exe</code>と <code>emacs.exe</code>から行います．以下にgdi++の適用していない場合（左），適用した場合（右）の例を示します．<br />
+                                <div class="imgbox"><a href="./img/gdi/gdi09.png"><img src="./img/gdi/gdi09.png" border="1" width="99%" alt="gdi++の導入・設定 その9" /></a></div>
+                               　上記は「画面プロパティ」→ 「効果」の「次の方法でスクリーン フォントの縁を滑らかにする」を有効にしていた場合のスクリーンショットです．
+                                <div class="imgbox"><a href="./img/gdi/gdi10.png"><img src="./img/gdi/gdi10.png" border="1" width="99%" alt="gdi++の導入・設定 その10" /></a></div>
+                               　上記は「画面プロパティ」→ 「効果」の「次の方法でスクリーン フォントの縁を滑らかにする」を無効にしていた場合のスクリーンショットです．</li>
+                        </ol>
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                    </div><!-- / #body -->
+               </div><!-- / #section -->
+            </div><!-- / #main -->
+        </div><!-- / #content -->
+        <div id="footer">
+            <p>Copyright (C) 2009-2013 k.sugita, Inc. All rights reserved.</p>
+        </div><!-- / #footer -->
+    </div><!-- / #top -->
+</body>
+</html>

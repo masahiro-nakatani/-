@@ -1,0 +1,752 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=Shift_JIS" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="description" content="gnupackはアーカイブ展開のみで即座に cygwinと emacsが使える環境を提供します．">
+    <meta name="keyword" content="gnupack,emacs,gvim,cygwin,windows">
+    <title>gnupack Users Guide - ビルド記録</title>
+    <link href="./css/guide.css"  rel="stylesheet" type="text/css" />
+    <link href="./css/common.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div id="top">
+        <div id="header">
+            <div id="header_left"><p>gnupack is package that quickly start cygwin and emacs.</p></div>
+            <div id="header_right"><a href="http://sourceforge.jp/projects/gnupack/"><div class="sfjp"></div></a></div>
+            <div id="header_bottom"><h1>gnupack Users Guide (2012-07-15)</h1></div>
+        </div><!-- / #header -->
+        <div id="content">
+            <div id="menu">
+                <div class="section">
+                    <h2>目次</h2>
+                    <div class="body">
+                        <dl>
+                            <dd> <span class="item">■</span> <a href="UsersGuide.html">トップページ</a></dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_introduction.html">はじめに</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_download.html">ダウンロード</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_description.html">パッケージ詳細</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_customize.html">カスタマイズ</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_tips.html">便利な使い方</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_technical_info.html">技術情報</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_build_procedure.html">ビルド記録</a></dd>
+                            <dd>
+                                <dl>
+                                    <dd> <span class="item">▼</span> <a href="#_emacs">emacs 23.4.1</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_emacs_pretest">emacs 24.0.93 pretest</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_gvim">gvim 7.3.401</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_nkf">nkf 2.1.2</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_tree">tree 1.6.0</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_global">global 6.1</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_zlib">zlib 1.2.5</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_libxpm">libxpm 3.5.8</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_libpng">libpng 1.4.5</a></dd>
+                                    <dd> <span class="item">▼</span> <a href="#_jpeg">jpeg 8c</a></dd>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_release_note.html">リリースノート</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                            <dd><dl></dl></dd>
+                            <dd> <span class="item">■</span> <a href="UsersGuide_ntemacs_build_history.html">NTEmacs Build History</a></dd>
+                            <dd>
+                                <dl>
+                                </dl>
+                            </dd>
+                        </dl>
+                    </div><!-- / #body -->
+                </div><!-- / #section -->
+            </div><!-- / #menu -->
+            <div id="main">
+                <div class="section">
+                    <h2><a name="_build_procedure" id="_build_procedure">ビルド記録</a></h2>
+                    <div class="body">
+                        <h3><a name="_emacs" id="_emacs">emacs 23.4.1</a></h3>
+                        <h4>ビルド環境</h4>
+                        <dl class="table">
+                            <dt>OS環境</dt>            <dd>Windows XP Pro SP3</dd>
+                            <dt>シェル環境</dt>        <dd>cygwin 1.7.9 / bash 4.1.10(4)</dd>
+                            <dt>コンパイラ</dt>        <dd>TDM mingw32 / gcc 4.6.1</dd>
+                            <dt>makeコマンド</dt>      <dd>TDM mingw32 / mingw32-make 3.82</dd>
+                        </dl>
+                        <h4>ライブラリ</h4>
+                        <dl class="table">
+                            <dt>giflib</dt>          <dd>4.1.4-1</dd>
+                            <dt>jpeg</dt>            <dd>8c</dd>
+                            <dt>libpng</dt>          <dd>1.4.5</dd>
+                            <dt>libtiff</dt>         <dd>3.8.2-1</dd>
+                            <dt>libxpm</dt>          <dd>3.5.8</dd>
+                            <dt>zlib</dt>            <dd>1.2.5</dd>
+                        </dl>
+                        <h4>ビルド手順</h4>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_comment"># SourceForge.JPからファイル取得するための一時的な関数を定義</span>
+<span class="s_prompt">  #</span> sfget() { wget -nc http://sourceforge.jp$(wget -q -O - $1 | awk -F'"' '/mirror_link/{print $4}'); }
+
+<span class="s_comment"># ソースファイルを取得し，展開</span>
+<span class="s_prompt">  #</span> cd /tmp && pwd
+<span class="s_stdout">  /tmp</span>
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/46325/emacs-23.4.tar.gz/
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/54283/emacs-23.4-ime-2012-02-05.patch.tar.gz/
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/46325/emacs-icon-2011-08-15.tar.gz/
+<span class="s_prompt">  #</span> tar zxf emacs-23.4.tar.gz
+<span class="s_prompt">  #</span> tar zxf emacs-23.4-ime-2012-02-05.patch.tar.gz
+<span class="s_prompt">  #</span> tar zxf emacs-icon-2011-08-15.tar.gz
+
+<span class="s_comment"># パッチ適用</span>
+<span class="s_prompt">  #</span> cd emacs-23.4 && pwd
+<span class="s_stdout">  /tmp/emacs-23.4</span>
+<span class="s_prompt">  #</span> cp ../emacs.ico nt/icons
+<span class="s_prompt">  #</span> patch -b -p1 < ../emacs-23.4-ime-2012-02-05.patch
+<span class="s_prompt">  #</span> cd nt && pwd
+<span class="s_stdout">  /tmp/emacs-23.4/nt</span>
+
+<span class="s_comment"># ビルド実行</span>
+<span class="s_prompt">  #</span> prefix=/app/emacs/emacs-23.4
+<span class="s_prompt">  #</span> ./configure.bat \
+        --no-debug --with-gcc --enable-w32-ime \
+        --cflags -O2 \
+        --cflags -fno-omit-frame-pointer \
+        --cflags -funsigned-char \
+        --cflags -mthreads \
+        --cflags -pipe \
+        --cflags -DRECONVERSION \
+        --cflags -DIME_UNICODE \
+        --cflags -I${INST_DIR/\\/\/}/app/mingw/include \
+        --ldflags -L${INST_DIR/\\/\/}/app/mingw/lib
+<span class="s_prompt">  #</span> mingw32-make bootstrap
+
+<span class="s_comment"># インストール</span>
+<span class="s_prompt">  #</span> mingw32-make install
+<span class="s_prompt">  #</span> cp ${INST_DIR/\\/\/}/app/mingw/dll/* "$prefix/bin"
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_emacs_pretest" id="_emacs_pretest">emacs 24.0.93 pretest</a></h3>
+                        <h4>ビルド環境</h4>
+                        <dl class="table">
+                            <dt>OS環境</dt>            <dd>Windows XP Pro SP3</dd>
+                            <dt>シェル環境</dt>        <dd>cygwin 1.7.9 / bash 4.1.10(4)</dd>
+                            <dt>コンパイラ</dt>        <dd>TDM mingw32 / gcc 4.6.1</dd>
+                            <dt>makeコマンド</dt>      <dd>TDM mingw32 / mingw32-make 3.82</dd>
+                        </dl>
+                        <h4>ライブラリ</h4>
+                        <dl class="table">
+                            <dt>giflib</dt>          <dd>4.1.4-1</dd>
+                            <dt>jpeg</dt>            <dd>8-1</dd>
+                            <dt>libpng</dt>          <dd>1.4.3-1</dd>
+                            <dt>libtiff</dt>         <dd>3.9.2-1</dd>
+                            <dt>libxpm</dt>          <dd>3.5.8</dd>
+                            <dt>zlib</dt>            <dd>1.2.5-2</dd>
+                            <dt>gnutls</dt>          <dd>2.10.1-1</dd>
+                            <dt>librsvg</dt>         <dd>2.32.1-1</dd>
+                            <dt>atk</dt>             <dd>1.32.0-1</dd>
+                            <dt>cairo</dt>           <dd>1.10.2-2</dd>
+                            <dt>expat</dt>           <dd>2.0.1-1</dd>
+                            <dt>fontconfig</dt>      <dd>2.8.0-2</dd>
+                            <dt>freetype</dt>        <dd>2.4.4-1</dd>
+                            <dt>gdk-pixbuf</dt>      <dd>2.24.0-1</dd>
+                            <dt>gettext-runtime</dt> <dd>0.18.1.1-2</dd>
+                            <dt>glib</dt>            <dd>2.28.8-1</dd>
+                            <dt>gtk+</dt>            <dd>2.24.8-1</dd>
+                            <dt>libcroco</dt>        <dd>0.6.2-1</dd>
+                            <dt>libxml</dt>          <dd>2.7.7-1</dd>
+                            <dt>pango</dt>           <dd>1.29.4-1</dd>
+                        </dl>
+                        <h4>ビルド手順</h4>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_comment"># SourceForge.JPからファイル取得するための一時的な関数を定義</span>
+<span class="s_prompt">  #</span> sfget() { wget -nc http://sourceforge.jp$(wget -q -O - $1 | awk -F'"' '/mirror_link/{print $4}'); }
+
+<span class="s_comment"># ソースファイルを取得し，展開</span>
+<span class="s_prompt">  #</span> cd /tmp && pwd
+<span class="s_stdout">  /tmp</span>
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/46325/emacs-24.0.93.tar.gz/
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/54283/emacs-24.0.93-ime-2012-02-05.patch.tar.gz/
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/46325/emacs-icon-2011-08-15.tar.gz/
+<span class="s_prompt">  #</span> tar zxf emacs-24.0.93.tar.gz
+<span class="s_prompt">  #</span> tar zxf emacs-24.0.93-ime-2012-02-05.patch.tar.gz
+<span class="s_prompt">  #</span> tar zxf emacs-icon-2011-08-15.tar.gz
+
+<span class="s_comment"># パッチ適用</span>
+<span class="s_prompt">  #</span> cd emacs-24.0.93 && pwd
+<span class="s_stdout">  /tmp/emacs-24.0.93</span>
+<span class="s_prompt">  #</span> cp ../emacs.ico nt/icons
+<span class="s_prompt">  #</span> patch -b -p1 < ../emacs-24.0.93-ime-2012-02-05.patch
+<span class="s_prompt">  #</span> cd nt && pwd
+<span class="s_stdout">  /c/tmp/emacs-24.0.93/nt</span>
+
+<span class="s_comment"># ビルド実行</span>
+<span class="s_prompt">  #</span> prefix=/app/emacs/emacs-24.0.93
+<span class="s_prompt">  #</span> unix2dos configure.bat
+<span class="s_prompt">  #</span> ./configure.bat \
+        --no-debug --with-gcc --enable-w32-ime --with-svg \
+        --cflags -O2 \
+        --cflags -fno-omit-frame-pointer \
+        --cflags -funsigned-char \
+        --cflags -mthreads \
+        --cflags -pipe \
+        --cflags -DRECONVERSION \
+        --cflags -DIME_UNICODE \
+        --cflags -I${INST_DIR/\\/\/}/app/libs/gnome-binaries-win32/include \
+        --ldflags -L${INST_DIR/\\/\/}/app/libs/gnome-binaries-win32/lib \
+        --cflags -I${INST_DIR/\\/\/}/app/libs/gnutls4win/include \
+        --ldflags -L${INST_DIR/\\/\/}/app/libs/gnutls4win/lib \
+        --cflags -I${INST_DIR/\\/\/}/app/libs/gnuwin32/include \
+        --ldflags -L${INST_DIR/\\/\/}/app/libs/gnuwin32/lib \
+        --cflags -I${INST_DIR/\\/\/}/app/libs/libxpm/include \
+        --ldflags -L${INST_DIR/\\/\/}/app/libs/libxpm/lib \
+<span class="s_prompt">  #</span> mingw32-make bootstrap
+
+<span class="s_comment"># インストール</span>
+<span class="s_prompt">  #</span> mingw32-make install
+<span class="s_prompt">  #</span> cp ${INST_DIR/\\/\/}/app/libs/*/bin/* "$prefix/bin"
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_gvim" id="_gvim">gvim 7.3.401</a></h3>
+                        <h4>ビルド環境</h4>
+                        <dl class="table">
+                            <dt>OS環境</dt>            <dd>Windows XP Pro SP3</dd>
+                            <dt>シェル環境</dt>        <dd>cygwin 1.7.9 / bash 4.1.10(4)</dd>
+                            <dt>コンパイラ</dt>        <dd>TDM mingw32 / gcc 4.5.2</dd>
+                            <dt>makeコマンド</dt>      <dd>TDM mingw32 / mingw32-make 3.82</dd>
+                        </dl>
+                        <h4>ビルド手順</h4>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_comment"># SourceForge.JPからファイル取得するための一時的な関数を定義</span>
+<span class="s_prompt">  #</span> sfget() { wget -nc http://sourceforge.jp$(wget -q -O - $1 | awk -F'"' '/mirror_link/{print $4}'); }
+
+<span class="s_comment"># ソースファイルを取得し，展開</span>
+<span class="s_prompt">  #</span> cd /tmp && pwd
+<span class="s_stdout">  /tmp</span>
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/47922/vim-7.3.tar.bz2/
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/47922/vim73src.zip/
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/47922/vim73rt.zip/
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/47922/gvim_icon48.gz/
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/47924/gettext-runtime-0.13.1.bin.woe32.zip/
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/47924/libiconv-1.9.1.bin.woe32.zip/
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/47922/7.3.001-401.tar.gz/
+<span class="s_prompt">  #</span> mkdir vim
+<span class="s_prompt">  #</span> tar jxf vim-7.3.tar.bz2 -C vim
+<span class="s_prompt">  #</span> unzip -o source/vim73src.zip
+<span class="s_prompt">  #</span> gzip -Nd source/gvim_icon48.gz
+<span class="s_prompt">  #</span> tar zxf 7.3.001-401.tar.gz
+
+<span class="s_comment"># パッチ適用</span>
+<span class="s_prompt">  #</span> for i in 7.3.???-???/* ; do patch -p0 -d vim/vim73 < $i ; done
+
+<span class="s_comment"># ビルド実行</span>
+<span class="s_prompt">  #</span> (cd vim/vim73/src && mingw32-make.exe -f Make_ming.mak && cp gvim.exe ../../../)
+<span class="s_prompt">  #</span> rm -rf vim
+<span class="s_prompt">  #</span> unzip -o vim73rt.zip
+<span class="s_prompt">  #</span> unzip libiconv-1.9.1.bin.woe32.zip bin/iconv.dll
+<span class="s_prompt">  #</span> unzip gettext-runtime-0.13.1.bin.woe32.zip bin/intl.dll
+<span class="s_prompt">  #</span> mv bin/iconv.dll vim/vim73
+<span class="s_prompt">  #</span> mv bin/intl.dll vim/vim73/libintl.dll
+<span class="s_prompt">  #</span> mv gvim.exe vim
+
+<span class="s_comment"># インストール（ここでは /app/vimにインストール）</span>
+<span class="s_prompt">  #</span> rm -rf /app/vim
+<span class="s_prompt">  #</span> cp -rp vim /app
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_nkf" id="_nkf">nkf 2.1.2</a></h3>
+                        <h4>ビルド環境</h4>
+                        <dl class="table">
+                            <dt>OS環境</dt>            <dd>Windows XP Pro SP3</dd>
+                            <dt>シェル環境</dt>        <dd>cygwin 1.7.9 / bash 4.1.10(4)</dd>
+                            <dt>コンパイラ</dt>        <dd>cygwin 1.7.9 / gcc 3.4.4</dd>
+                            <dt>makeコマンド</dt>      <dd>cygwin 1.7.9 / make 3.81</dd>
+                        </dl>
+                        <h4>ビルド手順</h4>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_comment"># SourceForge.JPからファイル取得するための一時的な関数を定義</span>
+<span class="s_prompt">  #</span> sfget() { wget -nc http://sourceforge.jp$(wget -q -O - $1 | awk -F'"' '/mirror_link/{print $4}'); }
+
+<span class="s_comment"># cygwin gccをインストール</span>
+<span class="s_prompt">  #</span> cyg-pm install -require gcc
+<span class="s_prompt">  #</span> export PATH=/usr/bin
+
+<span class="s_comment"># ソースファイルを取得し，展開</span>
+<span class="s_prompt">  #</span> cd /tmp && pwd
+<span class="s_stdout">  /tmp</span>
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/46330/nkf-2.1.2.tar.gz/
+<span class="s_prompt">  #</span> tar zxvf nkf-2.1.2.tar.gz
+
+<span class="s_comment"># ビルド実行，インストール（ここでは /usr/localにインストール）</span>
+<span class="s_prompt">  #</span> cd nkf-2.1.2 && pwd
+<span class="s_stdout">  /tmp/nkf-2.1.2</span>
+<span class="s_prompt">  #</span> make CC=gcc
+<span class="s_prompt">  #</span> mkdir -p /usr/local/{bin,man/man1}
+<span class="s_prompt">  #</span> cp -p nkf.exe /usr/local/bin/
+<span class="s_prompt">  #</span> cp -p nkf.1* /usr/local/man/man1
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_tree" id="_tree">tree 1.6.0</a></h3>
+                        <h4>ビルド環境</h4>
+                        <dl class="table">
+                            <dt>OS環境</dt>            <dd>Windows XP Pro SP3</dd>
+                            <dt>シェル環境</dt>        <dd>cygwin 1.7.9 / bash 4.1.10(4)</dd>
+                            <dt>コンパイラ</dt>        <dd>cygwin 1.7.9 / gcc 3.4.4</dd>
+                            <dt>makeコマンド</dt>      <dd>cygwin 1.7.9 / make 3.81</dd>
+                        </dl>
+                        <h4>ビルド手順</h4>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_comment"># SourceForge.JPからファイル取得するための一時的な関数を定義</span>
+<span class="s_prompt">  #</span> sfget() { wget -nc http://sourceforge.jp$(wget -q -O - $1 | awk -F'"' '/mirror_link/{print $4}'); }
+
+<span class="s_comment"># cygwin gccをインストール</span>
+<span class="s_prompt">  #</span> cyg-pm install -require gcc
+<span class="s_prompt">  #</span> export PATH=/usr/bin
+
+<span class="s_comment"># ソースファイルを取得し，展開</span>
+<span class="s_prompt">  #</span> cd /tmp && pwd
+<span class="s_stdout">  /tmp</span>
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/46331/tree-1.6.0.tgz/
+<span class="s_prompt">  #</span> tar zxvf tree-1.6.0.tgz
+
+<span class="s_comment"># ビルド実行，インストール（ここでは /usr/localにインストール）</span>
+<span class="s_prompt">  #</span> cd tree-1.6.0 && pwd
+<span class="s_stdout">  /tmp/tree-1.6.0</span>
+<span class="s_prompt">  #</span> mv Makefile Makefile.org
+<span class="s_prompt">  #</span> sed "s/^\(OBJS=.*\)/\\1 strverscmp.o/g" Makefile.org >Makefile
+<span class="s_prompt">  #</span> make prefix=/usr/local CFLAGS="-O2 -Wall -fomit-frame-pointer -DCYGWIN" LDFLAGS="-s" TREE_DEST=tree.exe
+<span class="s_prompt">  #</span> make prefix=/usr/local install
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_global" id="_global">global 6.1</a></h3>
+                        <h4>ビルド環境</h4>
+                        <dl class="table">
+                            <dt>OS環境</dt>            <dd>Windows XP Pro SP3</dd>
+                            <dt>シェル環境</dt>        <dd>cygwin 1.7.9 / bash 4.1.10(4)</dd>
+                            <dt>コンパイラ</dt>        <dd>cygwin 1.7.9 / gcc 3.4.4</dd>
+                            <dt>makeコマンド</dt>      <dd>cygwin 1.7.9 / make 3.81</dd>
+                        </dl>
+                        <h4>ビルド手順</h4>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_comment"># SourceForge.JPからファイル取得するための一時的な関数を定義</span>
+<span class="s_prompt">  #</span> sfget() { wget -nc http://sourceforge.jp$(wget -q -O - $1 | awk -F'"' '/mirror_link/{print $4}'); }
+
+<span class="s_comment"># cygwin gccをインストール</span>
+<span class="s_prompt">  #</span> cyg-pm install -require gcc
+<span class="s_prompt">  #</span> cyg-pm install -require libncurses-devel
+<span class="s_prompt">  #</span> export PATH=/usr/bin
+
+<span class="s_comment"># ソースファイルを取得し，展開</span>
+<span class="s_prompt">  #</span> cd /tmp && pwd
+<span class="s_stdout">  /tmp</span>
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/46336/global-6.1.tar.gz/
+<span class="s_prompt">  #</span> tar zxvf global-6.1.tar.gz
+
+<span class="s_comment"># ビルド実行，インストール（ここでは /usr/localにインストール）</span>
+<span class="s_prompt">  #</span> cd global-6.1 && pwd
+<span class="s_stdout">  /tmp/global-6.1</span>
+<span class="s_prompt">  #</span> CPPFLAGS="-I/usr/include/ncurses" ./configure
+<span class="s_prompt">  #</span> make && make install
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_zlib" id="_zlib">zlib 1.2.5</a></h3>
+                        <h4>ビルド環境</h4>
+                        <dl class="table">
+                            <dt>OS環境</dt>            <dd>Windows XP Pro SP3</dd>
+                            <dt>シェル環境</dt>        <dd>cygwin / bash 3.2.51(24)</dd>
+                            <dt>コンパイラ</dt>        <dd>TDM mingw32 / gcc 4.5.1</dd>
+                            <dt>makeコマンド</dt>      <dd>TDM mingw32 / mingw32-make 3.81</dd>
+                        </dl>
+                        <h4>ビルド手順</h4>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_comment"># SourceForge.JPからファイル取得するための一時的な関数を定義</span>
+<span class="s_prompt">  #</span> sfget() { wget -nc http://sourceforge.jp$(wget -q -O - $1 | awk -F'"' '/mirror_link/{print $4}'); }
+
+<span class="s_comment"># ソースファイルを取得し，展開</span>
+<span class="s_prompt">  #</span> cd /tmp && pwd
+<span class="s_stdout">  /tmp</span>
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/00000/zlib-1.2.5.tar.gz
+<span class="s_prompt">  #</span> tar zxvf zlib-1.2.5.tar.gz
+
+<span class="s_comment"># ビルド実行</span>
+<span class="s_prompt">  #</span> cd zlib-1.2.5 && pwd
+<span class="s_stdout">  /tmp/zlib-1.2.5</span>
+<span class="s_prompt">  #</span> mingw32-make -f win32/Makefile.gcc
+<span class="s_prompt">  #</span> ls zlib1.dll
+<span class="s_stdout">  zlib1.dll*</span>
+
+<span class="s_comment"># インストール（ここでは /app/mingw/libraryにインストール）</span>
+<span class="s_prompt">  #</span> prefix=/app/mingw/library && echo $prefix
+<span class="s_stdout">  /app/mingw/library</span>
+<span class="s_prompt">  #</span> mkdir -p $prefix/{dll,lib,include}
+<span class="s_prompt">  #</span> cp zlib1.dll $prefix/dll
+<span class="s_prompt">  #</span> cp libz.a $prefix/lib
+<span class="s_prompt">  #</span> cp zconf.h zlib.h $prefix/include
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_libxpm" id="_libxpm">libxpm 3.5.8</a></h3>
+                        <h4>ビルド環境</h4>
+                        <dl class="table">
+                            <dt>OS環境</dt>            <dd>Windows XP Pro SP3</dd>
+                            <dt>シェル環境</dt>        <dd>cygwin / bash 3.2.51(24)</dd>
+                            <dt>コンパイラ</dt>        <dd>TDM mingw32 / gcc 4.5.1</dd>
+                            <dt>makeコマンド</dt>      <dd>TDM mingw32 / mingw32-make 3.81</dd>
+                        </dl>
+                        <h4>ビルド手順</h4>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_comment"># SourceForge.JPからファイル取得するための一時的な関数を定義</span>
+<span class="s_prompt">  #</span> sfget() { wget -nc http://sourceforge.jp$(wget -q -O - $1 | awk -F'"' '/mirror_link/{print $4}'); }
+
+<span class="s_comment"># ソースファイルを取得し，展開</span>
+<span class="s_prompt">  #</span> cd /tmp && pwd
+<span class="s_stdout">  /tmp</span>
+<span class="s_prompt">  #</span> mkdir libxpm-3.5.8 && cd libxpm-3.5.8 && pwd
+<span class="s_stdout">  /tmp/libxpm-3.5.8</span>
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/00000/libxpm-3.5.8-w32-src.zip
+<span class="s_prompt">  #</span> unzip libxpm-3.5.8-w32-src.zip
+
+<span class="s_comment"># ビルド実行</span>
+<span class="s_prompt">  #</span> cd src && pwd
+<span class="s_stdout">  /tmp/libxpm-3.5.8/src</span>
+<span class="s_prompt">  #</span> rm -f *.o *.dll
+<span class="s_prompt">  #</span> mingw32-make
+<span class="s_prompt">  #</span> ls libXpm.dll
+<span class="s_stdout">  libXpm.dll*</span>
+
+<span class="s_comment"># インストール（ここでは /app/mingw/libraryにインストール）</span>
+<span class="s_prompt">  #</span> prefix=/app/mingw/library && echo $prefix
+<span class="s_stdout">  /app/mingw/library</span>
+<span class="s_prompt">  #</span> mkdir -p $prefix/{dll,lib,include}
+<span class="s_prompt">  #</span> cp libXpm.dll $prefix/dll
+<span class="s_prompt">  #</span> cp -r simx.h ../include/X11 $prefix/include
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_libpng" id="_libpng">libpng 1.4.5</a></h3>
+                        <h4>ビルド環境</h4>
+                        <dl class="table">
+                            <dt>OS環境</dt>            <dd>Windows XP Pro SP3</dd>
+                            <dt>シェル環境</dt>        <dd>cygwin / bash 3.2.51(24)</dd>
+                            <dt>コンパイラ</dt>        <dd>TDM mingw32 / gcc 4.5.1</dd>
+                            <dt>makeコマンド</dt>      <dd>TDM mingw32 / mingw32-make 3.81</dd>
+                        </dl>
+                        <h4>ビルド手順</h4>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_comment"># SourceForge.JPからファイル取得するための一時的な関数を定義</span>
+<span class="s_prompt">  #</span> sfget() { wget -nc http://sourceforge.jp$(wget -q -O - $1 | awk -F'"' '/mirror_link/{print $4}'); }
+
+<span class="s_comment"># ソースファイルを取得し，展開</span>
+<span class="s_prompt">  #</span> cd /tmp && pwd
+<span class="s_stdout">  /tmp</span>
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/00000/libpng-1.4.5.tar.gz
+<span class="s_prompt">  #</span> tar zxvf libpng-1.4.5.tar.gz
+
+<span class="s_comment"># ビルド準備（undefined referenceのエラーになる pngtest.cのビルドは省略）</span>
+<span class="s_prompt">  #</span> cd libpng-1.4.5 && pwd
+<span class="s_stdout">  /tmp/libpng-1.4.5</span>
+<span class="s_prompt">  #</span> sed 's/$(CC) $(CFLAGS) $< $(LDFLAGS) -o $@/: $(CC) $(CFLAGS) $< $(LDFLAGS) -o $@/' scripts/makefile.mingw > scripts/makefile.mingw_mod
+<span class="s_prompt">  #</span> ls /app/mingw/library/include/{zconf.h,zlib.h}
+<span class="s_stdout">  /app/mingw/library/include/zconf.h  /app/mingw/library/include/zlib.h</span>
+<span class="s_prompt">  #</span> ls /app/mingw/library/lib/libz.a
+<span class="s_stdout">  /app/mingw/library/lib/libz.a</span>
+<span class="s_prompt">  #</span> export ZLIBLIB=$(cygpath -w /app/mingw/library/lib)
+<span class="s_prompt">  #</span> export ZLIBINC=$(cygpath -w /app/mingw/library/include)
+
+<span class="s_comment"># ビルド実行</span>
+<span class="s_prompt">  #</span> mingw32-make -e -f scripts/makefile.mingw_mod shared
+<span class="s_prompt">  #</span> ls libpng14.dll
+<span class="s_stdout">  libpng14.dll*</span>
+
+<span class="s_comment"># インストール（ここでは /app/mingw/libraryにインストール）</span>
+<span class="s_prompt">  #</span> prefix=/app/mingw/library && echo $prefix
+<span class="s_stdout">  /app/mingw/library</span>
+<span class="s_prompt">  #</span> mkdir -p $prefix/{dll,lib,include}
+<span class="s_prompt">  #</span> cp libpng14.dll $prefix/dll
+<span class="s_prompt">  #</span> cp png.h pngconf.h $prefix/include
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                        <h3><a name="_jpeg" id="_jpeg">jpeg 8c</a></h3>
+                        <h4>ビルド環境</h4>
+                        <dl class="table">
+                            <dt>OS環境</dt>            <dd>Windows XP Pro SP3</dd>
+                            <dt>シェル環境</dt>        <dd>cygwin / bash 3.2.51(24) + Msys / bash 3.1.17(1)</dd>
+                            <dt>コンパイラ</dt>        <dd>TDM mingw32 / gcc 4.5.1</dd>
+                            <dt>makeコマンド</dt>      <dd>TDM mingw32 / mingw32-make 3.81</dd>
+                        </dl>
+                        <h4>ビルド手順</h4>
+                        <div class="frame0">
+                            <div class="frame1">
+                                <div class="frame2">
+                                    <div class="frame3">
+                                        <div class="frame4">
+                                            <div class="f_title">
+                                                <div class="f_title_buttom"></div>
+                                                <div class="f_title_bash"></div>
+                                                <div class="f_title_scroll"></div>
+                                            </div><!-- / #f_titel -->
+                                            <div class="f_body">
+                                                <div class="f_body_bar">
+                        <pre class="cmd">
+<span class="s_comment"># SourceForge.JPからファイル取得するための一時的な関数を定義</span>
+<span class="s_prompt">  #</span> sfget() { wget -nc http://sourceforge.jp$(wget -q -O - $1 | awk -F'"' '/mirror_link/{print $4}'); }
+
+<span class="s_comment"># ソースファイルを取得し，展開</span>
+<span class="s_prompt">  #</span> cd /tmp && pwd
+<span class="s_stdout">  /tmp</span>
+<span class="s_prompt">  #</span> sfget http://sourceforge.jp/projects/gnupack/downloads/00000/jpegsrc.v8c.tar.gz
+<span class="s_prompt">  #</span> tar zxvf jpegsrc.v8c.tar.gz
+
+<span class="s_comment"># ビルド実行（以下は Msys上で実行）</span>
+<span class="s_prompt">  #</span> cd jpeg-8c && pwd
+<span class="s_stdout">  /tmp/jpeg-8c</span>
+<span class="s_prompt">  $</span> ./configure CFLAGS="-O2"
+<span class="s_prompt">  $</span> mingw32-make
+<span class="s_prompt">  $</span> ls .libs/libjpeg-8.dll
+<span class="s_stdout">  .libs/libjpeg-8.dll*</span>
+
+<span class="s_comment"># インストール（ここでは /app/mingw/libraryにインストール）</span>
+<span class="s_prompt">  #</span> prefix=/app/mingw/library && echo $prefix
+<span class="s_stdout">  /app/mingw/library</span>
+<span class="s_prompt">  #</span> mkdir -p $prefix/{dll,lib,include}
+<span class="s_prompt">  #</span> cp .libs/libjpeg-8.dll $prefix/dll/libjpeg.dll
+<span class="s_prompt">  #</span> cp .libs/libjpeg.dll.a $prefix/lib
+<span class="s_prompt">  #</span> cp jconfig.h jerror.h jmorecfg.h jpeglib.h $prefix/include
+                        </pre>
+                                                    <div class="f_body_scroll"></div>
+                                                </div><!-- / #f_body_bar -->
+                                            </div><!-- / #f_body -->
+                                        </div><!-- / #frame4 -->
+                                    </div><!-- / #frame3 -->
+                                </div><!-- / #frame2 -->
+                            </div><!-- / #frame1 -->
+                        </div><!-- / #frame0 -->
+
+                        <p class="totop"><a href="#top">ページ先頭へ</a>｜<a href="UsersGuide.html">トップページへ</a></p>
+                    </div><!-- / #body -->
+               </div><!-- / #section -->
+            </div><!-- / #main -->
+        </div><!-- / #content -->
+        <div id="footer">
+            <p>Copyright (C) 2009-2013 k.sugita, Inc. All rights reserved.</p>
+        </div><!-- / #footer -->
+    </div><!-- / #top -->
+</body>
+</html>

@@ -1,0 +1,74 @@
+The threading patches contain, in addition to the
+other cygwin mods to ncurses-5.7, a small patch to
+configure.in/configure (below) that disables the
+library-renaming (ncursest) for the threaded version.
+This is because, if threading is considered good and
+stable enough for a release, it might as well be THE
+release -- because I'm already looking at maintaining
+two versions of libncurses for narrow and wide chars.
+I'm NOT maintaining four of them.
+
+So: if we enable threading, we need it to name the
+library according to the normal rules, not suffixed
+with 't'.
+
+Stock ncurses provides a mechanism to do this: you
+enable weak symbols, and clients can either link
+against libpthread or not. If they do, then the
+threading support in libncurses is activated;
+otherwise it is not. However, this is not suitable
+for cygwin, because: (1) weak symbols don't yet
+work properly, and (2) we can't NOT link against
+the pthread library, because cygwin1.dll IS the
+pthread library. So if ncurses is built with
+threading support, then the threading facilities
+are ALWAYS enabled, even for non-multithreaded
+applications. 
+
+However, threading is not currently working very well.
+It's functional, mostly, but it's quite a bit slower.
+Also, it has some odd effects on the test programs.
+For instance, 'worm' has only a single, multicolored
+worm, instead of three worms each of a different, solid
+color. 'rain' eventually winds down to single raindrops
+at a time; I don't know if this is a result of the
+mutex locking or what.  Finally, switching to the
+threading model -- even if weak symbols worked and
+we could turn off the actual mutex use -- imposes a
+significant API -- not just ABI -- change, and may
+require end users to modify their source code rather
+than just recompile. I'm not ready to inflict that on
+people, for a marginal benefit and possible a
+significant cost.
+
+
+To enable: apply the following patch (in addition to all
+the others), and add
+  --with-pthread
+to cygport's configure statement.
+
+--- origsrc/ncurses-5.7/configure.in    2009-02-27 19:11:08.339901300 -0500
++++ src/ncurses-5.7/configure.in        2009-02-27 22:44:57.215701300 -0500
+@@ -1079,7 +1079,7 @@
+     if test $cf_cv_weak_symbols = yes ; then
+         CF_REMOVE_LIB(LIBS,$LIBS,pthread)
+     else
+-        LIB_SUFFIX="t${LIB_SUFFIX}"
++        : # LIB_SUFFIX="t${LIB_SUFFIX}"
+     fi
+        AC_DEFINE(USE_REENTRANT)
+        CF_NCURSES_ABI_6
+--- origsrc/ncurses-5.7/configure       2009-02-27 19:11:10.274301300 -0500
++++ src/ncurses-5.7/configure   2009-02-27 23:21:23.801101300 -0500
+@@ -10252,7 +10252,7 @@
+ LIBS=`echo "$LIBS" | sed -e 's/-lpthread[	 ]//g' -e 's/-lpthread$//'`
+ 
+     else
+-        LIB_SUFFIX="t${LIB_SUFFIX}"
++        : # LIB_SUFFIX="t${LIB_SUFFIX}"
+     fi
+ 	cat >>confdefs.h <<\EOF
+ #define USE_REENTRANT 1
+
+
+
