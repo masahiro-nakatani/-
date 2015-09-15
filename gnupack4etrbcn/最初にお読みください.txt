@@ -1,0 +1,10 @@
+最初にお読みください
+
+　gnupackはアーカイブ展開のみで即座に cygwinと emacsが使える環境を提供します．
+　gnupackの配布ライセンスは GPLv2です．
+
+　開発者の動作確認は WindowsXP 32bit環境のみになっています．gnupackのバグ改修や
+機能追加等のバージョンアップは本パッケージの開発者の対応可能な範囲内，かつ開発者の
+作業ペースにて行わせていただきます．
+
+　詳細は gnupack Users Guide (UsersGuide.html)を参照ください．
