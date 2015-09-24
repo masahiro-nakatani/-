@@ -80,4 +80,12 @@ build/Robot.o: Robot.cpp \
   PositionEstimation.h /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_types.h \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/math.h \
   vec.h CourseInfo.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_interface.h MarkerCheck.h
+  /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_interface.h MarkerCheck.h \
+  /home/nxtOSEK/ecrobot/nxtway_gs_balancer/balancer.h \
+  /home/nxtOSEK/ecrobot/nxtway_gs_balancer/rtwtypes.h \
+  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/include/limits.h \
+  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/include/syslimits.h \
+  /home/nxtOSEK/ecrobot/../lejos_nxj/src//nxtvm/javavm/limits.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_interface.h \
+  /home/nxtOSEK/ecrobot/nxtway_gs_balancer/rt_SATURATE.h \
+  /home/nxtOSEK/ecrobot/nxtway_gs_balancer/balancer_types.h
