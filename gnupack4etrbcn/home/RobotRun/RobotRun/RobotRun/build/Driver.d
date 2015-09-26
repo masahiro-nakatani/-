@@ -1,7 +1,5 @@
-build/Robot.o: Robot.cpp \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/TouchSensor.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Sensor.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Port.h \
+build/Driver.o: Driver.cpp utils.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Clock.h \
   /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_interface.h \
   /home/nxtOSEK/ecrobot/../lejos_nxj/src//nxtvm/platform/nxt/mytypes.h \
   /home/nxtOSEK/ecrobot/../lejos_nxj/src//nxtvm/platform/nxt/interrupts.h \
@@ -46,23 +44,6 @@ build/Robot.o: Robot.cpp \
   /home/nxtOSEK/ecrobot/../toppers_osek/include/t_stddef.h \
   /home/nxtOSEK/ecrobot/../toppers_osek/config/at91sam7s-gnu/tool_defs.h \
   /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_interface.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/SonarSensor.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/I2c.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/LightSensor.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/GyroSensor.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Motor.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Nxt.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Lcd.h \
-  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../include/c++/4.0.2/cstdarg \
-  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/include/stdarg.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/util/Daq.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Bluetooth.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_interface.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Bluetooth.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/util/BTConnection.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Lcd.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Nxt.h List.h Utils.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Clock.h \
   /home/nxtOSEK/ecrobot/../toppers_osek/include/kernel.h \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/string.h \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/_ansi.h \
@@ -75,17 +56,39 @@ build/Robot.o: Robot.cpp \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/sys/lock.h \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/include/stddef.h \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/sys/string.h \
-  Debug.h Robot.h /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Speaker.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/util/Vector.h InfoType.h \
+  debug.h Robot.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/TouchSensor.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Sensor.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Port.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/SonarSensor.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/I2c.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/LightSensor.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/GyroSensor.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Motor.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Nxt.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Lcd.h \
+  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../include/c++/4.0.2/cstdarg \
+  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/include/stdarg.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Speaker.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/util/Daq.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Bluetooth.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_interface.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Bluetooth.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/util/BTConnection.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Lcd.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Nxt.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/util/Vector.h jiro_type.h \
   PositionEstimation.h /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_types.h \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/math.h \
   vec.h CourseInfo.h \
   /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_interface.h MarkerCheck.h \
-  /home/nxtOSEK/ecrobot/nxtway_gs_balancer/balancer.h \
+  Navigator.h Driver.h Mission.h Technic.h PIDController.h note.h \
+  music_data.h /home/nxtOSEK/ecrobot/nxtway_gs_balancer/balancer.h \
   /home/nxtOSEK/ecrobot/nxtway_gs_balancer/rtwtypes.h \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/include/limits.h \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/include/syslimits.h \
   /home/nxtOSEK/ecrobot/../lejos_nxj/src//nxtvm/javavm/limits.h \
   /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_interface.h \
   /home/nxtOSEK/ecrobot/nxtway_gs_balancer/rt_SATURATE.h \
-  /home/nxtOSEK/ecrobot/nxtway_gs_balancer/balancer_types.h
+  /home/nxtOSEK/ecrobot/nxtway_gs_balancer/balancer_types.h \
+  Mission_TailStraight.cpp Mission_PosBased_Straight.cpp kernel_id.h

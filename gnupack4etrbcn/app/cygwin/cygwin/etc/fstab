@@ -1,0 +1,13 @@
+# For a description of the file format, see the Users Guide
+# http://cygwin.com/cygwin-ug-net/using.html#mount-table
+
+# This is default anyway:
+# none /cygdrive cygdrive binary,posix=0,user 0 0
+
+none / cygdrive binary,nouser,noacl,posix=0 0 0
+C:/Users/masahiro/Documents/git/ロボコン/robocon/gnupack4etrbcn/app/cygwin/local /usr/local ntfs binary,nouser,noacl,posix=0 0 0
+C:/Users/masahiro/Documents/git/ロボコン/robocon/gnupack4etrbcn/app /app ntfs binary,nouser,noacl,posix=0 0 0
+C:/Users/masahiro/AppData/Local/Temp/gnupack /tmp ntfs binary,nouser,noacl,posix=0 0 0
+C:/Users/masahiro/Documents/git/ロボコン/robocon/gnupack4etrbcn/home /home ntfs binary,nouser,noacl,posix=0 0 0
+C:/Users/masahiro/Desktop /top ntfs binary,nouser,noacl,posix=0 0 0
+C:/Users/masahiro/Documents/git/ロボコン/robocon/gnupack4etrbcn /root ntfs binary,nouser,noacl,posix=0 0 0
