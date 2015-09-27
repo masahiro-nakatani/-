@@ -76,6 +76,7 @@ public:
 			if (Soner(dis_gate) == true) {
 				local_status_ = P_LOOKUP;
 				Robot::Instance().Beep();
+				timer_start(1000);
 			}
 		}
 
@@ -201,6 +202,7 @@ public:
 
 
 		else if (P_STRAIGHT == local_status_) {
+			cmd.Mode = RobotCmd::NORMAIL_MODE;
 			cmd = tec_pid_.Calclate(ri.light_sensor_val, (S16)(80), edge_);
 			cmd.param3 = 108;
 			
