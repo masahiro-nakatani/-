@@ -1,7 +1,4 @@
-build/Robot.o: Robot.cpp \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/TouchSensor.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Sensor.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Port.h \
+build/Technic.o: Technic.cpp Technic.h CourseInfo.h \
   /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_interface.h \
   /home/nxtOSEK/ecrobot/../lejos_nxj/src//nxtvm/platform/nxt/mytypes.h \
   /home/nxtOSEK/ecrobot/../lejos_nxj/src//nxtvm/platform/nxt/interrupts.h \
@@ -38,6 +35,22 @@ build/Robot.o: Robot.cpp \
   /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_usb.h \
   /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_rs485.h \
   /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_mindsensors.h \
+  PIDController.h /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_types.h \
+  jiro_type.h PositionEstimation.h \
+  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/math.h \
+  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/sys/reent.h \
+  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/_ansi.h \
+  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/newlib.h \
+  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/sys/config.h \
+  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/machine/ieeefp.h \
+  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/sys/_types.h \
+  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/sys/lock.h \
+  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/include/stddef.h \
+  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/_ansi.h \
+  vec.h Robot.h /home/nxtOSEK/ecrobot/../ecrobot/c++/device/TouchSensor.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Sensor.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Port.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_interface.h \
   /home/nxtOSEK/ecrobot/../ecrobot/c/rtoscalls.h \
   /home/nxtOSEK/ecrobot/../toppers_osek/include/kernel.h \
   /home/nxtOSEK/ecrobot/../toppers_osek/config/at91sam7s-gnu/lego_nxt/sys_defs.h \
@@ -55,33 +68,20 @@ build/Robot.o: Robot.cpp \
   /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Lcd.h \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../include/c++/4.0.2/cstdarg \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/include/stdarg.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Speaker.h \
   /home/nxtOSEK/ecrobot/../ecrobot/c++/util/Daq.h \
   /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Bluetooth.h \
   /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_interface.h \
   /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Bluetooth.h \
   /home/nxtOSEK/ecrobot/../ecrobot/c++/util/BTConnection.h \
   /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Lcd.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Nxt.h List.h Utils.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Clock.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Nxt.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/util/Vector.h MarkerCheck.h \
+  Navigator.h utils.h /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Clock.h \
   /home/nxtOSEK/ecrobot/../toppers_osek/include/kernel.h \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/string.h \
-  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/_ansi.h \
-  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/newlib.h \
-  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/sys/config.h \
-  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/machine/ieeefp.h \
-  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/sys/reent.h \
-  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/_ansi.h \
-  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/sys/_types.h \
-  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/sys/lock.h \
-  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/include/stddef.h \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/sys/string.h \
-  Debug.h Robot.h /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Speaker.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/util/Vector.h InfoType.h \
-  PositionEstimation.h /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_types.h \
-  /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/math.h \
-  vec.h CourseInfo.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_interface.h MarkerCheck.h \
-  /home/nxtOSEK/ecrobot/nxtway_gs_balancer/balancer.h \
+  note.h music_data.h /home/nxtOSEK/ecrobot/nxtway_gs_balancer/balancer.h \
   /home/nxtOSEK/ecrobot/nxtway_gs_balancer/rtwtypes.h \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/include/limits.h \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/include/syslimits.h \

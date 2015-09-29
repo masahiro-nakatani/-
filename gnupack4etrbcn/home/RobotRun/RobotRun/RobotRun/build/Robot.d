@@ -61,7 +61,7 @@ build/Robot.o: Robot.cpp \
   /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Bluetooth.h \
   /home/nxtOSEK/ecrobot/../ecrobot/c++/util/BTConnection.h \
   /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Lcd.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Nxt.h List.h Utils.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Nxt.h List.h utils.h \
   /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Clock.h \
   /home/nxtOSEK/ecrobot/../toppers_osek/include/kernel.h \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/string.h \
@@ -75,13 +75,13 @@ build/Robot.o: Robot.cpp \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/sys/lock.h \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/include/stddef.h \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/sys/string.h \
-  Debug.h Robot.h /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Speaker.h \
-  /home/nxtOSEK/ecrobot/../ecrobot/c++/util/Vector.h InfoType.h \
+  debug.h Robot.h /home/nxtOSEK/ecrobot/../ecrobot/c++/device/Speaker.h \
+  /home/nxtOSEK/ecrobot/../ecrobot/c++/util/Vector.h jiro_type.h \
   PositionEstimation.h /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_types.h \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/../../../../arm-elf/sys-include/math.h \
   vec.h CourseInfo.h \
   /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_interface.h MarkerCheck.h \
-  /home/nxtOSEK/ecrobot/nxtway_gs_balancer/balancer.h \
+  Navigator.h /home/nxtOSEK/ecrobot/nxtway_gs_balancer/balancer.h \
   /home/nxtOSEK/ecrobot/nxtway_gs_balancer/rtwtypes.h \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/include/limits.h \
   /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/include/syslimits.h \

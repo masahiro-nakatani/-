@@ -16,10 +16,36 @@
 
 #include "Robot.h"
 #include "CourseInfo.h"
-kjga:gjr mfagaajgap][j
+
+extern "C"
+{
+	#include "balancer.h"
+};
+
+using namespace ecrobot;
+using namespace nro;
+
+//***************************************
+// デバイスオブジェクト定義
+// 以下のオブジェクトはグローバルインスタンスとして生成する必要があるらしい
+// (ECRobot C++ API マニュアルより)
+
+
+TouchSensor touch(PORT_4);
+SonarSensor sonar(PORT_2);
+LightSensor light(PORT_3);
+GyroSensor   gyro(PORT_1);
+Motor      motorL(PORT_C);
+Motor      motorR(PORT_B);
+Motor	     tail(PORT_A);
+Bluetooth bt;
+Lcd lcd;
+Nxt nxt;
+Speaker speaker;
+
 MarkerCheck marker_check;
 
-Robot* Robot::theおいじゃｓｄｆ：ｐｊかｓｐ」「おｆInstance_ = 0;日本語
+Robot* Robot::theInstance_ = 0;
 
 extern "C"{
 
