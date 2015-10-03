@@ -26,11 +26,11 @@ private:
 	};
 
 	enum LocalDifinitions {
-		DIST_STRAIGHT_BEFORE_OUT = 100000,
-		DIST_STRAIGHT_BEFORE_IN  = 3287729,
-		DIST_UP_SLOPE			 = 350000,
-		DIST_DOWN_SLOPE			 = 1392616,
-		DIST_LOOKUP				 = 100000,
+		DIST_STRAIGHT_BEFORE_OUT	= 100000,
+		DIST_STRAIGHT_BEFORE_IN		= 3287729,
+		DIST_UP_SLOPE				= 350000,
+		DIST_DOWN_SLOPE				= 1392616,
+		DIST_LOOKUP					= 100000	
 	};
 	
 	typedef struct distance{
@@ -53,6 +53,7 @@ public:
 		timer_start(1000);
 		speed_ = 70;
     	local_status_ = P_START;
+		tec_pid_.Init();
     	dist.x = ni.pos.X;
     	dist.y = ni.pos.Y;
     	dist.xy = (dist.x * dist.x) + (dist.y * dist.y);
@@ -66,60 +67,27 @@ public:
     	static  bool flag = false;
     	static S32 lmotor,rmotor;
 
-		// スタート時はスピードを抑え目にして安定した走りだしをする
-		if (P_START == local_status_) {
-			cmd = pid_trace_.Calclate(ri.light_sensor_val, (S16)(speed_), edge_);
-			cmd.param3 = 0;
-			if (is_timeup()) {
-				Robot::Instance().Beep();
-				// 状態遷移
-				local_status_ = P_STRAIGHT_BEFORE;
-				timer_stop();
-				//timer_start(5000);
-			}
-		}
 
-		// 直線走行
-		else if (P_STRAIGHT_BEFORE == local_status_) {
-			
-			cmd = pid_trace_.Calclate(ri.light_sensor_val, (S16)(speed_), edge_);
-			
-			if(Robot::Instance().sonar_distance < 30 && flag == false){
-				count++;
-			}else {
-				count = 0;
-			}
-			
-			if(count > 3){
+		// スタート
+		if (P_START == local_status_) {
+			int dis_gate = 10000;
+
+			cmd = tec_pid_.Calclate(ri.light_sensor_val, (S16)(80), edge_);
+			if (Soner(dis_gate) == true) {
+				local_status_ = P_LOOKUP;
 				Robot::Instance().Beep();
-				count = 0;
-				flag = true;
-				timer_start(800);
-			}
-			if(is_timeup()){
-			//if(((ni.pos.X - dist.x) * (ni.pos.X - dist.x) +( ni.pos.Y - dist.y) * ( ni.pos.Y - dist.y)) > DIST_STRAIGHT_BEFORE_OUT){
-				Robot::Instance().Beep();
-				flag = false;
-				// 状態遷移
-				local_status_ = P_STOP;
-				dist.x = ni.pos.X;
-    			dist.y = ni.pos.Y;
-    			dist.xy = (dist.x * dist.x) + (dist.y * dist.y);
 				timer_start(1000);
 			}
 		}
 
-		// 停止状態
-		else if (P_STOP == local_status_) {
+		else if(P_STOP == local_status_){
 			cmd = pid_trace_.Calclate(ri.light_sensor_val, (S16)(0), edge_);
 			cmd.param3 = 90;
+
+			//タイマーどうしよう？
 			if (is_timeup()) {
-				Robot::Instance().Beep();
-				// 状態遷移
 				local_status_ = P_LOOKUP;
-				dist.x = ni.pos.X;
-    			dist.y = ni.pos.Y;
-    			dist.xy = (dist.x * dist.x) + (dist.y * dist.y);
+				Robot::Instance().Beep();
 				timer_start(100);
 				Robot::Instance().SetGyroOffset(Robot::Instance().GetGyroOffset() - 20);
 			}
@@ -142,7 +110,6 @@ public:
 		
 		//斜め停止
 		else if (P_STOP_LOOKUP == local_status_) {
-			//cmd = pid_trace_.Calclate(ri.light_sensor_val, (S16)(0), edge_);
 			static int temptail = 90;
 			cmd.Mode = RobotCmd::DIRECT_MODE;
 			cmd.param1 = 0;
@@ -162,7 +129,6 @@ public:
     	
 		// 斜め停止2
 		else if (P_STOP_LOOKUP2 == local_status_) {
-			//cmd = pid_trace_.Calclate(ri.light_sensor_val, (S16)(0), edge_);
 			cmd.Mode = RobotCmd::DIRECT_MODE;
 			cmd.param1 = 0;
 			cmd.param2 = 0;
@@ -177,21 +143,12 @@ public:
 			
     	// 直線走行(lookup)
 		else if (P_STRAIGHT_LOOKUP == local_status_) {
-			//cmd = pid_trace_lookup_.Calclate(ri.light_sensor_val, (S16)(speed_), edge_);
-			//cmd = pid_trace_.Calclate(ri.light_sensor_val, (S16)(1), edge_);
-			//Robot::Instance().SetGyroOffset(Robot::Instance().gyro_data);
 			cmd.Mode = RobotCmd::DIRECT_MODE;
 			cmd.param1 = 37;
 			cmd.param2 = 30;
 			cmd.param3 = 68;
 			
 			
-			//if (is_timeup()) {
-			/*if(Robot::Instance().sonar_distance > 200){
-				count++; 
-			}else{
-				count = 0;
-			}*/
 				
 			if(((ni.pos.X - dist.x) * (ni.pos.X - dist.x) +( ni.pos.Y - dist.y) * ( ni.pos.Y - dist.y)) >  DIST_LOOKUP){
 				// 状態遷移
@@ -242,19 +199,12 @@ public:
 				tec_r_.Init();
 			}
 		}
-		// STRAIGHT
-		/*else if (P_STRAIGHT == local_status_) {
-			cmd = straight_.Calclate((S16)(speed_), ri. rot_encoderL_val, ri. rot_encoderR_val);
-			cmd.param3 = 0;
-		}*/
+
+
 		else if (P_STRAIGHT == local_status_) {
-			//if(!flag){
-				cmd = tec_r_.Calclate(speed_, -5, edge_);
-			//}else{
-			//	cmd = pid_trace_.Calclate(ri.light_sensor_val, (S16)(speed_), edge_);
-			////	Robot::Instance().Beep();
-			//}
-			cmd.param3 = 0;
+			cmd.Mode = RobotCmd::NORMAIL_MODE;
+			cmd = tec_pid_.Calclate(ri.light_sensor_val, (S16)(80), edge_);
+			cmd.param3 = 108;
 			
 			if( evf.is_SetEvent(Robot::EV_LIGHT_BLACK) ){
 				local_status_ = P_STRAIGHT2;
@@ -266,22 +216,6 @@ public:
 				//timer_stop();
 			}
 		}
-		else if (P_STRAIGHT2 == local_status_) {
-			//if(!flag){
-				cmd = pid_trace_.Calclate(ri.light_sensor_val, (S16)(speed_), edge_);
-			//}else{
-			//	cmd = pid_trace_.Calclate(ri.light_sensor_val, (S16)(speed_), edge_);
-			////	Robot::Instance().Beep();
-			//}
-			cmd.param3 = 0;
-			
-			if (is_timeup()) {
-				speed_ = 50;
-				//flag = true;
-				ret = false;
-				timer_stop();
-			}
-		}
 
 		else {
 			ret = false;
@@ -291,14 +225,24 @@ public:
 
     }
 
+	//超音波センサが閾値に達したらtrueを返す
+	virtual bool Soner(int dist_gate) {
+		nowDistance = Robot::Instance().GetSonarDistance();
+		if (nowDistance >= dist_gate)	return true;
+		else return false;
+	}
+
+
 
 
 private:
 
 	S16 speed_;
+	S16 nowDistance;
 	
     TecPIDTrace pid_trace_;
 	TecStraight straight_;
+	TecPIDTrace tec_pid_;
 	TecRotate      tec_r_;
 	Technic::DIRECTION edge_;
 	LocalState local_status_;
