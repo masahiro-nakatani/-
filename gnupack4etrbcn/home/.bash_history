@@ -659,3 +659,9 @@ makeall
 make all
 cd ballon
 make all
+cd balloon/
+make all
+cd RobotRun/
+make all
+cd RobotRun/RobotRun
+make all
