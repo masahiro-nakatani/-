@@ -90,7 +90,12 @@
   <ItemGroup>
     <ClCompile Include="balancer_param.c" />
     <ClCompile Include="bezier.cpp" />
+    <ClCompile Include="ControlMission_Direct.cpp" />
+    <ClCompile Include="ControlMission_Posture.cpp" />
+    <ClCompile Include="ControlMission_Speed.cpp" />
+    <ClCompile Include="ControlMission_Transition.cpp" />
     <ClCompile Include="CourseInfo.cpp" />
+    <ClCompile Include="DetectionMission_Time.cpp" />
     <ClCompile Include="Driver.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MarkerCheck.cpp" />
@@ -110,7 +115,7 @@
     <ClCompile Include="Mission_Seesaw_Jiro.cpp" />
     <ClCompile Include="Mission_Slope_Ichiro.cpp" />
     <ClCompile Include="Mission_Slope_Jiro.cpp" />
-    <ClCompile Include="Mission_Timed_PID.cpp" />
+    <ClCompile Include="ControlMission_PID.cpp" />
     <ClCompile Include="Mission_Stairs_Ichiro.cpp" />
     <ClCompile Include="Mission_Stairs_Jiro.cpp" />
     <ClCompile Include="Mission_TailStraight.cpp" />
@@ -119,6 +124,7 @@
     <ClCompile Include="PIDController.cpp" />
     <ClCompile Include="PositionEstimation.cpp" />
     <ClCompile Include="Robot.cpp" />
+    <ClCompile Include="DetectionMission_Sonar.cpp" />
     <ClCompile Include="TechBezierTrace.cpp" />
     <ClCompile Include="Technic.cpp" />
     <ClCompile Include="utils.cpp" />
