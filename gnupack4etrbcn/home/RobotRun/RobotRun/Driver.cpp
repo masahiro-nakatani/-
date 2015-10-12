@@ -13,11 +13,9 @@
 // インコース
 # ifdef IN_COURSE
 #  include "Mission_TailStraight.cpp"
-#  include "Mission_PosBased_Straight.cpp"
 # else
 // アウトコース
 #  include "Mission_TailStraight.cpp"
-#  include "Mission_PosBased_Straight.cpp"
 # endif
 
 #else
@@ -26,11 +24,9 @@
 // インコース
 # ifdef IN_COURSE
 #  include "Mission_TailStraight.cpp"
-#  include "Mission_PosBased_Straight.cpp"
 # else
 // アウトコース
 #  include "Mission_TailStraight.cpp"
-#  include "Mission_PosBased_Straight.cpp"
 # endif
 #endif
 
@@ -78,7 +74,7 @@ TASK(TaskDrive){
 	// コース情報設定
 	
 	Driver::MissionPtr ptr[] = {
-		new Mission_PosBased_Straight(40,0,100)
+		new Mission_TailStraight()
 	};
 
 	enum{ missoin_size = sizeof(ptr)/sizeof(ptr[0]) };
