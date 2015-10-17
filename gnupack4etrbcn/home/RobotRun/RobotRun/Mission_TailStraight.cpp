@@ -33,6 +33,7 @@ class Mission_TailStraight : public Mission {
 
 	static ControlMission_Speed* zero_speed(){ return new ControlMission_Speed(0,0,0,0,0,0); }
 	static ControlMission_Posture* no_posture(){ return new ControlMission_Posture(RobotCmd::NO_TAIL_CNTL,RobotCmd::NO_TAIL_CNTL,0,0); }
+
 public:
 
     Mission_TailStraight(S32 timer = 0, S16 speed = 125) 

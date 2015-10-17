@@ -2,6 +2,7 @@ class ControlMission_Transition : public Mission {
 	
 	Mission *posture_;
 	Mission *speed_;
+
 public:
 
     ControlMission_Transition(Mission *posture,  Mission *speed)
