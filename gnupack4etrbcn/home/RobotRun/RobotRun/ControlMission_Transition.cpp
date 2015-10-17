@@ -1,28 +1,31 @@
-#include "ControlMission_Posture.cpp"
-#include "ControlMission_Speed.cpp"
-
 class ControlMission_Transition : public Mission {
 	
-	ControlMission_Posture posture_;
-	ControlMission_Speed speed_;
+	Mission *posture_;
+	Mission *speed_;
 public:
 
-    ControlMission_Transition(const ControlMission_Posture& posture, const ControlMission_Speed& speed) 
+    ControlMission_Transition(Mission *posture,  Mission *speed)
 		: posture_(posture)
 		, speed_(speed)
 	{
 	}
 
+	~ControlMission_Transition()
+	{
+		delete posture_;
+		delete speed_;
+	}
+
 	virtual void Init(RobotInfo ri, NavInfo ni)
 	{
-		posture_.Init(ri,ni);
-		speed_.Init(ri,ni);
+		posture_->Init(ri,ni);
+		speed_->Init(ri,ni);
     }
 
     virtual bool Run(RobotInfo ri, NavInfo ni, EventFlag evf, RobotCmd& cmd )
 	{
-		posture_.Run(ri,ni,evf,cmd);
-		speed_.Run(ri,ni,evf,cmd);
+		posture_->Run(ri,ni,evf,cmd);
+		speed_->Run(ri,ni,evf,cmd);
 		return true;
     }
 };

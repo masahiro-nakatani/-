@@ -1,6 +1,8 @@
 #include "Mission.h"
 #include "Technic.h"
-#include "ControlMission_Direct.cpp"
+#include "ControlMission_PID.cpp"
+#include "ControlMission_Speed.cpp"
+#include "ControlMission_Posture.cpp"
 #include "DetectionMission_Time.cpp"
 #include "DetectionMission_Sonar.cpp"
 #include "ControlMission_Transition.cpp"
@@ -17,7 +19,7 @@ class Mission_TailStraight : public Mission {
 		STAGE_STRAIGHT_TO_GOAL,
 		MISSION_COUNT = STAGE_STRAIGHT_TO_GOAL + 1 
 	};
-	ControlMission_Direct run_straight_slow_;
+	ControlMission_PID run_straight_slow_;
 	ControlMission_Transition stop_;
 	ControlMission_Transition tilt_under_;
 	ControlMission_Transition tilt_upper_;
@@ -29,15 +31,15 @@ class Mission_TailStraight : public Mission {
 	int mission_index_;
 	int mission_count_;
 
-	static ControlMission_Speed zero_speed(){ return ControlMission_Speed(0,0,0,0,0,0); }
-	static ControlMission_Posture no_posture(){ return ControlMission_Posture(RobotCmd::NO_TAIL_CNTL,RobotCmd::NO_TAIL_CNTL,0,0); }
+	static ControlMission_Speed* zero_speed(){ return new ControlMission_Speed(0,0,0,0,0,0); }
+	static ControlMission_Posture* no_posture(){ return new ControlMission_Posture(RobotCmd::NO_TAIL_CNTL,RobotCmd::NO_TAIL_CNTL,0,0); }
 public:
 
     Mission_TailStraight(S32 timer = 0, S16 speed = 125) 
-		: run_straight_slow_(30,30,RobotCmd::NO_TAIL_CNTL)
-		, stop_(no_posture(),ControlMission_Speed(30,30,0,0,1,10))
-		, tilt_under_(ControlMission_Posture(80,40,1,100),zero_speed())
-		, tilt_upper_(ControlMission_Posture(90,100,1,100),zero_speed())
+		: run_straight_slow_(30,0)
+		, stop_(no_posture(), new ControlMission_Speed(30,30,0,0,1,10))
+		, tilt_under_(new ControlMission_Posture(80,40,1,100),zero_speed())
+		, tilt_upper_(new ControlMission_Posture(90,100,1,100),zero_speed())
 		, sonar_mission_(20)
 		, timed_mission_1000(1000)
 		, timed_mission_3000(3000)
