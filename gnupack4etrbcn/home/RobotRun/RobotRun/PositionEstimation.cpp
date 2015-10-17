@@ -24,15 +24,15 @@
 void getPositionEstimation(const Position& Pre, S32 AngR, S32 AngL, F64 r, F64 d, Position& Now)
 {
 	//差分を計算し、前回値に足す
-	F64 advanceL = r * AngL * M_PI / 180.0;
-	F64 advanceR = r * AngR * M_PI / 180.0;
-	F64 theta = (advanceR-advanceL) / d; // 角度(rad)=孤/車軸長
+	F64 advanceL = r * 2 * M_PI * (AngL / 360.0);
+	F64 advanceR = r * 2 * M_PI * (AngR / 360.0);
+	F64 theta = (advanceR - advanceL) / 2/d; // 角度(rad)=孤/車軸長
 	F64 half_theta = theta * 0.5;
-	F64 nxt_advanced = (advanceL+advanceR) * 0.5;
-	
-	Now.Ang =  Pre.Ang + half_theta;
-	Now.X = Pre.X + nxt_advanced * sin( half_theta );
-	Now.Y = Pre.Y + nxt_advanced * cos( half_theta );
+	F64 nxt_advanced = (advanceL + advanceR) * 0.5;
+
+	Now.Ang = Pre.Ang + theta;
+	Now.X = Pre.X + nxt_advanced * sin(Pre.Ang + half_theta);
+	Now.Y = Pre.Y + nxt_advanced * cos(Pre.Ang + half_theta);
 	/*Now.Ang = Pre.Ang - 0.5 * r * ( AngR - AngL ) * M_PI / 180.0 / d;
 	Now.X = Pre.X + 0.5 * r * ( AngL + AngR ) * M_PI / 180.0 * sin( Now.Ang );
 	Now.Y = Pre.Y + 0.5 * r * ( AngL + AngR ) * M_PI / 180.0 * cos( Now.Ang );*/
