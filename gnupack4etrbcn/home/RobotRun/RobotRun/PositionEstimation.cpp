@@ -19,7 +19,7 @@
 //		→diff計算時にラジアンに変換している。*M_PI/180がそれ。
 // http://d.hatena.ne.jp/teammaru/20120107/1325962481
 // 変更履歴：
-//	2010/07/15	新規作成	foo
+//	2010/07/15	新規作成	nakatani
 //------------------------------------------------------------------------------
 void getPositionEstimation(const Position& Pre, S32 AngR, S32 AngL, F64 r, F64 d, Position& Now)
 {
