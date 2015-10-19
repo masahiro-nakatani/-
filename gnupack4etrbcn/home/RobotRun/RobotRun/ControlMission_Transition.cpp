@@ -1,3 +1,8 @@
+#include "Mission.h"
+#include "Technic.h"
+#include "Robot.h"
+#include "debug.h"
+
 class ControlMission_Transition : public Mission {
 	
 	Mission *posture_;
