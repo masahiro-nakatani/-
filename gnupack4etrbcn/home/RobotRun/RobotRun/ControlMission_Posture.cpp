@@ -11,20 +11,23 @@ class ControlMission_Posture : public Mission {
 	int step_;
 	int interval_;
 	bool increment_;
+	int GyroOffset_;
 public:
 
-    ControlMission_Posture(int from, int to, int step, int interval) 
+    ControlMission_Posture(int from, int to, int step, int interval, int GyroOffset) 
 		: from_(from)
 		, to_(to)
 		, step_(step)
 		, interval_(interval)
 		, increment_(from<to)
+		, GyroOffset_(GyroOffset)
 	{
 	}
 
 	virtual void Init(RobotInfo ri, NavInfo ni)
 	{
 		timer_start(interval_);
+		Robot::Instance().SetGyroOffset(Robot::Instance().GetGyroOffset() - GyroOffset_);
     }
 
     virtual bool Run(RobotInfo ri, NavInfo ni, EventFlag evf, RobotCmd& cmd )
