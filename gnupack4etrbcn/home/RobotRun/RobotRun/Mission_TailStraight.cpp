@@ -1,6 +1,7 @@
 #include "Mission.h"
 #include "Technic.h"
 #include "ControlMission_PID.cpp"
+#include "ControlMission_SpeedPID.cpp"
 #include "ControlMission_Speed.cpp"
 #include "ControlMission_Posture.cpp"
 #include "DetectionMission_Time.cpp"
@@ -19,13 +20,18 @@ class Mission_TailStraight : public Mission {
 		STAGE_STRAIGHT_TO_GOAL,
 		MISSION_COUNT = STAGE_STRAIGHT_TO_GOAL + 1 
 	};
-	ControlMission_PID run_straight_slow_;
+	ControlMission_SpeedPID run_straight_slow_;
+	ControlMission_Transition run_straight_midle_;
+	ControlMission_Speed run_direct_;
 	ControlMission_Transition stop_;
 	ControlMission_Transition tilt_under_;
 	ControlMission_Transition tilt_upper_;
 	DetectionMission_Sonar sonar_mission_;
+	DetectionMission_Time timed_mission_500;
 	DetectionMission_Time timed_mission_1000;
 	DetectionMission_Time timed_mission_3000;
+	DetectionMission_Time timed_mission_4000;
+	DetectionMission_Time timed_mission_5000;
 	Mission* p_control_missions_[MISSION_COUNT];
 	Mission* p_detection_mission_[MISSION_COUNT];
 	int mission_index_;
@@ -37,29 +43,34 @@ class Mission_TailStraight : public Mission {
 public:
 
     Mission_TailStraight(S32 timer = 0, S16 speed = 125) 
-		: run_straight_slow_(30,0)
+		: run_straight_slow_(45,10, 1, 100)
+		, run_straight_midle_(no_posture(), new ControlMission_SpeedPID(10,10, 1, 100))
+		, run_direct_(20, 20, 20, 20, 1, 100)
 		, stop_(no_posture(), new ControlMission_Speed(30,30,0,0,1,10))
-		, tilt_under_(new ControlMission_Posture(80,40,1,100),zero_speed())
-		, tilt_upper_(new ControlMission_Posture(90,100,1,100),zero_speed())
-		, sonar_mission_(20)
+		, tilt_under_(new ControlMission_Posture(80,70,1,100),zero_speed())
+		, tilt_upper_(new ControlMission_Posture(90,110,1,100),zero_speed())
+		, sonar_mission_(10)
+		, timed_mission_500(500)
 		, timed_mission_1000(1000)
 		, timed_mission_3000(3000)
+		, timed_mission_4000(4000)
+		, timed_mission_5000(5000)
 		, mission_index_(0)
 		, mission_count_( sizeof(p_control_missions_)/sizeof(p_control_missions_[0]) )
 	{
 		p_control_missions_[STAGE_STRAIGHT_TO_GATE] = &run_straight_slow_;
 		p_detection_mission_[STAGE_STRAIGHT_TO_GATE] = &sonar_mission_;
 		p_control_missions_[STAGE_STOP_BEFORE_TILT_UNDER] = &stop_;
-		p_detection_mission_[STAGE_STOP_BEFORE_TILT_UNDER] = &timed_mission_1000;
+		p_detection_mission_[STAGE_STOP_BEFORE_TILT_UNDER] = &timed_mission_500;
 		p_control_missions_[STAGE_TILT_UNDER] = &tilt_under_;
 		p_detection_mission_[STAGE_TILT_UNDER] = &timed_mission_3000;
-		p_control_missions_[STAGE_PASSING_GATE] = &run_straight_slow_;
-		p_detection_mission_[STAGE_PASSING_GATE] = &timed_mission_1000;
+		p_control_missions_[STAGE_PASSING_GATE] = &run_direct_;
+		p_detection_mission_[STAGE_PASSING_GATE] = &timed_mission_4000;
 		p_control_missions_[STAGE_STOP_BEFORE_TILT_UPPER] = &stop_;
 		p_detection_mission_[STAGE_STOP_BEFORE_TILT_UPPER] = &timed_mission_1000;
 		p_control_missions_[STAGE_TILT_UPPER] = &tilt_upper_;
 		p_detection_mission_[STAGE_TILT_UPPER] = &timed_mission_3000;
-		p_control_missions_[STAGE_STRAIGHT_TO_GOAL] = &run_straight_slow_;
+		p_control_missions_[STAGE_STRAIGHT_TO_GOAL] = &run_straight_midle_;
 		p_detection_mission_[STAGE_STRAIGHT_TO_GOAL] = &timed_mission_3000;
     }
 
