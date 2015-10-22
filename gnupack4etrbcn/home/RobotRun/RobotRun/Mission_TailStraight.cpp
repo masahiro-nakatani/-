@@ -38,16 +38,19 @@ class Mission_TailStraight : public Mission {
 	int mission_count_;
 
 	static ControlMission_Speed* zero_speed(){ return new ControlMission_Speed(0,0,0,0,0,0); }
-	static ControlMission_Posture* no_posture(){ return new ControlMission_Posture(RobotCmd::NO_TAIL_CNTL,RobotCmd::NO_TAIL_CNTL,0,0,0); }
+	static ControlMission_Posture* no_posture(){ return new ControlMission_Posture(RobotCmd::NO_TAIL_CNTL,RobotCmd::NO_TAIL_CNTL,0,0); }
 
 public:
 
     Mission_TailStraight(S32 timer = 0, S16 speed = 125) 
-		: run_straight_slow_(30,RobotCmd::NO_TAIL_CNTL)
+		: run_straight_slow_(45,10, 1, 100)
+		, run_straight_midle_(no_posture(), new ControlMission_SpeedPID(10,10, 1, 100))
+		, run_direct_(20, 20, 20, 20, 1, 100)
 		, stop_(no_posture(), new ControlMission_Speed(30,30,0,0,1,10))
-		, tilt_under_(new ControlMission_Posture(80,40,1,100, -20),zero_speed())
-		, tilt_upper_(new ControlMission_Posture(90,100,1,100, 20),zero_speed())
-		, sonar_mission_(20)
+		, tilt_under_(new ControlMission_Posture(80,70,1,100),zero_speed())
+		, tilt_upper_(new ControlMission_Posture(90,110,1,100),zero_speed())
+		, sonar_mission_(10)
+		, timed_mission_500(500)
 		, timed_mission_1000(1000)
 		, timed_mission_3000(3000)
 		, timed_mission_4000(4000)
@@ -57,23 +60,17 @@ public:
 	{
 		p_control_missions_[STAGE_STRAIGHT_TO_GATE] = &run_straight_slow_;
 		p_detection_mission_[STAGE_STRAIGHT_TO_GATE] = &sonar_mission_;
-
-		p_control_missions_[STAGE_TILT_UNDER] = &tilt_under_;
-		p_detection_mission_[STAGE_TILT_UNDER] = &timed_mission_1000;
-		
 		p_control_missions_[STAGE_STOP_BEFORE_TILT_UNDER] = &stop_;
 		p_detection_mission_[STAGE_STOP_BEFORE_TILT_UNDER] = &timed_mission_500;
-
+		p_control_missions_[STAGE_TILT_UNDER] = &tilt_under_;
+		p_detection_mission_[STAGE_TILT_UNDER] = &timed_mission_3000;
 		p_control_missions_[STAGE_PASSING_GATE] = &run_direct_;
 		p_detection_mission_[STAGE_PASSING_GATE] = &timed_mission_4000;
-
 		p_control_missions_[STAGE_STOP_BEFORE_TILT_UPPER] = &stop_;
 		p_detection_mission_[STAGE_STOP_BEFORE_TILT_UPPER] = &timed_mission_1000;
-
 		p_control_missions_[STAGE_TILT_UPPER] = &tilt_upper_;
 		p_detection_mission_[STAGE_TILT_UPPER] = &timed_mission_3000;
-
-		p_control_missions_[STAGE_STRAIGHT_TO_GOAL] = &run_straight_slow_;
+		p_control_missions_[STAGE_STRAIGHT_TO_GOAL] = &run_straight_midle_;
 		p_detection_mission_[STAGE_STRAIGHT_TO_GOAL] = &timed_mission_3000;
     }
 
