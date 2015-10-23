@@ -16,7 +16,7 @@ class Mission_TailStraight : public Mission {
 	};
 	ControlMission_SpeedPID run_straight_slow_;
 	ControlMission_Transition run_straight_midle_;
-	ControlMission_Speed run_direct_;
+	ControlMission_Transition run_direct_;
 	ControlMission_Transition stop_;
 	ControlMission_Transition tilt_under_;
 	ControlMission_Transition tilt_upper_;
@@ -39,10 +39,10 @@ public:
     Mission_TailStraight(S32 timer = 0, S16 speed = 125) 
 		: run_straight_slow_(45,10, 1, 100)
 		, run_straight_midle_(no_posture(), new ControlMission_SpeedPID(10,10, 1, 100), RobotCmd::NORMAL_MODE)
-		, run_direct_(20, 20, 20, 20, 1, 100)
-		, stop_(no_posture(), new ControlMission_Speed(30,30,0,0,1,10), RobotCmd::NORMAL_MODE)
-		, tilt_under_(new ControlMission_Posture(80,70,1,100),zero_speed(), RobotCmd::NORMAL_MODE)
-		, tilt_upper_(new ControlMission_Posture(90,110,1,100),zero_speed(), RobotCmd::NORMAL_MODE)
+		, run_direct_(no_posture(),new ControlMission_Speed(20, 20, 20, 20, 1, 100), RobotCmd::DIRECT_MODE )
+		, stop_(no_posture(), new ControlMission_Speed(30,30,0,0,1,10), RobotCmd::DIRECT_MODE)
+		, tilt_under_(new ControlMission_Posture(80,70,1,100),zero_speed(), RobotCmd::DIRECT_MODE)
+		, tilt_upper_(new ControlMission_Posture(90,110,1,100),zero_speed(), RobotCmd::DIRECT_MODE)
 		, sonar_mission_(10)
 		, timed_mission_500(500)
 		, timed_mission_1000(1000)
