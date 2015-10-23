@@ -124,6 +124,12 @@ void Robot::Process(void){
         this->CheckGyroSensor();
         this->CheckLightSensor();
         this->CheckRemoteStart();
+		if(this->bt_connect_state_)
+		{
+			RobotCmd cmd;
+			NavInfo info;
+			this->BTSend(cmd,GetInfo(),info);
+		}
         Sleep_msec(20);
     }
 }

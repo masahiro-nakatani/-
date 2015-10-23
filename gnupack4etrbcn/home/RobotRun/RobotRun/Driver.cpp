@@ -435,7 +435,7 @@ SINT Driver::state_driving(void){
         r_info = robot_.GetInfo();
         n_info = navigator_.GetInfo(r_info);
 
-#if 1
+#if 0
         // Bluetooth データ送信
         if ( this->is_bt_connect_ )
 		{
