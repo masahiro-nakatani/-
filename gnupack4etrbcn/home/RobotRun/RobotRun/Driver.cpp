@@ -442,7 +442,6 @@ SINT Driver::state_driving(void){
             robot_.BTSend(cmd, r_info, n_info);
         }
 #endif
-		int i=0;
         while(1)
 		{
             bool ret = mission_list_[current_index_]->Run(r_info, n_info, this->event_flag_, cmd);
@@ -464,13 +463,6 @@ SINT Driver::state_driving(void){
                 }
             } 
 
-			// Bluetooth データ送信
-			if ( this->is_bt_connect_  && i==10)
-			{
-				robot_.BTSend(cmd, r_info, n_info);
-				i=0;
-			}
-			i++;
 			this->ClearEventFlag();
         }
     }
