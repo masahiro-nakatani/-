@@ -14,6 +14,7 @@ class Mission_TailStraight : public Mission {
 	{ 
 		MISSION_COUNT = 7
 	};
+	TecPIDTrace pid_trace_;
 	ControlMission_SpeedPID run_straight_slow_;
 	ControlMission_Transition run_straight_midle_;
 	ControlMission_Transition run_direct_;
@@ -37,8 +38,8 @@ class Mission_TailStraight : public Mission {
 public:
 
     Mission_TailStraight(S32 timer = 0, S16 speed = 125) 
-		: run_straight_slow_(45,10, 1, 100)
-		, run_straight_midle_(new ControlMission_Posture(RobotCmd::NO_TAIL_CNTL,RobotCmd::NO_TAIL_CNTL,0,0), new ControlMission_SpeedPID(40,50, 1, 100), RobotCmd::NORMAL_MODE)
+		: run_straight_slow_(&pid_trace_, 45,10, 1, 100)
+		, run_straight_midle_(new ControlMission_Posture(RobotCmd::NO_TAIL_CNTL,RobotCmd::NO_TAIL_CNTL,0,0), new ControlMission_SpeedPID(&pid_trace_, 40,50, 1, 100), RobotCmd::NORMAL_MODE)
 		, run_direct_(no_posture(),new ControlMission_Speed(20, 20, 20, 20, 1, 100), RobotCmd::DIRECT_MODE )
 		, stop_(no_posture(), new ControlMission_Speed(30,30,0,0,1,10), RobotCmd::DIRECT_MODE)
 		, tilt_under_(new ControlMission_Posture(80,70,1,100),zero_speed(), RobotCmd::DIRECT_MODE)
