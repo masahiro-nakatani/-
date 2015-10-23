@@ -371,7 +371,7 @@ void Robot::BTSend(RobotCmd cmd, RobotInfo ri, NavInfo ni){
 
 
 	dataS16[0] = static_cast<S16>(val_light);       // (ADC S1) 光センサ
-    dataS16[1] = static_cast<S16>(gyro_data);        // (ADC S2) ジャイロセンサ
+    dataS16[1] = static_cast<S16>(this->gyro_sensor_.get());        // (ADC S2) ジャイロセンサ
 	//dataS16[2] = static_cast<S16>(sonar_distance); // (ADC S3) ジャイロセンサ
     dataS16[2] = static_cast<S16>(ni.pos.X); // (ADC S3) ジャイロセンサ
 	dataS16[3] = static_cast<S16>(ni.pos.Y); // (ADC S3) ジャイロセンサ
