@@ -12,14 +12,7 @@
 class Mission_TailStraight : public Mission {
 	enum
 	{ 
-		STAGE_STRAIGHT_TO_GATE = 0,
-		STAGE_STOP_BEFORE_TILT_UNDER,
-		STAGE_TILT_UNDER,
-		STAGE_PASSING_GATE,
-		STAGE_STOP_BEFORE_TILT_UPPER,
-		STAGE_TILT_UPPER,
-		STAGE_STRAIGHT_TO_GOAL,
-		MISSION_COUNT = STAGE_STRAIGHT_TO_GOAL + 1 
+		MISSION_COUNT = 7
 	};
 	ControlMission_SpeedPID run_straight_slow_;
 	ControlMission_Transition run_straight_midle_;
@@ -59,26 +52,26 @@ public:
 		, mission_index_(0)
 		, mission_count_( sizeof(p_control_missions_)/sizeof(p_control_missions_[0]) )
 	{
-		p_control_missions_[STAGE_STRAIGHT_TO_GATE] = &run_straight_slow_;
-		p_detection_mission_[STAGE_STRAIGHT_TO_GATE] = &sonar_mission_;
+		p_control_missions_[0] = &run_straight_slow_;
+		p_detection_mission_[0] = &sonar_mission_;
 
-		p_control_missions_[STAGE_STOP_BEFORE_TILT_UNDER] = &stop_;
-		p_detection_mission_[STAGE_STOP_BEFORE_TILT_UNDER] = &timed_mission_500;
+		p_control_missions_[1] = &stop_;
+		p_detection_mission_[1] = &timed_mission_500;
 
-		p_control_missions_[STAGE_TILT_UNDER] = &tilt_under_;
-		p_detection_mission_[STAGE_TILT_UNDER] = &timed_mission_3000;
+		p_control_missions_[2] = &tilt_under_;
+		p_detection_mission_[2] = &timed_mission_3000;
 
-		p_control_missions_[STAGE_PASSING_GATE] = &run_direct_;
-		p_detection_mission_[STAGE_PASSING_GATE] = &timed_mission_4000;
+		p_control_missions_[3] = &run_direct_;
+		p_detection_mission_[3] = &timed_mission_4000;
 
-		p_control_missions_[STAGE_STOP_BEFORE_TILT_UPPER] = &stop_;
-		p_detection_mission_[STAGE_STOP_BEFORE_TILT_UPPER] = &timed_mission_1000;
+		p_control_missions_[4] = &stop_;
+		p_detection_mission_[4] = &timed_mission_1000;
 
-		p_control_missions_[STAGE_TILT_UPPER] = &tilt_upper_;
-		p_detection_mission_[STAGE_TILT_UPPER] = &timed_mission_3000;
+		p_control_missions_[5] = &tilt_upper_;
+		p_detection_mission_[5] = &timed_mission_3000;
 
-		p_control_missions_[STAGE_STRAIGHT_TO_GOAL] = &run_straight_midle_;
-		p_detection_mission_[STAGE_STRAIGHT_TO_GOAL] = &timed_mission_3000;
+		p_control_missions_[6] = &run_straight_midle_;
+		p_detection_mission_[6] = &timed_mission_3000;
     }
 
     virtual void Init(RobotInfo ri, NavInfo ni){
