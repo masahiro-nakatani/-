@@ -7,12 +7,14 @@ class ControlMission_Transition : public Mission {
 	
 	Mission *posture_;
 	Mission *speed_;
+	RobotCmd::DRIVE_MODE mode_;
 
 public:
 
-    ControlMission_Transition(Mission *posture,  Mission *speed)
+    ControlMission_Transition(Mission *posture,  Mission *speed, RobotCmd::DRIVE_MODE mode)
 		: posture_(posture)
 		, speed_(speed)
+		, mode_(mode)
 	{
 	}
 
@@ -30,6 +32,7 @@ public:
 
     virtual bool Run(RobotInfo ri, NavInfo ni, EventFlag evf, RobotCmd& cmd )
 	{
+		cmd.Mode = mode_;
 		posture_->Run(ri,ni,evf,cmd);
 		speed_->Run(ri,ni,evf,cmd);
 		return true;

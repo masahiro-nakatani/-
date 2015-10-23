@@ -14,25 +14,22 @@ class ControlMission_Posture : public Mission {
 	int GyroOffset_;
 public:
 
-    ControlMission_Posture(int from, int to, int step, int interval, int GyroOffset) 
+    ControlMission_Posture(int from, int to, int step, int interval) 
 		: from_(from)
 		, to_(to)
 		, step_(step)
 		, interval_(interval)
 		, increment_(from<to)
-		, GyroOffset_(GyroOffset)
 	{
 	}
 
 	virtual void Init(RobotInfo ri, NavInfo ni)
 	{
 		timer_start(interval_);
-		Robot::Instance().SetGyroOffset(Robot::Instance().GetGyroOffset() - GyroOffset_);
     }
 
     virtual bool Run(RobotInfo ri, NavInfo ni, EventFlag evf, RobotCmd& cmd )
 	{
-		cmd.Mode = RobotCmd::DIRECT_MODE;
 		cmd.param3 = from_;
 
 		if(to_==from_) return true;

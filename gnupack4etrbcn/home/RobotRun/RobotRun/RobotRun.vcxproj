@@ -97,6 +97,7 @@
     <ClCompile Include="CourseInfo.cpp" />
     <ClCompile Include="DetectionMission_Time.cpp" />
     <ClCompile Include="Driver.cpp" />
+    <ClCompile Include="ControlMission_Gyro_offset.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MarkerCheck.cpp" />
     <ClCompile Include="Mission.cpp" />
