@@ -1774,97 +1774,97 @@ LOAD /home/GNUARM/bin/../lib/gcc/arm-elf/4.0.2/thumb/interwork/libgcc.a
                 0x0020c664        0x4 build/Driver.o
                 0x0020c664                _ZN13RobotObserver6NotifyEN5Robot10RobotEventE
  .gnu.linkonce.t._ZN23ControlMission_SpeedPID3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
-                0x0020c668       0xa0 build/Driver.o
+                0x0020c668       0x9c build/Driver.o
                 0x0020c668                _ZN23ControlMission_SpeedPID3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
  .gnu.linkonce.t._ZN25ControlMission_TransitionD1Ev
-                0x0020c708       0x38 build/Driver.o
-                0x0020c708                _ZN25ControlMission_TransitionD1Ev
+                0x0020c704       0x38 build/Driver.o
+                0x0020c704                _ZN25ControlMission_TransitionD1Ev
  .gnu.linkonce.t._ZN25ControlMission_TransitionD0Ev
-                0x0020c740       0x40 build/Driver.o
-                0x0020c740                _ZN25ControlMission_TransitionD0Ev
+                0x0020c73c       0x40 build/Driver.o
+                0x0020c73c                _ZN25ControlMission_TransitionD0Ev
  .gnu.linkonce.t._ZN25ControlMission_Transition4InitE9RobotInfo7NavInfo
-                0x0020c780       0xb8 build/Driver.o
-                0x0020c780                _ZN25ControlMission_Transition4InitE9RobotInfo7NavInfo
+                0x0020c77c       0xb8 build/Driver.o
+                0x0020c77c                _ZN25ControlMission_Transition4InitE9RobotInfo7NavInfo
  .gnu.linkonce.t._ZN23ControlMission_SpeedPIDD1Ev
-                0x0020c838       0x14 build/Driver.o
-                0x0020c838                _ZN23ControlMission_SpeedPIDD1Ev
+                0x0020c834       0x14 build/Driver.o
+                0x0020c834                _ZN23ControlMission_SpeedPIDD1Ev
  .gnu.linkonce.t._ZN23ControlMission_SpeedPIDD0Ev
-                0x0020c84c       0x1c build/Driver.o
-                0x0020c84c                _ZN23ControlMission_SpeedPIDD0Ev
+                0x0020c848       0x1c build/Driver.o
+                0x0020c848                _ZN23ControlMission_SpeedPIDD0Ev
  .gnu.linkonce.t._ZN22DetectionMission_SonarD1Ev
-                0x0020c868       0x14 build/Driver.o
-                0x0020c868                _ZN22DetectionMission_SonarD1Ev
+                0x0020c864       0x14 build/Driver.o
+                0x0020c864                _ZN22DetectionMission_SonarD1Ev
  .gnu.linkonce.t._ZN22DetectionMission_SonarD0Ev
-                0x0020c87c       0x1c build/Driver.o
-                0x0020c87c                _ZN22DetectionMission_SonarD0Ev
+                0x0020c878       0x1c build/Driver.o
+                0x0020c878                _ZN22DetectionMission_SonarD0Ev
  .gnu.linkonce.t._ZN21DetectionMission_TimeD1Ev
-                0x0020c898       0x14 build/Driver.o
-                0x0020c898                _ZN21DetectionMission_TimeD1Ev
+                0x0020c894       0x14 build/Driver.o
+                0x0020c894                _ZN21DetectionMission_TimeD1Ev
  .gnu.linkonce.t._ZN21DetectionMission_TimeD0Ev
-                0x0020c8ac       0x1c build/Driver.o
-                0x0020c8ac                _ZN21DetectionMission_TimeD0Ev
+                0x0020c8a8       0x1c build/Driver.o
+                0x0020c8a8                _ZN21DetectionMission_TimeD0Ev
  .gnu.linkonce.t._ZN20Mission_TailStraight4InitE9RobotInfo7NavInfo
-                0x0020c8c8       0xbc build/Driver.o
-                0x0020c8c8                _ZN20Mission_TailStraight4InitE9RobotInfo7NavInfo
+                0x0020c8c4       0xbc build/Driver.o
+                0x0020c8c4                _ZN20Mission_TailStraight4InitE9RobotInfo7NavInfo
  .gnu.linkonce.t._ZN22ControlMission_PostureD1Ev
-                0x0020c984       0x14 build/Driver.o
-                0x0020c984                _ZN22ControlMission_PostureD1Ev
+                0x0020c980       0x14 build/Driver.o
+                0x0020c980                _ZN22ControlMission_PostureD1Ev
  .gnu.linkonce.t._ZN22ControlMission_PostureD0Ev
-                0x0020c998       0x1c build/Driver.o
-                0x0020c998                _ZN22ControlMission_PostureD0Ev
+                0x0020c994       0x1c build/Driver.o
+                0x0020c994                _ZN22ControlMission_PostureD0Ev
  .gnu.linkonce.t._ZN20ControlMission_SpeedD1Ev
-                0x0020c9b4       0x14 build/Driver.o
-                0x0020c9b4                _ZN20ControlMission_SpeedD1Ev
+                0x0020c9b0       0x14 build/Driver.o
+                0x0020c9b0                _ZN20ControlMission_SpeedD1Ev
  .gnu.linkonce.t._ZN20ControlMission_SpeedD0Ev
-                0x0020c9c8       0x1c build/Driver.o
-                0x0020c9c8                _ZN20ControlMission_SpeedD0Ev
+                0x0020c9c4       0x1c build/Driver.o
+                0x0020c9c4                _ZN20ControlMission_SpeedD0Ev
  .gnu.linkonce.t._ZN25ControlMission_Transition3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
-                0x0020c9e4       0xe8 build/Driver.o
-                0x0020c9e4                _ZN25ControlMission_Transition3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
+                0x0020c9e0       0xe8 build/Driver.o
+                0x0020c9e0                _ZN25ControlMission_Transition3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
  .gnu.linkonce.t._ZN20Mission_TailStraight3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
-                0x0020cacc      0x1cc build/Driver.o
-                0x0020cacc                _ZN20Mission_TailStraight3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
+                0x0020cac8      0x1cc build/Driver.o
+                0x0020cac8                _ZN20Mission_TailStraight3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
  .gnu.linkonce.t._ZN22DetectionMission_Sonar3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
-                0x0020cc98       0x48 build/Driver.o
-                0x0020cc98                _ZN22DetectionMission_Sonar3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
+                0x0020cc94       0x48 build/Driver.o
+                0x0020cc94                _ZN22DetectionMission_Sonar3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
  .gnu.linkonce.t._ZN21DetectionMission_Time4InitE9RobotInfo7NavInfo
-                0x0020cce0       0x2c build/Driver.o
-                0x0020cce0                _ZN21DetectionMission_Time4InitE9RobotInfo7NavInfo
+                0x0020ccdc       0x2c build/Driver.o
+                0x0020ccdc                _ZN21DetectionMission_Time4InitE9RobotInfo7NavInfo
  .gnu.linkonce.t._ZN22ControlMission_Posture4InitE9RobotInfo7NavInfo
-                0x0020cd0c       0x28 build/Driver.o
-                0x0020cd0c                _ZN22ControlMission_Posture4InitE9RobotInfo7NavInfo
+                0x0020cd08       0x28 build/Driver.o
+                0x0020cd08                _ZN22ControlMission_Posture4InitE9RobotInfo7NavInfo
  .gnu.linkonce.t._ZN20ControlMission_Speed4InitE9RobotInfo7NavInfo
-                0x0020cd34       0x28 build/Driver.o
-                0x0020cd34                _ZN20ControlMission_Speed4InitE9RobotInfo7NavInfo
+                0x0020cd30       0x28 build/Driver.o
+                0x0020cd30                _ZN20ControlMission_Speed4InitE9RobotInfo7NavInfo
  .gnu.linkonce.t._ZN23ControlMission_SpeedPID4InitE9RobotInfo7NavInfo
-                0x0020cd5c       0x28 build/Driver.o
-                0x0020cd5c                _ZN23ControlMission_SpeedPID4InitE9RobotInfo7NavInfo
+                0x0020cd58       0x28 build/Driver.o
+                0x0020cd58                _ZN23ControlMission_SpeedPID4InitE9RobotInfo7NavInfo
  .gnu.linkonce.t._ZN21DetectionMission_Time3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
-                0x0020cd84       0x48 build/Driver.o
-                0x0020cd84                _ZN21DetectionMission_Time3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
+                0x0020cd80       0x48 build/Driver.o
+                0x0020cd80                _ZN21DetectionMission_Time3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
  .gnu.linkonce.t._ZN22ControlMission_Posture3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
-                0x0020cdcc       0x64 build/Driver.o
-                0x0020cdcc                _ZN22ControlMission_Posture3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
+                0x0020cdc8       0x64 build/Driver.o
+                0x0020cdc8                _ZN22ControlMission_Posture3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
  .gnu.linkonce.t._ZN20ControlMission_Speed3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
-                0x0020ce30       0x94 build/Driver.o
-                0x0020ce30                _ZN20ControlMission_Speed3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
+                0x0020ce2c       0x94 build/Driver.o
+                0x0020ce2c                _ZN20ControlMission_Speed3RunE9RobotInfo7NavInfo9EventFlagR8RobotCmd
  .gnu.linkonce.t._ZN20Mission_TailStraightD1Ev
-                0x0020cec4      0x14c build/Driver.o
-                0x0020cec4                _ZN20Mission_TailStraightD1Ev
+                0x0020cec0      0x14c build/Driver.o
+                0x0020cec0                _ZN20Mission_TailStraightD1Ev
  .gnu.linkonce.t._ZN20Mission_TailStraightD0Ev
-                0x0020d010      0x150 build/Driver.o
-                0x0020d010                _ZN20Mission_TailStraightD0Ev
+                0x0020d00c      0x150 build/Driver.o
+                0x0020d00c                _ZN20Mission_TailStraightD0Ev
  .gnu.linkonce.r._ZTV7Mission
-                0x0020d160       0x1c build/Mission.o
-                0x0020d160                _ZTV7Mission
+                0x0020d15c       0x1c build/Mission.o
+                0x0020d15c                _ZTV7Mission
  .gnu.linkonce.r._ZTVN7ecrobot3I2cE
-                0x0020d17c       0x10 /home/nxtOSEK/ecrobot/../ecrobot/libecrobot++.a(I2c.o)
-                0x0020d17c                _ZTVN7ecrobot3I2cE
+                0x0020d178       0x10 /home/nxtOSEK/ecrobot/../ecrobot/libecrobot++.a(I2c.o)
+                0x0020d178                _ZTVN7ecrobot3I2cE
  .gnu.linkonce.r._ZTVN7ecrobot11LightSensorE
-                0x0020d18c       0x10 /home/nxtOSEK/ecrobot/../ecrobot/libecrobot++.a(LightSensor.o)
-                0x0020d18c                _ZTVN7ecrobot11LightSensorE
+                0x0020d188       0x10 /home/nxtOSEK/ecrobot/../ecrobot/libecrobot++.a(LightSensor.o)
+                0x0020d188                _ZTVN7ecrobot11LightSensorE
                 0x0020d1a0                . = ALIGN (0x10)
- *fill*         0x0020d19c        0x4 00
+ *fill*         0x0020d198        0x8 00
 
 .tors           0x0020d1a0       0x20
                 0x0020d1a0                . = ALIGN (0x10)
