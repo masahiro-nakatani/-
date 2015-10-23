@@ -38,7 +38,7 @@ public:
 
     Mission_TailStraight(S32 timer = 0, S16 speed = 125) 
 		: run_straight_slow_(45,10, 1, 100)
-		, run_straight_midle_(no_posture(), new ControlMission_SpeedPID(10,10, 1, 100), RobotCmd::NORMAL_MODE)
+		, run_straight_midle_(new ControlMission_Posture(RobotCmd::NO_TAIL_CNTL,RobotCmd::NO_TAIL_CNTL,0,0), new ControlMission_SpeedPID(40,50, 1, 100), RobotCmd::NORMAL_MODE)
 		, run_direct_(no_posture(),new ControlMission_Speed(20, 20, 20, 20, 1, 100), RobotCmd::DIRECT_MODE )
 		, stop_(no_posture(), new ControlMission_Speed(30,30,0,0,1,10), RobotCmd::DIRECT_MODE)
 		, tilt_under_(new ControlMission_Posture(80,70,1,100),zero_speed(), RobotCmd::DIRECT_MODE)
@@ -52,9 +52,9 @@ public:
 		, mission_index_(0)
 		, mission_count_( sizeof(p_control_missions_)/sizeof(p_control_missions_[0]) )
 	{
-		p_control_missions_[0] = &run_straight_slow_;
+		p_control_missions_[0] = &run_straight_midle_;
 		p_detection_mission_[0] = &sonar_mission_;
-
+		
 		p_control_missions_[1] = &stop_;
 		p_detection_mission_[1] = &timed_mission_500;
 
@@ -70,7 +70,7 @@ public:
 		p_control_missions_[5] = &tilt_upper_;
 		p_detection_mission_[5] = &timed_mission_3000;
 
-		p_control_missions_[6] = &run_straight_midle_;
+		p_control_missions_[6] = &run_straight_slow_;
 		p_detection_mission_[6] = &timed_mission_3000;
     }
 

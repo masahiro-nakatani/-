@@ -32,9 +32,9 @@ public:
 
     virtual bool Run(RobotInfo ri, NavInfo ni, EventFlag evf, RobotCmd& cmd )
 	{
-		cmd.Mode = mode_;
 		posture_->Run(ri,ni,evf,cmd);
 		speed_->Run(ri,ni,evf,cmd);
+		cmd.Mode = mode_;
 		return true;
     }
 };
