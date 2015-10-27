@@ -27,6 +27,7 @@ class Mission_TailStraight : public Mission {
 	DetectionMission_Time timed_mission_3000;
 	DetectionMission_Time timed_mission_4000;
 	DetectionMission_Time timed_mission_5000;
+	DetectionMission_Time timed_mission_10000;
 	Mission* p_control_missions_[MISSION_COUNT];
 	Mission* p_detection_mission_[MISSION_COUNT];
 	int mission_index_;
@@ -38,18 +39,19 @@ class Mission_TailStraight : public Mission {
 public:
 
     Mission_TailStraight(S32 timer = 0, S16 speed = 125) 
-		: run_straight_slow_(&pid_trace_, 40,10, 1, 100)
+		: run_straight_slow_(&pid_trace_, 10,40, 1, 100)
 		, run_straight_midle_(new ControlMission_Posture(0,0,0,0), new ControlMission_SpeedPID(&pid_trace_, 50,20, 1, 100), RobotCmd::NORMAL_MODE)
 		, run_direct_(no_posture(),new ControlMission_Speed(20, 20, 20, 20, 1, 100), RobotCmd::DIRECT_MODE )
 		, stop_(no_posture(), new ControlMission_Speed(30,30,0,0,1,10), RobotCmd::DIRECT_MODE)
 		, tilt_under_(new ControlMission_Posture(80,70,1,100),zero_speed(), RobotCmd::DIRECT_MODE)
-		, tilt_upper_(new ControlMission_Posture(90,110,1,100),zero_speed(), RobotCmd::DIRECT_MODE)
+		, tilt_upper_(new ControlMission_Posture(180,180,1,100),zero_speed(), RobotCmd::DIRECT_MODE)
 		, sonar_mission_(10)
 		, timed_mission_500(500)
 		, timed_mission_1000(1000)
 		, timed_mission_3000(3000)
 		, timed_mission_4000(4000)
 		, timed_mission_5000(5000)
+		, timed_mission_10000(10000)
 		, mission_index_(0)
 		, mission_count_( sizeof(p_control_missions_)/sizeof(p_control_missions_[0]) )
 	{
@@ -71,8 +73,8 @@ public:
 		p_control_missions_[5] = &tilt_upper_;
 		p_detection_mission_[5] = &timed_mission_3000;
 
-		p_control_missions_[6] = &run_straight_slow_;
-		p_detection_mission_[6] = &timed_mission_3000;
+		p_control_missions_[6] = &run_straight_midle_;
+		p_detection_mission_[6] = &timed_mission_10000;
     }
 
     virtual void Init(RobotInfo ri, NavInfo ni){

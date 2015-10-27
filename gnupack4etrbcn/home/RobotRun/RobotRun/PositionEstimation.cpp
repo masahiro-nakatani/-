@@ -37,7 +37,7 @@ void getPositionEstimation(const Position& Pre, S32 AngR, S32 AngL, F64 r, F64 d
 	Now.X = Pre.X + 0.5 * r * ( AngL + AngR ) * M_PI / 180.0 * sin( Now.Ang );
 	Now.Y = Pre.Y + 0.5 * r * ( AngL + AngR ) * M_PI / 180.0 * cos( Now.Ang );*/
 	
-	Robot::Instance().GetLCD().clear();
-	Robot::Instance().GetLCD().putf("d", static_cast<int>(Now.X * 100));
-	Robot::Instance().GetLCD().disp();
+	//Robot::Instance().GetLCD().clear();
+	//Robot::Instance().GetLCD().putf("d", static_cast<int>(Now.X * 100));
+	//Robot::Instance().GetLCD().disp();
 }

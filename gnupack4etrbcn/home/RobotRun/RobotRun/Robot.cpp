@@ -172,6 +172,10 @@ VectorT<S8> Robot::calcPWM(VectorT<S16> cmd){
 
     logL = pwm.mX;
     logR = pwm.mY;
+	
+	Robot::Instance().GetLCD().clear();
+	Robot::Instance().GetLCD().putf("d", static_cast<int>(logL));
+	Robot::Instance().GetLCD().disp();
 
     return pwm;
 

@@ -144,7 +144,10 @@
     <ClCompile Include="ControlMission_Transition.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ControlMission_Gyro_offset.cpp">
+    <ClCompile Include="ControlMission_SpeedPID.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ControlMission_Calibration.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

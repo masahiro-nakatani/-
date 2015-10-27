@@ -1,8 +1,8 @@
 /*
  *  kernel_cfg.c
- *  Wed Sep 23 15:52:59 2015
+ *  Mon Oct 26 20:51:59 2015
  *  SG Version 2.00
- *  sg.exe Main.oil -os=ECC2 -ID:\ROBOT\et_robocon_devenv\gnupack4etrbcn\home\nxtOSEK\toppers_osek/sg/impl_oil -template=D:\ROBOT\et_robocon_devenv\gnupack4etrbcn\home\nxtOSEK\toppers_osek/sg/lego_nxt.sgt
+ *  sg.exe Main.oil -os=ECC2 -IC:\et_robocon_devenv\gnupack4etrbcn\home\nxtOSEK\toppers_osek/sg/impl_oil -template=C:\et_robocon_devenv\gnupack4etrbcn\home\nxtOSEK\toppers_osek/sg/lego_nxt.sgt
  */
 #include "osek_kernel.h"
 #include "kernel_id.h"
