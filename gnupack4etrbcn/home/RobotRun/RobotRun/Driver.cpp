@@ -371,6 +371,9 @@ SINT Driver::state_wait_start(void){
     Sleep_msec(500);
     robot_.Beep();
 
+	// 左右モーター調整
+	// TBD
+
 	robot_.GetLCD().clear();
 	robot_.GetLCD().putf("s", "TOUCH:START/STOP");
 	robot_.GetLCD().disp();

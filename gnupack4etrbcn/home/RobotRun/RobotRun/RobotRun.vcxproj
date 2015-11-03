@@ -107,6 +107,7 @@
     <ClCompile Include="Mission_DriftTurn.cpp" />
     <ClCompile Include="Mission_EtSumo_Ichiro.cpp" />
     <ClCompile Include="Mission_EtSumo_Jiro.cpp" />
+    <ClCompile Include="Mission_Footrace.cpp" />
     <ClCompile Include="Mission_GarageIn_Ichiro.cpp" />
     <ClCompile Include="Mission_GarageIn_Jiro.cpp" />
     <ClCompile Include="Mission_LookupGate_Ichiro.cpp" />
@@ -121,7 +122,6 @@
     <ClCompile Include="Mission_Stairs_Ichiro.cpp" />
     <ClCompile Include="Mission_Stairs_Jiro.cpp" />
     <ClCompile Include="Mission_TailStraight.cpp" />
-    <ClCompile Include="Mission_PosBased_Straight.cpp" />
     <ClCompile Include="Navigator.cpp" />
     <ClCompile Include="PIDController.cpp" />
     <ClCompile Include="PositionEstimation.cpp" />

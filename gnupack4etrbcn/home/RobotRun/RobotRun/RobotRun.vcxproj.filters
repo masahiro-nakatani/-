@@ -117,9 +117,6 @@
     <ClCompile Include="Mission_RemoteControl.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Mission_PosBased_Straight.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="PositionEstimation.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -148,6 +145,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="ControlMission_Calibration.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Mission_Footrace.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
