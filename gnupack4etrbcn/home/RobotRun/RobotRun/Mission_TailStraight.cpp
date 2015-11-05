@@ -12,12 +12,14 @@
 class Mission_TailStraight : public Mission {
 	enum
 	{ 
-		MISSION_COUNT = 7
+		MISSION_COUNT = 8
 	};
 	TecPIDTrace pid_trace_;
 	ControlMission_SpeedPID run_straight_slow_;
 	ControlMission_Transition run_straight_midle_;
+	ControlMission_Transition run_straight_start_;
 	ControlMission_Transition run_direct_;
+	ControlMission_Transition run_direct_goal_;
 	ControlMission_Transition stop_;
 	ControlMission_Transition tilt_under_;
 	ControlMission_Transition tilt_upper_;
@@ -41,10 +43,12 @@ public:
     Mission_TailStraight(S32 timer = 0, S16 speed = 125) 
 		: run_straight_slow_(&pid_trace_, 10,40, 1, 100)
 		, run_straight_midle_(new ControlMission_Posture(0,0,0,0), new ControlMission_SpeedPID(&pid_trace_, 50,20, 1, 100), RobotCmd::NORMAL_MODE)
+		, run_straight_start_(new ControlMission_Posture(0,0,0,0), new ControlMission_SpeedPID(&pid_trace_, 50,50, 1, 100), RobotCmd::NORMAL_MODE)
 		, run_direct_(no_posture(),new ControlMission_Speed(20, 20, 20, 20, 1, 100), RobotCmd::DIRECT_MODE )
+		, run_direct_goal_(no_posture(),new ControlMission_Speed(80, 80, 20, 20, 1, 100), RobotCmd::DIRECT_MODE )
 		, stop_(no_posture(), new ControlMission_Speed(30,30,0,0,1,10), RobotCmd::DIRECT_MODE)
 		, tilt_under_(new ControlMission_Posture(80,70,1,100),zero_speed(), RobotCmd::DIRECT_MODE)
-		, tilt_upper_(new ControlMission_Posture(180,180,1,100),zero_speed(), RobotCmd::DIRECT_MODE)
+		, tilt_upper_(new ControlMission_Posture(100,110,1,100),zero_speed(), RobotCmd::DIRECT_MODE)
 		, sonar_mission_(10)
 		, timed_mission_500(500)
 		, timed_mission_1000(1000)
@@ -55,26 +59,29 @@ public:
 		, mission_index_(0)
 		, mission_count_( sizeof(p_control_missions_)/sizeof(p_control_missions_[0]) )
 	{
-		p_control_missions_[0] = &run_straight_midle_;
-		p_detection_mission_[0] = &sonar_mission_;
+		p_control_missions_[0] = &run_straight_start_;
+		p_detection_mission_[0] = &timed_mission_5000;
+
+		p_control_missions_[1] = &run_straight_midle_;
+		p_detection_mission_[1] = &sonar_mission_;
 		
-		p_control_missions_[1] = &stop_;
-		p_detection_mission_[1] = &timed_mission_500;
+		p_control_missions_[2] = &stop_;
+		p_detection_mission_[2] = &timed_mission_500;
 
-		p_control_missions_[2] = &tilt_under_;
-		p_detection_mission_[2] = &timed_mission_3000;
+		p_control_missions_[3] = &tilt_under_;
+		p_detection_mission_[3] = &timed_mission_3000;
 
-		p_control_missions_[3] = &run_direct_;
-		p_detection_mission_[3] = &timed_mission_4000;
+		p_control_missions_[4] = &run_direct_;
+		p_detection_mission_[4] = &timed_mission_4000;
 
-		p_control_missions_[4] = &stop_;
-		p_detection_mission_[4] = &timed_mission_1000;
+		p_control_missions_[5] = &stop_;
+		p_detection_mission_[5] = &timed_mission_1000;
 
-		p_control_missions_[5] = &tilt_upper_;
-		p_detection_mission_[5] = &timed_mission_3000;
+		p_control_missions_[6] = &tilt_upper_;
+		p_detection_mission_[6] = &timed_mission_3000;
 
-		p_control_missions_[6] = &run_straight_midle_;
-		p_detection_mission_[6] = &timed_mission_10000;
+		p_control_missions_[7] = &run_direct_goal_;
+		p_detection_mission_[7] = &timed_mission_10000;
     }
 
     virtual void Init(RobotInfo ri, NavInfo ni){
