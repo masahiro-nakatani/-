@@ -4,10 +4,18 @@
 #include "debug.h"
 
 class DetectionMission_Gray : public Mission {
-
+	int gray_count_;
+	int count_max_;
 public:
-	DetectionMission_Gray()
+	DetectionMission_Gray(int count_max)
 	{
+		count_max_ = count_max;
+	}
+
+	virtual void Init(RobotInfo ri, NavInfo ni)
+	{
+		gray_count_ = 0;
+
 	}
 
 	virtual bool Run(RobotInfo ri, NavInfo ni, EventFlag evf, RobotCmd& cmd) 
@@ -19,11 +27,17 @@ public:
 		S16 valB = CourseInfo::colorBlack - ri.light_sensor_val;
 		if (valB < 0) valB = -valB;
 
-		if (valG<valW && valG<valB)
+		if (valG<valB && valG<valW)
 		{
-			S16 temp = CourseInfo::colorBlack;
-			CourseInfo::colorBlack = CourseInfo::colorGray;
-			CourseInfo::colorGray = temp;
+			gray_count_++;
+		}
+		else if(valG > valB)
+		{
+			gray_count_ = 0;
+		}
+
+		if (gray_count_ > count_max_)
+		{
 			Robot::Instance().Beep();
 			return false;
 		}

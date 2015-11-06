@@ -12,10 +12,12 @@
 #ifdef ICHIRO
 // インコース
 # ifdef IN_COURSE
-#  include "Mission_TailStraight.cpp"
+//#  include "Mission_TailStraight.cpp"
+#  include "Mission_Footrace.cpp"
 # else
 // アウトコース
-#  include "Mission_TailStraight.cpp"
+//#  include "Mission_TailStraight.cpp"
+#  include "Mission_Footrace.cpp"
 # endif
 
 #else
@@ -23,10 +25,12 @@
 // BS二郎くん用ミッション定義
 // インコース
 # ifdef IN_COURSE
-#  include "Mission_TailStraight.cpp"
+//#  include "Mission_TailStraight.cpp"
+#  include "Mission_Footrace.cpp"
 # else
 // アウトコース
-#  include "Mission_TailStraight.cpp"
+//#  include "Mission_TailStraight.cpp"
+#  include "Mission_Footrace.cpp"
 # endif
 #endif
 
@@ -74,7 +78,7 @@ TASK(TaskDrive){
 	// コース情報設定
 	
 	Driver::MissionPtr ptr[] = {
-		new Mission_TailStraight()
+		new Mission_Footrace()
 	};
 
 	enum{ missoin_size = sizeof(ptr)/sizeof(ptr[0]) };
@@ -324,7 +328,31 @@ SINT Driver::state_calibration(void){
     Sleep_msec(500);
     robot_.Beep();
 
-    this->status_ = ST_WAIT_START;
+	//******************
+	// 灰色値初期化
+	robot_.GetLCD().clear();
+	robot_.GetLCD().cursor(0, 0);
+	robot_.GetLCD().putf("s", "Input Gray");
+	robot_.GetLCD().disp();
+
+	// タッチセンサ押下待ち
+	this->ClearEventFlag();
+	while (!(is_SetEventFlag(Robot::EV_TOUCH_SENSOR_ON))) {
+		robot_.GetLCD().cursor(1, 2);
+		ri = robot_.GetInfo();
+		robot_.GetLCD().putf("sd", "Set: ", ri.light_sensor_val, 0);
+		robot_.GetLCD().disp();
+		Sleep_msec(100);
+	}
+
+	ri = robot_.GetInfo();
+	CourseInfo::colorGray = ri.light_sensor_val;
+
+	Sleep_msec(500);
+	robot_.Beep();
+
+	
+	this->status_ = ST_WAIT_START;
 
     return 0;
 
