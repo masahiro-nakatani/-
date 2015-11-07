@@ -91,7 +91,7 @@ build/Driver.o: Driver.cpp utils.h \
   /home/nxtOSEK/ecrobot/../ecrobot/c/ecrobot_interface.h \
   /home/nxtOSEK/ecrobot/nxtway_gs_balancer/rt_SATURATE.h \
   /home/nxtOSEK/ecrobot/nxtway_gs_balancer/balancer_types.h \
-  Mission_Circuit.cpp ControlMission_SpeedPID.cpp \
+  Mission_Footrace.cpp ControlMission_SpeedPID.cpp \
   ControlMission_Speed.cpp ControlMission_Posture.cpp \
-  DetectionMission_Time.cpp ControlMission_Transition.cpp \
-  DetectionMission_Gray.cpp DetectionMission_Endless.cpp kernel_id.h
+  DetectionMission_Time.cpp DetectionMission_Endless.cpp \
+  ControlMission_Transition.cpp kernel_id.h

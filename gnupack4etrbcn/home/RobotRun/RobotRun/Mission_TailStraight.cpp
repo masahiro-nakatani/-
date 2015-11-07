@@ -6,6 +6,7 @@
 #include "ControlMission_Posture.cpp"
 #include "DetectionMission_Time.cpp"
 #include "DetectionMission_Sonar.cpp"
+#include "DetectionMission_Endless.cpp"
 #include "ControlMission_Transition.cpp"
 
 
@@ -30,6 +31,7 @@ class Mission_TailStraight : public Mission {
 	DetectionMission_Time timed_mission_4000;
 	DetectionMission_Time timed_mission_5000;
 	DetectionMission_Time timed_mission_10000;
+	DetectionMission_Endless endless_mission;
 	Mission* p_control_missions_[MISSION_COUNT];
 	Mission* p_detection_mission_[MISSION_COUNT];
 	int mission_index_;
@@ -56,6 +58,7 @@ public:
 		, timed_mission_4000(4000)
 		, timed_mission_5000(5000)
 		, timed_mission_10000(10000)
+		, endless_mission()
 		, mission_index_(0)
 		, mission_count_( sizeof(p_control_missions_)/sizeof(p_control_missions_[0]) )
 	{
@@ -81,7 +84,7 @@ public:
 		p_detection_mission_[6] = &timed_mission_3000;
 
 		p_control_missions_[7] = &run_direct_goal_;
-		p_detection_mission_[7] = &timed_mission_10000;
+		p_detection_mission_[7] = &endless_mission;
     }
 
     virtual void Init(RobotInfo ri, NavInfo ni){

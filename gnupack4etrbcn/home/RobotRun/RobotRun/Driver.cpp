@@ -13,13 +13,13 @@
 // インコース
 # ifdef IN_COURSE
 //#  include "Mission_TailStraight.cpp"
-//#  include "Mission_Footrace.cpp"
-#  include "Mission_Circuit.cpp"
+#  include "Mission_Footrace.cpp"
+//#  include "Mission_Circuit.cpp"
 # else
 // アウトコース
 //#  include "Mission_TailStraight.cpp"
-//#  include "Mission_Footrace.cpp"
-#  include "Mission_Circuit.cpp"
+#  include "Mission_Footrace.cpp"
+//#  include "Mission_Circuit.cpp"
 # endif
 
 #else
@@ -28,13 +28,13 @@
 // インコース
 # ifdef IN_COURSE
 //#  include "Mission_TailStraight.cpp"
-//#  include "Mission_Footrace.cpp"
-#  include "Mission_Circuit.cpp"
+#  include "Mission_Footrace.cpp"
+//#  include "Mission_Circuit.cpp"
 # else
 // アウトコース
 //#  include "Mission_TailStraight.cpp"
-//#  include "Mission_Footrace.cpp"
-#  include "Mission_Circuit.cpp"
+#  include "Mission_Footrace.cpp"
+//#  include "Mission_Circuit.cpp"
 # endif
 #endif
 
@@ -82,7 +82,7 @@ TASK(TaskDrive){
 	// コース情報設定
 	
 	Driver::MissionPtr ptr[] = {
-		new Mission_Circuit()
+		new Mission_Footrace()
 	};
 
 	enum{ missoin_size = sizeof(ptr)/sizeof(ptr[0]) };
